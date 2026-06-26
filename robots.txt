@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adnair-94.github.io/rna-forge-website/sitemap.xml
