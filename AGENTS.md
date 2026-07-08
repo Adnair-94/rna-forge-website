@@ -38,7 +38,7 @@ Keep `index.html` at the repository root for the home page. Interior pages shoul
 - Use shared header and footer navigation across pages.
 - Keep styling in one shared stylesheet at `assets/css/styles.css`.
 - Use only clean semantic asset paths.
-- Do not reference `assets/logo/` or `assets/graphics/` in live HTML/CSS.
+- Do not reference legacy logo or graphics asset directories in live HTML/CSS.
 - Keep `sitemap.xml` and `robots.txt` up to date when routes change.
 
 ## Fonts
@@ -65,7 +65,7 @@ Active live assets should use these paths:
 - `assets/images/team/team-adithya-nair.jpg`
 - `assets/images/team/team-caroline-evans.jpg`
 
-Use `selected/` only for assets referenced by the live website. Use `library/` for candidate assets. Do not reference timestamped, ChatGPT-named, bracketed, typo, ampersand or space-containing filenames in HTML/CSS.
+Use `selected/` only for assets referenced by the live website. Use `library/` for candidate assets. Do not reference timestamped, AI-generated source, bracketed, typo, ampersand or space-containing filenames in HTML/CSS.
 
 ## Navigation
 
