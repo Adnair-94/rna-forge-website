@@ -1,14 +1,28 @@
-# RNA Forge Website Project Instructions
+# RNA Forge Website Implementation Brief
 
-Use this file as the source of truth for future Codex work on the RNA Forge website.
+Use this file as the source of truth for future Codex work on the RNA Forge GitHub Pages website.
 
-## Project
+## Design Direction
 
-This repository contains the static GitHub Pages website for RNA Forge, a University of Sheffield spinout developing manufacturability-focused RNA technologies and services.
+RNA Forge should read as a credible spinout company, not an academic lab. Keep the visual system clean, spacious, light, professional and restrained, close to the current RNA Forge/Moderna-like aesthetic without copying another company. Do not copy RiboPro aesthetics; only the dropdown navigation behavior was requested from that reference.
 
-## Site Scope
+Language should be investor-facing, technically credible, commercially serious, concise and partner-ready. Avoid publication-led, academic-lab or generic biotech framing.
 
-Build and maintain a static GitHub Pages-compatible website with these pages:
+## Site Structure and Navigation
+
+Keep the site static and GitHub Pages compatible. Use `index.html` at the root and directory `index.html` files for clean routes:
+
+- Home: `/`
+- Technology: `/technology/`
+- Services: `/services/`
+- Funding & Support: `/funding/`
+- About: `/about/`
+- Contact: `/contact/`
+- Privacy: `/privacy/`
+
+Use shared header and footer navigation across pages. Keep `sitemap.xml` and `robots.txt` aligned with route changes.
+
+Main navigation:
 
 - Home
 - Technology
@@ -16,44 +30,38 @@ Build and maintain a static GitHub Pages-compatible website with these pages:
 - Funding & Support
 - About
 - Contact
-- Privacy
 
-Use clean GitHub Pages routes for interior pages:
+Contact is a direct nav item or pill-style button and should not have a dropdown.
 
-- `/technology/`
-- `/services/`
-- `/funding/`
-- `/about/`
-- `/contact/`
-- `/privacy/`
+Dropdown structure:
 
-Keep `index.html` at the repository root for the home page. Interior pages should live in directory `index.html` files such as `technology/index.html`.
+- Technology: RNAbox overview; Modular manufacturing; Integrated analytics & control; Development roadmap
+- Services: RNA manufacturing; Off-the-shelf mRNAs; Bioanalytical services; Technical development support
+- Funding & Support: Innovation funding; Project timeline; Investors & collaborators
+- About: Company; Team; Ecosystem
 
-## Architecture
+Desktop dropdowns should open on hover and keyboard focus. Mobile/tablet dropdowns should work as tap accordion controls. The current implementation uses CSS-only `details`/`summary` behavior.
 
-- Keep the site static and compatible with GitHub Pages.
-- Do not add backend form handling unless explicitly requested.
-- Do not add external scripts, analytics, trackers, CDNs or third-party libraries.
-- Do not add animation unless explicitly requested.
-- Use shared header and footer navigation across pages.
-- Keep styling in one shared stylesheet at `assets/css/styles.css`.
-- Use only clean semantic asset paths.
-- Do not reference legacy logo or graphics asset directories in live HTML/CSS.
-- Keep `sitemap.xml` and `robots.txt` up to date when routes change.
+## Asset Folder Rules
 
-## Fonts
+Use clean semantic filenames only: lowercase, hyphen-separated, no spaces, dates, brackets, ampersands, typo filenames or ChatGPT/source-export names. Do not reference legacy `assets/logo/` or `assets/graphics/` paths in live HTML/CSS.
 
-Use the licensed RNA Forge fonts from `assets/fonts/` via `@font-face` in `assets/css/styles.css`.
+Folder conventions:
 
-- Prefer WOFF2 over OTF when both exist.
-- Define the family as `RNAForge`.
-- Use Regular for body text, SemiBold for navigation/buttons/card headings and Bold for major headings.
-- Use `font-display: swap`.
-- Fallback: `"Segoe UI", Arial, sans-serif`.
+- `assets/logos/`
+- `assets/brand/`
+- `assets/icons/selected/`
+- `assets/icons/library/`
+- `assets/images/hero/selected/`
+- `assets/images/hero/library/`
+- `assets/images/technology/selected/`
+- `assets/images/technology/library/`
+- `assets/images/team/`
+- `assets/fonts/`
 
-## Assets
+Use `selected/` only for assets referenced by the live website. Use `library/` for candidate assets.
 
-Active live assets should use these paths:
+Active live assets:
 
 - `assets/logos/rna-forge-logo-standard-colour.png`
 - `assets/images/hero/selected/home-hero-rna-forge-flow.png`
@@ -65,41 +73,19 @@ Active live assets should use these paths:
 - `assets/images/team/team-adithya-nair.jpg`
 - `assets/images/team/team-caroline-evans.jpg`
 
-Use `selected/` only for assets referenced by the live website. Use `library/` for candidate assets. Do not reference timestamped, AI-generated source, bracketed, typo, ampersand or space-containing filenames in HTML/CSS.
+## Font Usage
 
-## Navigation
+Use the RNA Forge font files from `assets/fonts/` only when web embedding is confirmed or explicitly provided for the website. The current CSS defines the `RNAForge` family from the available OTF files:
 
-Main nav:
+- `assets/fonts/vag-rounded-next-regular.otf`
+- `assets/fonts/vag-rounded-next-semibold.otf`
+- `assets/fonts/vag-rounded-next-bold.otf`
 
-- Home
-- Technology
-- Services
-- Funding & Support
-- About
-- Contact
-
-Contact should be direct and should not have a dropdown.
-
-Desktop dropdowns should open on hover and keyboard focus. Mobile/tablet should use tap/click accordion behaviour. Use clean white dropdown panels with subtle border/shadow and RNA Forge accent colour.
-
-## Positioning and Tone
-
-RNA Forge must look and read like a spinout company website, not an academic lab website.
-
-Language should be:
-
-- investor-facing
-- technically credible
-- commercially serious
-- concise and partner-ready
-- non-academic
-- non-generic biotech
-
-Avoid academic-lab framing, publication-led language and overclaiming.
+Use `font-display: swap` and fall back to `"Segoe UI", Arial, sans-serif`. Prefer WOFF2 files later if properly licensed and supplied.
 
 ## Claim Control
 
-Avoid these terms unless explicitly approved:
+Avoid these claims or terms unless explicitly approved:
 
 - GMP-ready
 - clinical-grade
@@ -112,7 +98,7 @@ Avoid these terms unless explicitly approved:
 - proven lower cost
 - replacement of existing infrastructure
 
-Prefer:
+Prefer language such as:
 
 - modular
 - progressive integration
@@ -122,16 +108,44 @@ Prefer:
 - improved product understanding
 - analytically informed development
 
-## Contact Form
+The contact page must keep `info@rnaforge.com` as the primary live route. Any form must remain static/disabled until privacy and security handling is implemented, and must include the warning not to submit confidential RNA sequences, proprietary formulations, unpublished process details or sensitive commercial information through the public form.
 
-The contact form should remain static and disabled until privacy/security handling is implemented.
+## Do Not Do
 
-The contact page must include this warning:
+- Do not add external scripts, analytics, trackers, CDNs, third-party libraries or backend form handling.
+- Do not add animation unless explicitly requested.
+- Do not upload or bundle new font files unless the web-embedding licence is confirmed.
+- Do not use funder, partner or ecosystem logos without permission.
+- Do not merge without explicit user approval.
+- Do not restart feature implementation when the user asks only for documentation or PR metadata updates.
 
-> Please do not submit confidential RNA sequences, proprietary formulations, unpublished process details or sensitive commercial information through this public form. We can arrange an appropriate confidential discussion if needed.
+## Current Branch and PR State
 
-Use `info@rnaforge.com` as the primary live contact route.
+The current review branch is `codex/rna-forge-design-direction`. The active draft PR is #2, "Apply final RNA Forge website design and content":
 
-## Review Workflow
+https://github.com/Adnair-94/rna-forge-website/pull/2
 
-Prepare changes for review in a branch or pull request. Do not merge without explicit user approval.
+PR #2 currently targets `codex/first-static-site` because it is layered on the first static-site PR. Keep it unmerged until the user explicitly approves merge or retargeting.
+
+## Validation Completed
+
+Latest implementation audit reported:
+
+- double-extension assets: 0
+- old `assets/logo/` references in live text: 0
+- old `assets/graphics/` references in live text: 0
+- timestamp/source-name references in live text: 0
+- script tags in HTML: 0
+- animation keywords in CSS: 0
+- `team/index.html` removed and `about/index.html` present
+- broken local `href`/`src` references: 0
+
+## Remaining Review Tasks
+
+- Review the stacked PR flow and decide whether PR #2 should remain based on `codex/first-static-site` or later be retargeted/rebased after PR #1.
+- Review visual rendering in GitHub Pages preview once the stack is available.
+- Check dropdown hover/focus behavior on desktop and tap accordion behavior on mobile.
+- Review mobile responsiveness across home, technology, services, funding, about, contact and privacy pages.
+- Review hero, RNAbox scheme and team image crops/sizing.
+- Confirm font web-embedding licence and optionally replace OTF references with WOFF2 files later.
+- Confirm investor-facing claims and wording with company stakeholders.
