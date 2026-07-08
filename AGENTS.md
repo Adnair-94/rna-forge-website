@@ -1,5 +1,7 @@
 # RNA Forge Website Implementation Brief
 
+Last updated: 2026-07-09.
+
 Use this file as the source of truth for future Codex work on the RNA Forge GitHub Pages website.
 
 ## Design Direction
@@ -127,7 +129,7 @@ https://github.com/Adnair-94/rna-forge-website/pull/2
 
 PR #2 currently targets `codex/first-static-site` because it is layered on the first static-site PR. Keep it unmerged until the user explicitly approves merge or retargeting.
 
-## Validation Completed
+## Validation Summary
 
 Latest implementation audit reported:
 
@@ -140,7 +142,9 @@ Latest implementation audit reported:
 - `team/index.html` removed and `about/index.html` present
 - broken local `href`/`src` references: 0
 
-## Remaining Review Tasks
+Branch comparison before the documentation handoff showed `codex/rna-forge-design-direction` ahead of `codex/first-static-site` and not behind.
+
+## Remaining Review Checklist
 
 - Review the stacked PR flow and decide whether PR #2 should remain based on `codex/first-static-site` or later be retargeted/rebased after PR #1.
 - Review visual rendering in GitHub Pages preview once the stack is available.
@@ -149,3 +153,10 @@ Latest implementation audit reported:
 - Review hero, RNAbox scheme and team image crops/sizing.
 - Confirm font web-embedding licence and optionally replace OTF references with WOFF2 files later.
 - Confirm investor-facing claims and wording with company stakeholders.
+
+## Next Steps
+
+1. Perform manual visual QA in a GitHub Pages preview or local static preview.
+2. Make only review-driven adjustments on the existing PR branch.
+3. Resolve the stacked PR plan: merge PR #1 first, then decide whether to retarget/rebase PR #2 before final review.
+4. Keep PR #2 as a draft until the user approves moving toward merge.
