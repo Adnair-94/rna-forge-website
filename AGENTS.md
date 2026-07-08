@@ -46,7 +46,7 @@ Desktop dropdowns should open on hover and keyboard focus. Mobile/tablet dropdow
 
 ## Asset Folder Rules
 
-Use clean semantic filenames only: lowercase, hyphen-separated, no spaces, dates, brackets, ampersands, typo filenames or ChatGPT/source-export names. Do not reference legacy `assets/logo/` or `assets/graphics/` paths in live HTML/CSS.
+Use clean semantic filenames only: lowercase, hyphen-separated, no spaces, dates, brackets, ampersands, typo filenames or ChatGPT/source-export names. Do not reference legacy logo or graphics directories in live HTML/CSS.
 
 Folder conventions:
 
@@ -134,8 +134,8 @@ PR #2 currently targets `codex/first-static-site` because it is layered on the f
 Latest implementation audit reported:
 
 - double-extension assets: 0
-- old `assets/logo/` references in live text: 0
-- old `assets/graphics/` references in live text: 0
+- legacy logo directory references in live text: 0
+- legacy graphics directory references in live text: 0
 - timestamp/source-name references in live text: 0
 - script tags in HTML: 0
 - animation keywords in CSS: 0
