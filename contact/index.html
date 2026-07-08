@@ -9,61 +9,54 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="../" aria-label="RNA Forge home"><img src="../assets/logo/1b_Full_Logo_Colour.png" alt="RNA Forge"></a>
+    <a class="brand" href="../" aria-label="RNA Forge home"><img src="../assets/logos/rna-forge-logo-standard-colour.png" alt="RNA Forge"></a>
     <nav class="site-nav" aria-label="Primary navigation">
       <a href="../">Home</a><a href="../technology/">Technology</a><a href="../services/">Services</a><a href="../funding/">Funding &amp; Support</a><a href="../team/">Team</a><a class="active" href="../contact/">Contact</a>
     </nav>
   </header>
 
   <main>
-    <section class="page-hero">
+    <section class="page-hero simple">
       <div>
         <p class="eyebrow">Contact</p>
         <h1>Start a commercially focused RNA conversation.</h1>
-        <p class="lead">Use this static form layout to prepare an enquiry about technology, services, funding support, or partnership. Backend form handling has not yet been implemented.</p>
+        <p class="lead">Email <a href="mailto:info@rnaforge.com">info@rnaforge.com</a> for technology, services, funding support, or partnership enquiries.</p>
       </div>
-      <img src="../assets/graphics/Cog_Blue.png" alt="">
     </section>
 
     <section class="section contact-layout">
-      <form class="contact-form" action="#" method="post">
+      <form class="contact-form" action="#" method="post" aria-disabled="true">
         <div class="notice">
-          <strong>Confidentiality warning:</strong> Do not submit confidential, proprietary, or sensitive information through this form. RNA Forge cannot treat information submitted here as confidential unless a written confidentiality agreement is in place.
+          <strong>Confidentiality warning:</strong> Do not submit confidential RNA sequences, proprietary formulations, unpublished process details, or sensitive commercial information through the public form.
         </div>
         <label for="name">Name</label>
-        <input id="name" name="name" type="text" autocomplete="name">
-
+        <input id="name" name="name" type="text" autocomplete="name" disabled>
         <label for="email">Email</label>
-        <input id="email" name="email" type="email" autocomplete="email">
-
+        <input id="email" name="email" type="email" autocomplete="email" disabled>
         <label for="organization">Organization</label>
-        <input id="organization" name="organization" type="text" autocomplete="organization">
-
+        <input id="organization" name="organization" type="text" autocomplete="organization" disabled>
         <label for="topic">Topic</label>
-        <select id="topic" name="topic">
+        <select id="topic" name="topic" disabled>
           <option>Technology discussion</option>
           <option>Services enquiry</option>
           <option>Funding or diligence support</option>
           <option>Strategic partnership</option>
           <option>Other</option>
         </select>
-
         <label for="message">Message</label>
-        <textarea id="message" name="message" rows="7"></textarea>
-
-        <button class="button primary" type="button">Submit enquiry</button>
+        <textarea id="message" name="message" rows="7" disabled></textarea>
+        <button class="button primary disabled" type="button" disabled>Form disabled</button>
       </form>
-
       <aside class="contact-panel">
-        <p class="eyebrow">Before you write</p>
-        <h2>Keep the first exchange high level.</h2>
-        <p>Please describe the commercial context, development stage, and type of support you are seeking. Detailed proprietary sequences, unpublished datasets, and confidential partner information should wait until an appropriate agreement is in place.</p>
+        <p class="eyebrow">Live contact route</p>
+        <h2>Use email until privacy handling is implemented.</h2>
+        <p>The public form remains static and disabled until privacy, security, and routing requirements are agreed.</p>
       </aside>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div><img src="../assets/logo/3b_Full_Logo_White.png" alt="RNA Forge"><p>Manufacturability-focused RNA technologies and services.</p></div>
+    <div><img src="../assets/logos/rna-forge-logo-standard-colour.png" alt="RNA Forge"><p>Manufacturability-focused RNA technologies and services.</p></div>
     <nav aria-label="Footer navigation"><a href="../technology/">Technology</a><a href="../services/">Services</a><a href="../funding/">Funding &amp; Support</a><a href="../team/">Team</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a></nav>
   </footer>
 </body>
