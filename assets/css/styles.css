@@ -90,7 +90,7 @@ a { color: inherit; }
 }
 .dropdown-menu a { display: block; padding: 9px 10px; color: #34414a; text-decoration: none; border-radius: 4px; font-size: 0.95rem; font-weight: 600; }
 .dropdown-menu a:hover, .dropdown-menu a:focus { color: var(--green-dark); background: #eef8f0; outline: none; }
-.nav-mobile-toggle { display: none; }
+.nav-mobile-toggle, .mobile-menu { display: none; }
 .nav-mobile-toggle summary { list-style: none; }
 .nav-mobile-toggle summary::-webkit-details-marker { display: none; }
 .nav-contact { margin-left: 4px; padding: 9px 16px; color: var(--white); background: var(--ink); border: 1px solid var(--ink); border-radius: 999px; font-size: 1rem; font-weight: 600; text-decoration: none; }
@@ -183,8 +183,9 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   .nav-mobile-toggle summary::before { content: ""; width: 8px; height: 8px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); }
   .nav-mobile-toggle[open] summary { color: var(--green-dark); border-color: var(--green); }
   .desktop-menu { display: none; }
-  .dropdown-menu { position: static; display: none; grid-column: 1 / -1; min-width: 0; margin: 0 0 8px; box-shadow: none; border-radius: 6px; }
-  .nav-mobile-toggle[open] .dropdown-menu { display: block; }
+  .mobile-menu { grid-column: 1 / -1; }
+  .dropdown-menu { position: static; display: none; min-width: 0; margin: 0 0 8px; box-shadow: none; border-radius: 6px; }
+  .nav-mobile-toggle[open] + .mobile-menu { display: block; }
   .hero { min-height: auto; }
   .hero-figure img { max-height: 420px; }
   .page-hero img { justify-self: start; max-height: 260px; }
