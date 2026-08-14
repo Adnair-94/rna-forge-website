@@ -208,6 +208,33 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   background: #f1f7f4;
 }
 .service-equipment .text-stack { max-width: 780px; padding-top: 4px; }
+.equipment-gallery { background: var(--white); }
+.equipment-gallery .section-heading { margin-bottom: 32px; }
+.equipment-gallery .section-heading > p:last-child { color: var(--muted); font-size: 1.06rem; }
+.equipment-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 40px);
+}
+.equipment-figure { min-width: 0; margin: 0; }
+.equipment-figure img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f1f7f4;
+}
+.equipment-figure figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+  padding-top: 12px;
+}
+.equipment-figure figcaption strong { font-size: 1.06rem; }
+.equipment-figure figcaption span { color: var(--muted); font-size: 0.88rem; white-space: nowrap; }
 .cta { justify-content: space-between; background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .cta h2 { margin-bottom: 0; }
 .page-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 420px); align-items: center; gap: clamp(28px, 5vw, 72px); background: var(--white); }
@@ -270,6 +297,7 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   .hero-figure img { width: 108%; max-height: 420px; margin-left: -4%; }
   .page-hero img { justify-self: start; max-height: 260px; }
   .card-grid.four, .card-grid.three, .card-grid.two, .team-grid, .price-grid { grid-template-columns: 1fr; }
+  .equipment-gallery-grid { grid-template-columns: 1fr; }
   .about-section { gap: 24px; padding-top: 48px; padding-bottom: 48px; }
   .about-section .text-stack, .service-equipment .text-stack { padding-top: 0; }
   .team-card { grid-template-columns: 140px minmax(0, 1fr); }
@@ -285,4 +313,5 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   .hero { padding-top: 32px; padding-bottom: 40px; }
   .team-card { grid-template-columns: 1fr; gap: 12px; }
   .team-card img { width: 140px; height: 140px; margin-bottom: 2px; }
+  .equipment-figure figcaption { align-items: flex-start; flex-direction: column; gap: 2px; }
 }
