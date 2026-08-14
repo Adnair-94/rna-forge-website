@@ -152,8 +152,8 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   padding-bottom: clamp(48px, 5vw, 72px);
 }
 .about-section h2 { max-width: 680px; }
-.about-section .text-stack { max-width: 800px; padding-top: 4px; }
-.about-section .text-stack p { font-size: 1.1rem; line-height: 1.68; }
+.about-section .text-stack { max-width: 800px; padding-top: 38px; }
+.about-section .text-stack p { font-size: 1.12rem; line-height: 1.68; }
 .card p { color: var(--muted); font-size: 0.94rem; line-height: 1.58; }
 .band { background: var(--charcoal); color: var(--white); }
 .band .eyebrow { color: #8de39e; }
