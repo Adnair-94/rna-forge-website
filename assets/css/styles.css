@@ -194,6 +194,7 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   transform: scale(1.45);
   transform-origin: center;
 }
+.technology-card h3 { text-align: center; }
 .team-card {
   min-height: 0;
   display: grid;
