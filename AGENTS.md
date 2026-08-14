@@ -72,7 +72,7 @@ Active live assets:
 - `assets/images/technology/selected/rnabox-modular-workflow-scheme.png`
 - `assets/images/equipment/selected/modular-rna-manufacturing-system-concept.png`
 - `assets/images/equipment/selected/automated-fluid-handling-module-concept.png`
-- `assets/images/equipment/selected/rna-process-vessel-concept.png`
+- `assets/images/equipment/selected/chromatography-unit-concept.png`
 - `assets/images/equipment/selected/rna-reactor-concept.png`
 - `assets/images/team/team-edwin-wagena.jpg`
 - `assets/images/team/team-emma-welbourne.jpg`
