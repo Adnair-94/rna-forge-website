@@ -153,7 +153,7 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .card-grid.three, .price-grid, .equipment-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .card-grid.two, .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .card, .team-card, .price-card, .equipment-card { min-height: 190px; padding: 28px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); }
-.card-icon { width: 42px; height: 42px; object-fit: contain; margin-bottom: 18px; }
+.card-icon { width: 64px; height: 64px; object-fit: contain; margin-bottom: 16px; mix-blend-mode: multiply; }
 .team-card {
   min-height: 0;
   display: grid;
