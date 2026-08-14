@@ -1,3 +1,27 @@
+@font-face {
+  font-family: "RNAForge";
+  src: url("../fonts/vag-rounded-next-regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RNAForge";
+  src: url("../fonts/vag-rounded-next-semibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RNAForge";
+  src: url("../fonts/vag-rounded-next-bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --ink: #121619;
   --muted: #59646c;
@@ -17,7 +41,7 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper);
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: "RNAForge", "Segoe UI", Arial, sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.62;

@@ -83,7 +83,13 @@ Active live assets:
 
 ## Font Usage
 
-Do not bundle or load RNA Forge font files until web-embedding permission is confirmed. The current review branch uses `"Segoe UI", Arial, sans-serif` and removes the previously bundled OTF files. Prefer WOFF2 if licensed webfont files are supplied later.
+The user confirmed on 2026-08-14 that RNA Forge has the right to use the supplied font on the website. The approved OTF files are bundled and loaded as the `RNAForge` family:
+
+- `assets/fonts/vag-rounded-next-regular.otf`
+- `assets/fonts/vag-rounded-next-semibold.otf`
+- `assets/fonts/vag-rounded-next-bold.otf`
+
+Use `font-display: swap` and retain `"Segoe UI", Arial, sans-serif` as fallbacks. Convert to WOFF2 only if the licence permits format conversion.
 
 ## Claim Control
 
@@ -116,7 +122,7 @@ The contact page must keep `info@rnaforge.com` as the primary live route. Any fo
 
 - Do not add external scripts, analytics, trackers, CDNs, third-party libraries or backend form handling.
 - Do not add animation unless explicitly requested.
-- Do not upload or bundle new font files unless the web-embedding licence is confirmed.
+- Do not replace the approved RNA Forge font files with different font assets unless their website-use rights are confirmed.
 - Do not use funder, partner or ecosystem logos without permission.
 - Do not merge without explicit user approval.
 - Do not restart feature implementation when the user asks only for documentation or PR metadata updates.
@@ -161,7 +167,7 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 - Check dropdown hover/focus behavior on desktop and tap accordion behavior on mobile.
 - Review mobile responsiveness across home, technology, services, funding, about, contact and privacy pages.
 - Review hero, RNAbox scheme, equipment concept and team image crops/sizing; compress the large selected PNG assets before final launch.
-- Keep bundled fonts removed until web-embedding permission is confirmed; use WOFF2 if licensed files are supplied later.
+- Preserve the approved RNA Forge font implementation; consider WOFF2 only if permitted by the licence.
 - Confirm investor-facing claims and wording with company stakeholders.
 
 ## Next Steps
