@@ -135,10 +135,26 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .card-grid.two, .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .card, .team-card, .price-card, .equipment-card { min-height: 190px; padding: 28px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); }
 .card-icon { width: 42px; height: 42px; object-fit: contain; margin-bottom: 18px; }
-.team-card { min-height: 0; display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; align-items: start; }
-.team-card img { width: 150px; height: 150px; object-fit: cover; border-radius: 999px; background: #eef4f4; }
-.team-card h3 { margin: 0 0 6px; color: var(--ink); font-size: 1.28rem; }
-.team-card p { margin-bottom: 10px; }
+.team-card {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  column-gap: 24px;
+  row-gap: 4px;
+  align-items: start;
+  padding: 22px;
+}
+.team-card img {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 999px;
+  background: #eef4f4;
+}
+.team-card h3 { grid-column: 2; margin: 0 0 4px; color: var(--ink); font-size: 1.28rem; }
+.team-card p { grid-column: 2; margin: 0; }
 .price-card { display: flex; flex-direction: column; gap: 10px; }
 .price-card h3 { margin-bottom: 2px; }
 .price-line { display: flex; justify-content: space-between; gap: 18px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 0.98rem; }
@@ -212,6 +228,7 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   h2 { font-size: 1.9rem; }
   .hero-actions, .button { width: 100%; }
   .card, .team-card, .price-card, .equipment-card { padding: 22px; }
-  .team-card { grid-template-columns: 1fr; }
-  .team-card img { width: 140px; height: 140px; }
+  .team-card { grid-template-columns: 1fr; row-gap: 8px; }
+  .team-card img { grid-column: 1; grid-row: auto; width: 140px; height: 140px; margin-bottom: 4px; }
+  .team-card h3, .team-card p { grid-column: 1; }
 }
