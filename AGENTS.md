@@ -1,6 +1,6 @@
 # RNA Forge Website Implementation Brief
 
-Last updated: 2026-07-09.
+Last updated: 2026-08-14.
 
 Use this file as the source of truth for future Codex work on the RNA Forge GitHub Pages website.
 
@@ -58,6 +58,8 @@ Folder conventions:
 - `assets/images/hero/library/`
 - `assets/images/technology/selected/`
 - `assets/images/technology/library/`
+- `assets/images/equipment/selected/`
+- `assets/images/equipment/library/`
 - `assets/images/team/`
 - `assets/fonts/`
 
@@ -68,6 +70,10 @@ Active live assets:
 - `assets/logos/rna-forge-logo-standard-colour.png`
 - `assets/images/hero/selected/home-hero-rna-forge-flow.png`
 - `assets/images/technology/selected/rnabox-modular-workflow-scheme.png`
+- `assets/images/equipment/selected/modular-rna-manufacturing-system-concept.png`
+- `assets/images/equipment/selected/automated-fluid-handling-module-concept.png`
+- `assets/images/equipment/selected/rna-process-vessel-concept.png`
+- `assets/images/equipment/selected/rna-reactor-concept.png`
 - `assets/images/team/team-edwin-wagena.jpg`
 - `assets/images/team/team-emma-welbourne.jpg`
 - `assets/images/team/team-mark-dickman.jpg`
@@ -150,7 +156,7 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 - Review visual rendering in GitHub Pages preview once the stack is available.
 - Check dropdown hover/focus behavior on desktop and tap accordion behavior on mobile.
 - Review mobile responsiveness across home, technology, services, funding, about, contact and privacy pages.
-- Review hero, RNAbox scheme and team image crops/sizing.
+- Review hero, RNAbox scheme, equipment concept and team image crops/sizing.
 - Confirm font web-embedding licence and optionally replace OTF references with WOFF2 files later.
 - Confirm investor-facing claims and wording with company stakeholders.
 
