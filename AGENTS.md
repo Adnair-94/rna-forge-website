@@ -89,7 +89,7 @@ The user confirmed on 2026-08-14 that RNA Forge has the right to use the supplie
 - `assets/fonts/vag-rounded-next-semibold.otf`
 - `assets/fonts/vag-rounded-next-bold.otf`
 
-Use `font-display: swap` and retain `"Segoe UI", Arial, sans-serif` as fallbacks. Convert to WOFF2 only if the licence permits format conversion.
+Use `font-display: swap` and retain `"Segoe UI", Arial, sans-serif` as fallbacks. The shared head include preloads all three approved weights to minimise fallback-font flashes. Convert to WOFF2 only if the licence permits format conversion.
 
 ## Claim Control
 
