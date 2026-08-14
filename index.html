@@ -1,34 +1,23 @@
+---
+layout: null
+title: "RNA Forge | Accelerating RNA drug development"
+description: "RNA Forge is a University of Sheffield spinout combining RNA manufacturing, advanced analytics and process innovation for RNA therapeutics."
+section: home
+---
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RNA Forge | Accelerating RNA drug development</title>
-  <meta name="description" content="RNA Forge is a University of Sheffield spinout combining RNA manufacturing, advanced analytics and process innovation for RNA therapeutics.">
-  <link rel="stylesheet" href="assets/css/styles.css">
-</head>
+{% include head.html %}
 <body>
-  <header class="site-header">
-    <a class="brand" href="./" aria-label="RNA Forge home"><img src="assets/logos/rna-forge-logo-standard-colour.png" alt="RNA Forge"></a>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a class="nav-link active" href="./">Home</a>
-      <div class="nav-dropdown"><a class="nav-link nav-parent" href="technology/">Technology</a><details class="nav-mobile-toggle"><summary aria-label="Open Technology menu"></summary></details><div class="dropdown-menu mobile-menu"><a href="technology/#rnabox-overview">RNAbox overview</a><a href="technology/#modular-manufacturing">Modular manufacturing</a><a href="technology/#integrated-analytics-control">Integrated analytics &amp; control</a><a href="technology/#development-roadmap">Development roadmap</a></div><div class="dropdown-menu desktop-menu"><a href="technology/#rnabox-overview">RNAbox overview</a><a href="technology/#modular-manufacturing">Modular manufacturing</a><a href="technology/#integrated-analytics-control">Integrated analytics &amp; control</a><a href="technology/#development-roadmap">Development roadmap</a></div></div>
-      <div class="nav-dropdown"><a class="nav-link nav-parent" href="services/">Services</a><details class="nav-mobile-toggle"><summary aria-label="Open Services menu"></summary></details><div class="dropdown-menu mobile-menu"><a href="services/#rna-manufacturing">RNA manufacturing</a><a href="services/#off-the-shelf-mrnas">Off-the-shelf mRNAs</a><a href="services/#bioanalytical-services">Bioanalytical services</a><a href="services/#technical-development-support">Technical development support</a></div><div class="dropdown-menu desktop-menu"><a href="services/#rna-manufacturing">RNA manufacturing</a><a href="services/#off-the-shelf-mrnas">Off-the-shelf mRNAs</a><a href="services/#bioanalytical-services">Bioanalytical services</a><a href="services/#technical-development-support">Technical development support</a></div></div>
-      <div class="nav-dropdown"><a class="nav-link nav-parent" href="funding/">Funding &amp; Support</a><details class="nav-mobile-toggle"><summary aria-label="Open Funding and Support menu"></summary></details><div class="dropdown-menu mobile-menu"><a href="funding/#innovation-funding">Innovation funding</a><a href="funding/#project-timeline">Project timeline</a><a href="funding/#investors-collaborators">Investors &amp; collaborators</a></div><div class="dropdown-menu desktop-menu"><a href="funding/#innovation-funding">Innovation funding</a><a href="funding/#project-timeline">Project timeline</a><a href="funding/#investors-collaborators">Investors &amp; collaborators</a></div></div>
-      <div class="nav-dropdown"><a class="nav-link nav-parent" href="about/">About</a><details class="nav-mobile-toggle"><summary aria-label="Open About menu"></summary></details><div class="dropdown-menu mobile-menu"><a href="about/#company">Company</a><a href="about/#team">Team</a><a href="about/#ecosystem">Ecosystem</a></div><div class="dropdown-menu desktop-menu"><a href="about/#company">Company</a><a href="about/#team">Team</a><a href="about/#ecosystem">Ecosystem</a></div></div>
-      <a class="nav-contact" href="contact/">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero">
+{% include header.html %}
+<main id="main-content">
+<section class="hero">
       <div class="hero-copy">
         <p class="eyebrow">Optimised manufacturing, advanced analytics and process innovation for RNA therapeutics</p>
         <h1>Accelerating RNA drug development</h1>
         <p class="lead">RNA Forge is a University of Sheffield spinout founded in response to major manufacturing challenges emerging across the RNA therapeutics sector. We are developing RNAbox&trade;, a modular, digitally enabled platform for flexible and scalable RNA medicine manufacturing.</p>
         <div class="hero-actions"><a class="button primary" href="services/">Explore services</a><a class="button secondary" href="technology/">See RNAbox technology</a></div>
       </div>
-      <figure class="hero-figure"><img src="assets/images/hero/selected/home-hero-rna-forge-flow.png" alt="RNA Forge modular manufacturing and analytics workflow"></figure>
+      <figure class="hero-figure"><img src="assets/images/hero/selected/home-hero-rna-forge-flow.png" alt="RNA Forge modular manufacturing and analytics workflow" fetchpriority="high" decoding="async"></figure>
     </section>
 
     <section class="section split">
@@ -56,11 +45,7 @@
     </section>
 
     <section class="section cta"><div><p class="eyebrow">Start a conversation</p><h2>Discuss RNA manufacturing, analytics or RNAbox development.</h2><p>Speak with RNA Forge about off-the-shelf mRNAs, custom manufacturing, analytical services or modular RNAbox technology development.</p></div><a class="button primary" href="contact/">Contact RNA Forge</a></section>
-  </main>
-
-  <footer class="site-footer">
-    <div><img src="assets/logos/rna-forge-logo-standard-colour.png" alt="RNA Forge"><p>Optimised manufacturing, advanced analytics and process innovation for RNA therapeutics.</p><p class="footer-contact"><a href="mailto:info@rnaforge.com">info@rnaforge.com</a></p><p>&copy; 2026 RNA Forge Ltd. All rights reserved.</p></div>
-    <nav aria-label="Footer navigation"><a href="technology/">Technology</a><a href="services/">Services</a><a href="funding/">Funding &amp; Support</a><a href="about/">About</a><a href="contact/">Contact</a><a href="privacy/">Privacy</a></nav>
-  </footer>
+</main>
+{% include footer.html %}
 </body>
 </html>

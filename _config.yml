@@ -1,0 +1,7 @@
+title: RNA Forge
+url: "https://adnair-94.github.io"
+baseurl: "/rna-forge-website"
+permalink: pretty
+exclude:
+  - AGENTS.md
+  - README.md

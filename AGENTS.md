@@ -83,13 +83,7 @@ Active live assets:
 
 ## Font Usage
 
-Use the RNA Forge font files from `assets/fonts/` only when web embedding is confirmed or explicitly provided for the website. The current CSS defines the `RNAForge` family from the available OTF files:
-
-- `assets/fonts/vag-rounded-next-regular.otf`
-- `assets/fonts/vag-rounded-next-semibold.otf`
-- `assets/fonts/vag-rounded-next-bold.otf`
-
-Use `font-display: swap` and fall back to `"Segoe UI", Arial, sans-serif`. Prefer WOFF2 files later if properly licensed and supplied.
+Do not bundle or load RNA Forge font files until web-embedding permission is confirmed. The current review branch uses `"Segoe UI", Arial, sans-serif` and removes the previously bundled OTF files. Prefer WOFF2 if licensed webfont files are supplied later.
 
 ## Claim Control
 
@@ -127,6 +121,16 @@ The contact page must keep `info@rnaforge.com` as the primary live route. Any fo
 - Do not merge without explicit user approval.
 - Do not restart feature implementation when the user asks only for documentation or PR metadata updates.
 
+## Shared Page Architecture
+
+GitHub Pages processes the site with Jekyll. Shared metadata, navigation and footer markup live in:
+
+- `_includes/head.html`
+- `_includes/header.html`
+- `_includes/footer.html`
+
+Each route keeps its own directory `index.html`, YAML front matter and page-specific `<main>` content. Update shared navigation in the include, not separately in every page.
+
 ## Current Branch and PR State
 
 The current review branch is `codex/rna-forge-design-direction`. The active draft PR is #2, "Apply final RNA Forge website design and content":
@@ -156,13 +160,15 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 - Review visual rendering in GitHub Pages preview once the stack is available.
 - Check dropdown hover/focus behavior on desktop and tap accordion behavior on mobile.
 - Review mobile responsiveness across home, technology, services, funding, about, contact and privacy pages.
-- Review hero, RNAbox scheme, equipment concept and team image crops/sizing.
-- Confirm font web-embedding licence and optionally replace OTF references with WOFF2 files later.
+- Review hero, RNAbox scheme, equipment concept and team image crops/sizing; compress the large selected PNG assets before final launch.
+- Keep bundled fonts removed until web-embedding permission is confirmed; use WOFF2 if licensed files are supplied later.
 - Confirm investor-facing claims and wording with company stakeholders.
 
 ## Next Steps
 
-1. Perform manual visual QA in a GitHub Pages preview or local static preview.
-2. Make only review-driven adjustments on the existing PR branch.
-3. Resolve the stacked PR plan: merge PR #1 first, then decide whether to retarget/rebase PR #2 before final review.
-4. Keep PR #2 as a draft until the user approves moving toward merge.
+1. Perform manual visual QA of the Jekyll-rendered GitHub Pages preview.
+2. Obtain legal review of the Privacy notice and commercial review of pricing before launch.
+3. Compress selected hero, icon, scheme and equipment PNG assets.
+4. Make only review-driven adjustments on the existing PR branch.
+5. Resolve the stacked PR plan: merge PR #1 first, then decide whether to retarget/rebase PR #2 before final review.
+6. Keep PR #2 as a draft until the user approves moving toward merge.

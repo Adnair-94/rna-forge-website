@@ -1,27 +1,3 @@
-@font-face {
-  font-family: "RNAForge";
-  src: url("../fonts/vag-rounded-next-regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "RNAForge";
-  src: url("../fonts/vag-rounded-next-semibold.otf") format("opentype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "RNAForge";
-  src: url("../fonts/vag-rounded-next-bold.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --ink: #121619;
   --muted: #59646c;
@@ -41,13 +17,29 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper);
-  font-family: "RNAForge", "Segoe UI", Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.62;
 }
 img { display: block; max-width: 100%; }
 a { color: inherit; }
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 10px 14px;
+  color: var(--white);
+  background: var(--ink);
+  transform: translateY(-140%);
+}
+.skip-link:focus { transform: translateY(0); }
+.nav-link:focus-visible, .nav-contact:focus-visible, .button:focus-visible, .dropdown-menu a:focus-visible, summary:focus-visible, a:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+section[id] { scroll-margin-top: 76px; }
 
 .site-header {
   position: sticky;
@@ -175,6 +167,7 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .card p { color: var(--muted); font-size: 0.94rem; line-height: 1.58; }
 .band { background: var(--charcoal); color: var(--white); }
 .band .eyebrow { color: #8de39e; }
+.band .text-stack p, .band .section-heading > p:last-child { color: #d3dde1; }
 .band .card { color: var(--ink); background: var(--white); border-color: transparent; }
 .card-grid, .team-grid, .price-grid { display: grid; gap: 18px; }
 .card-grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -195,6 +188,8 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   transform-origin: center;
 }
 .technology-card h3 { text-align: center; }
+.technology-card h3 a { text-decoration: none; }
+.technology-card h3 a:hover, .technology-card h3 a:focus { color: var(--green-dark); }
 .team-card {
   min-height: 0;
   display: grid;
@@ -367,4 +362,8 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   .team-card { grid-template-columns: 1fr; gap: 12px; }
   .team-card img { width: 140px; height: 140px; margin-bottom: 2px; }
   .equipment-gallery-grid { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
