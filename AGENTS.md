@@ -83,6 +83,12 @@ The user confirmed on 2026-08-14 that RNA Forge has the right to use the supplie
 
 Use `font-display: swap` and retain `"Segoe UI", Arial, sans-serif` as fallbacks. The shared head include preloads all three approved weights to minimise fallback-font flashes. Convert to WOFF2 only if the licence permits format conversion.
 
+## Product Naming
+
+Display the product name as `RNAbox™` in page titles, prominent headings, labels, calls to action and the first substantive product reference on each relevant page. Later repeated body-copy references may use `RNAbox` to avoid visual clutter. Use the HTML entity `RNAbox&trade;` in HTML content and the Unicode form `RNAbox™` in YAML metadata.
+
+Do not add the trademark symbol to filenames, asset paths, anchor IDs, URL fragments or email subject parameters. Keep technical identifiers such as `rnabox-modular-workflow-scheme.png` and `#rnabox-overview` unchanged.
+
 ## Claim Control
 
 Avoid these claims or terms unless explicitly approved:
