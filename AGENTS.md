@@ -1,12 +1,12 @@
 # RNA Forge Website Implementation Brief
 
-Last updated: 2026-08-14.
+Last updated: 2026-08-20.
 
 Use this file as the source of truth for future Codex work on the RNA Forge GitHub Pages website.
 
 ## Design Direction
 
-RNA Forge should read as a credible spinout company, not an academic lab. Keep the visual system clean, spacious, light, professional and restrained, close to the current RNA Forge/Moderna-like aesthetic without copying another company. Do not copy RiboPro aesthetics; only the dropdown navigation behavior was requested from that reference.
+RNA Forge should read as a credible spinout company, not an academic lab. Keep the visual system clean, spacious, light, professional and restrained, close to the current RNA Forge/Moderna-like aesthetic without copying another company. Do not copy RiboPro or Dillico aesthetics; Dillico was referenced only for the familiar mobile three-bar menu behavior.
 
 Language should be investor-facing, technically credible, commercially serious, concise and partner-ready. Avoid publication-led, academic-lab or generic biotech framing.
 
@@ -33,16 +33,7 @@ Main navigation:
 - About
 - Contact
 
-Contact is a direct nav item or pill-style button and should not have a dropdown.
-
-Dropdown structure:
-
-- Technology: RNAbox overview; Modular manufacturing; Integrated analytics & control; Development roadmap
-- Services: RNA manufacturing; Off-the-shelf mRNAs; Bioanalytical services; Technical development support
-- Funding & Support: Innovation funding; Project timeline; Investors & collaborators
-- About: Company; Team; Ecosystem
-
-Desktop dropdowns should open on hover and keyboard focus. Mobile/tablet dropdowns should work as tap accordion controls. The current implementation uses CSS-only `details`/`summary` behavior.
+Contact is a direct pill-style nav item. Following stakeholder feedback on 2026-08-20, do not use nested dropdown menus. Desktop shows the six top-level links directly. At widths of 900px and below, hide the links behind a three-bar `details`/`summary` menu that is operable by keyboard and tap without JavaScript.
 
 ## Asset Folder Rules
 
@@ -68,6 +59,7 @@ Use `selected/` only for assets referenced by the live website. Use `library/` f
 Active live assets:
 
 - `assets/logos/rna-forge-logo-standard-colour.png`
+- `assets/logos/rna-forge-logo-standard-white-punched.png`
 - `assets/images/hero/selected/home-hero-rna-forge-flow.png`
 - `assets/images/technology/selected/rnabox-modular-workflow-scheme.png`
 - `assets/images/equipment/selected/modular-rna-manufacturing-system-concept.png`
@@ -145,6 +137,8 @@ https://github.com/Adnair-94/rna-forge-website/pull/2
 
 PR #2 currently targets `codex/first-static-site` because it is layered on the first static-site PR. Keep it unmerged until the user explicitly approves merge or retargeting.
 
+The 2026-08-20 review revision simplifies navigation, sharpens Home and Technology copy, moves equipment concepts from Services to Technology, separates manufacturing and bioanalytical pricing, adds all workbook-confirmed reporter sequence options, and rebuilds Funding & Support around a staged project timeline and controlled funding-disclosure structure.
+
 ## Validation Summary
 
 Latest implementation audit reported:
@@ -157,6 +151,13 @@ Latest implementation audit reported:
 - animation keywords in CSS: 0
 - `team/index.html` removed and `about/index.html` present
 - broken local `href`/`src` references: 0
+- eight page templates parsed with no duplicate IDs or missing main landmarks
+- desktop navigation contains only the six top-level routes; mobile uses one closed-by-default hamburger menu
+- scripts, public forms and animation introduced by the 2026-08-20 revision: 0
+- approved `RNAForge` font faces and three head preloads retained
+- equipment concept references: Technology 4, Services 0
+- workbook-confirmed reporter sequences listed: eGFP, NLuc and FLuc; only eGFP publishes standard charges
+- project timeline stages on Funding & Support: 4
 
 Branch comparison before the documentation handoff showed `codex/rna-forge-design-direction` ahead of `codex/first-static-site` and not behind.
 
@@ -164,11 +165,13 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 
 - Review the stacked PR flow and decide whether PR #2 should remain based on `codex/first-static-site` or later be retargeted/rebased after PR #1.
 - Review visual rendering in GitHub Pages preview once the stack is available.
-- Check dropdown hover/focus behavior on desktop and tap accordion behavior on mobile.
+- Check the desktop top-level navigation and mobile hamburger open/close behavior with keyboard, touch and screen-reader semantics.
 - Review mobile responsiveness across home, technology, services, funding, about, contact and privacy pages.
 - Review hero, RNAbox scheme, equipment concept and team image crops/sizing; compress the large selected PNG assets before final launch.
 - Preserve the approved RNA Forge font implementation; consider WOFF2 only if permitted by the licence.
 - Confirm investor-facing claims and wording with company stakeholders.
+- Supply and approve actual funder names, award references, project dates and permitted logos before adding them to the public funding page; do not invent or imply support.
+- Obtain commercial approval for eGFP catalogue pricing, NLuc/FLuc quotation wording and all analytical package inclusions and charges.
 
 ## Next Steps
 
