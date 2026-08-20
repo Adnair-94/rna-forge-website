@@ -156,7 +156,7 @@ PR #2 currently targets `codex/first-static-site` because it is layered on the f
 
 The 2026-08-20 review revision simplifies navigation, sharpens Home and Technology copy, moves equipment concepts from Services to Technology, separates manufacturing and bioanalytical pricing, uses the approved reporter names enhanced green fluorescent protein (eGFP), NanoLuciferase (NanoLuc) and firefly luciferase (FLuc), and rebuilds Funding & Support around the user-supplied five-stage RNAbox roadmap plus approved research-programme and company-support records.
 
-The shared stylesheet URL uses the release token `?v=20260820-5` so GitHub Pages does not combine revised HTML with a stale cached CSS file. Update this token when a later release changes `assets/css/styles.css`.
+The shared stylesheet URL uses the release token `?v=20260820-6` so GitHub Pages does not combine revised HTML with a stale cached CSS file. Update this token when a later release changes `assets/css/styles.css`.
 
 ## Validation Summary
 
@@ -180,7 +180,9 @@ Latest implementation audit reported:
 - approved funder/support logos referenced on Funding & Support: 6
 - approved `RNAForge` font remains explicitly applied to roadmap, programme and funder components
 - roadmap cards no longer force the supporting-programme heading underneath their visual height
-- logo panels contain source-image backgrounds and align the Northern Gritstone / NG Studios pair without overlap
+- roadmap icons are centred at a stable 96 × 96 desktop size
+- Innovate UK and CEPI source assets are tightly cropped, while logo panels centre and enlarge all live marks without overlap
+- Northern Gritstone and NG Studios remain aligned as a balanced logo pair
 
 Branch comparison before the documentation handoff showed `codex/rna-forge-design-direction` ahead of `codex/first-static-site` and not behind.
 

@@ -382,15 +382,15 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .roadmap-date, .roadmap-action { display: block; color: var(--green-dark); font-weight: 700; }
 .roadmap-date { font-size: 1.05rem; }
 .roadmap-action { margin: 4px 0 10px; font-size: 0.86rem; text-transform: uppercase; }
-.roadmap-icon { width: 82px; height: 82px; margin: 10px 0 20px; object-fit: contain; mix-blend-mode: multiply; }
+.roadmap-icon { width: 96px; height: 96px; margin: 10px auto 20px; object-fit: contain; mix-blend-mode: multiply; }
 .roadmap-card h3 { font-size: 1.16rem; }
 .roadmap-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.52; }
 .roadmap-programmes { position: relative; z-index: 2; margin-top: 42px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.22); }
 .roadmap-programmes > h3 { margin-bottom: 18px; font-size: 1.45rem; }
 .programme-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .programme-item { display: grid; grid-template-columns: minmax(150px, 190px) minmax(0, 1fr); gap: 22px; align-items: center; min-height: 124px; padding: 20px 24px; color: var(--ink); background: var(--white); border-radius: 8px; }
-.programme-logo { display: grid; place-items: center; width: 100%; height: 82px; overflow: hidden; }
-.programme-logo img { display: block; width: auto; height: auto; max-width: 100%; max-height: 72px; object-fit: contain; mix-blend-mode: multiply; }
+.programme-logo { display: grid; place-items: center; width: 100%; height: 88px; overflow: hidden; }
+.programme-logo img { display: block; width: auto; height: auto; max-width: 100%; max-height: 80px; object-fit: contain; mix-blend-mode: multiply; }
 .programme-item strong, .programme-item span { display: block; }
 .programme-item strong { font-size: 1.08rem; font-weight: 600; line-height: 1.25; }
 .programme-item span { color: var(--muted); }
@@ -402,14 +402,13 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .funder-grid { display: grid; gap: 18px; }
 .funder-grid-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .funder-grid-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.funder-card { display: grid; grid-template-rows: 136px 1fr; overflow: hidden; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
-.funder-logo { display: grid; place-items: center; height: 136px; overflow: hidden; padding: 20px 28px; background: var(--paper); border-bottom: 1px solid var(--line); }
-.funder-logo img { display: block; width: auto; height: auto; max-width: min(100%, 300px); max-height: 96px; object-fit: contain; mix-blend-mode: multiply; }
+.funder-card { display: grid; grid-template-rows: 150px 1fr; overflow: hidden; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.funder-logo { display: grid; place-items: center; height: 150px; overflow: hidden; padding: 20px 28px; background: var(--paper); border-bottom: 1px solid var(--line); }
+.funder-logo img { display: block; width: auto; height: auto; max-width: min(100%, 340px); max-height: 110px; object-fit: contain; mix-blend-mode: multiply; }
 .funder-logo-pair { grid-template-columns: minmax(90px, 0.65fr) minmax(180px, 1.35fr); gap: 28px; }
 .funder-logo-pair .logo-northern-gritstone { width: 112px; max-height: 104px; }
 .funder-logo-pair .logo-ng-studios { width: 100%; max-width: 270px; max-height: 88px; }
-.logo-innovate-uk { transform: scale(1.5); transform-origin: center; }
-.logo-cepi { transform: scale(1.12); transform-origin: center; }
+.logo-innovate-uk, .logo-cepi { transform: none; }
 .funder-card-copy { display: flex; flex-direction: column; padding: 24px; }
 .funder-card-copy .eyebrow { margin-bottom: 8px; }
 .funder-card h4 { margin: 0 0 12px; font-size: 1.2rem; line-height: 1.25; }
@@ -524,9 +523,10 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   .capability-feature .card-icon { width: 96px; height: 96px; margin-inline: auto; }
   .method-grid { grid-template-columns: 1fr; }
   .programme-item { grid-template-columns: 1fr; gap: 12px; }
-  .programme-logo { justify-items: center; height: 72px; }
-  .programme-logo img { width: auto; max-width: min(240px, 100%); }
-  .funder-logo { height: 120px; padding: 18px 22px; }
+  .programme-logo { justify-items: center; height: 80px; }
+  .programme-logo img { width: auto; max-width: min(260px, 100%); max-height: 76px; }
+  .funder-card { grid-template-rows: 132px 1fr; }
+  .funder-logo { height: 132px; padding: 18px 22px; }
   .funder-logo-pair { grid-template-columns: minmax(80px, 0.6fr) minmax(150px, 1.4fr); gap: 14px; }
   .team-card { grid-template-columns: 1fr; gap: 12px; }
   .team-card img { width: 140px; height: 140px; margin-bottom: 2px; }
