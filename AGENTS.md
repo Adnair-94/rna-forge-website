@@ -42,6 +42,8 @@ Use clean semantic filenames only: lowercase, hyphen-separated, no spaces, dates
 Folder conventions:
 
 - `assets/logos/`
+- `assets/logos/funders/selected/`
+- `assets/logos/funders/library/`
 - `assets/brand/`
 - `assets/icons/selected/`
 - `assets/icons/library/`
@@ -51,6 +53,7 @@ Folder conventions:
 - `assets/images/technology/library/`
 - `assets/images/equipment/selected/`
 - `assets/images/equipment/library/`
+- `assets/images/funding/library/`
 - `assets/images/team/`
 - `assets/fonts/`
 
@@ -60,6 +63,12 @@ Active live assets:
 
 - `assets/logos/rna-forge-logo-standard-colour.png`
 - `assets/logos/rna-forge-logo-standard-white-punched.png`
+- `assets/logos/funders/selected/innovate-uk-logo.jpg`
+- `assets/logos/funders/selected/cepi-logo-colour.png`
+- `assets/logos/funders/selected/university-of-sheffield-logo-violet.png`
+- `assets/logos/funders/selected/northern-gritstone-logo.jpg`
+- `assets/logos/funders/selected/ng-studios-kq-labs-logo.png`
+- `assets/logos/funders/selected/royal-academy-of-engineering-logo.png`
 - `assets/images/hero/selected/home-hero-rna-forge-flow.png`
 - `assets/images/technology/selected/rnabox-modular-workflow-scheme.png`
 - `assets/images/equipment/selected/modular-rna-manufacturing-system-concept.png`
@@ -121,7 +130,7 @@ The contact page must keep `info@rnaforge.com` as the primary live route. Any fo
 - Do not add external scripts, analytics, trackers, CDNs, third-party libraries or backend form handling.
 - Do not add animation unless explicitly requested.
 - Do not replace the approved RNA Forge font files with different font assets unless their website-use rights are confirmed.
-- Do not use funder, partner or ecosystem logos without permission.
+- Do not use funder, partner or ecosystem logos without permission. The six funder/support logo files listed above were supplied for use in the 2026-08-20 review.
 - Do not merge without explicit user approval.
 - Do not restart feature implementation when the user asks only for documentation or PR metadata updates.
 
@@ -143,9 +152,9 @@ https://github.com/Adnair-94/rna-forge-website/pull/2
 
 PR #2 currently targets `codex/first-static-site` because it is layered on the first static-site PR. Keep it unmerged until the user explicitly approves merge or retargeting.
 
-The 2026-08-20 review revision simplifies navigation, sharpens Home and Technology copy, moves equipment concepts from Services to Technology, separates manufacturing and bioanalytical pricing, adds all workbook-confirmed reporter sequence options, and rebuilds Funding & Support around a staged project timeline and controlled funding-disclosure structure.
+The 2026-08-20 review revision simplifies navigation, sharpens Home and Technology copy, moves equipment concepts from Services to Technology, separates manufacturing and bioanalytical pricing, expands reporter names before abbreviations, and rebuilds Funding & Support around a five-stage RNAbox roadmap plus approved research-programme and company-support records.
 
-The shared stylesheet URL uses the release token `?v=20260820-2` so GitHub Pages does not combine revised HTML with a stale cached CSS file. Update this token when a later release changes `assets/css/styles.css`.
+The shared stylesheet URL uses the release token `?v=20260820-3` so GitHub Pages does not combine revised HTML with a stale cached CSS file. Update this token when a later release changes `assets/css/styles.css`.
 
 ## Validation Summary
 
@@ -165,7 +174,8 @@ Latest implementation audit reported:
 - approved `RNAForge` font faces and three head preloads retained
 - equipment concept references: Technology 4, Services 0
 - workbook-confirmed reporter sequences listed: eGFP, NLuc and FLuc; only eGFP publishes standard charges
-- project timeline stages on Funding & Support: 4
+- roadmap stages on Funding & Support: 5
+- approved funder/support logos referenced on Funding & Support: 6
 
 Branch comparison before the documentation handoff showed `codex/rna-forge-design-direction` ahead of `codex/first-static-site` and not behind.
 
@@ -178,7 +188,7 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 - Review hero, RNAbox scheme, equipment concept and team image crops/sizing; compress the large selected PNG assets before final launch.
 - Preserve the approved RNA Forge font implementation; consider WOFF2 only if permitted by the licence.
 - Confirm investor-facing claims and wording with company stakeholders.
-- Supply and approve actual funder names, award references, project dates and permitted logos before adding them to the public funding page; do not invent or imply support.
+- Confirm the final public wording and supplied dates for company-building support, particularly the Royal Academy of Engineering Enterprise Fellowship record, before launch.
 - Obtain commercial approval for eGFP catalogue pricing, NLuc/FLuc quotation wording and all analytical package inclusions and charges.
 
 ## Next Steps
