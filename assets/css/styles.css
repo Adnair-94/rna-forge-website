@@ -383,8 +383,8 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .roadmap-date { font-size: 1.05rem; }
 .roadmap-action { margin: 4px 0 10px; font-size: 0.86rem; text-transform: uppercase; }
 .roadmap-icon { width: 96px; height: 96px; margin: 10px auto 20px; object-fit: contain; mix-blend-mode: multiply; }
-.roadmap-card h3 { font-size: 1.16rem; }
-.roadmap-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.52; }
+.roadmap-card h3 { font-size: 1.15rem; font-weight: 600; }
+.roadmap-card p { color: var(--muted); font-size: 0.94rem; font-weight: 400; line-height: 1.58; }
 .roadmap-programmes { position: relative; z-index: 2; margin-top: 42px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.22); }
 .roadmap-programmes > h3 { margin-bottom: 18px; font-size: 1.45rem; }
 .programme-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
@@ -536,3 +536,4 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
