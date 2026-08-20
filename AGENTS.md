@@ -154,7 +154,7 @@ PR #2 currently targets `codex/first-static-site` because it is layered on the f
 
 The 2026-08-20 review revision simplifies navigation, sharpens Home and Technology copy, moves equipment concepts from Services to Technology, separates manufacturing and bioanalytical pricing, expands reporter names before abbreviations, and rebuilds Funding & Support around a five-stage RNAbox roadmap plus approved research-programme and company-support records.
 
-The shared stylesheet URL uses the release token `?v=20260820-3` so GitHub Pages does not combine revised HTML with a stale cached CSS file. Update this token when a later release changes `assets/css/styles.css`.
+The shared stylesheet URL uses the release token `?v=20260820-4` so GitHub Pages does not combine revised HTML with a stale cached CSS file. Update this token when a later release changes `assets/css/styles.css`.
 
 ## Validation Summary
 
