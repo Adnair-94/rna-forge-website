@@ -113,6 +113,8 @@ Avoid these claims or terms unless explicitly approved:
 - proven lower cost
 - replacement of existing infrastructure
 
+The user explicitly approved the supplied five-stage Funding & Support roadmap wording on 2026-08-20, including `validated`, `GMP-ready`, `GMP-compatible`, `commercial readiness` and `commercial rollout`. Treat that approval as limited to the roadmap; do not reuse those terms as general performance or regulatory claims elsewhere without a fresh review.
+
 Prefer language such as:
 
 - modular
@@ -152,9 +154,9 @@ https://github.com/Adnair-94/rna-forge-website/pull/2
 
 PR #2 currently targets `codex/first-static-site` because it is layered on the first static-site PR. Keep it unmerged until the user explicitly approves merge or retargeting.
 
-The 2026-08-20 review revision simplifies navigation, sharpens Home and Technology copy, moves equipment concepts from Services to Technology, separates manufacturing and bioanalytical pricing, expands reporter names before abbreviations, and rebuilds Funding & Support around a five-stage RNAbox roadmap plus approved research-programme and company-support records.
+The 2026-08-20 review revision simplifies navigation, sharpens Home and Technology copy, moves equipment concepts from Services to Technology, separates manufacturing and bioanalytical pricing, uses the approved reporter names enhanced green fluorescent protein (eGFP), NanoLuciferase (NanoLuc) and firefly luciferase (FLuc), and rebuilds Funding & Support around the user-supplied five-stage RNAbox roadmap plus approved research-programme and company-support records.
 
-The shared stylesheet URL uses the release token `?v=20260820-4` so GitHub Pages does not combine revised HTML with a stale cached CSS file. Update this token when a later release changes `assets/css/styles.css`.
+The shared stylesheet URL uses the release token `?v=20260820-5` so GitHub Pages does not combine revised HTML with a stale cached CSS file. Update this token when a later release changes `assets/css/styles.css`.
 
 ## Validation Summary
 
@@ -173,9 +175,12 @@ Latest implementation audit reported:
 - scripts, public forms and animation introduced by the 2026-08-20 revision: 0
 - approved `RNAForge` font faces and three head preloads retained
 - equipment concept references: Technology 4, Services 0
-- workbook-confirmed reporter sequences listed: eGFP, NLuc and FLuc; only eGFP publishes standard charges
+- workbook-confirmed reporter sequences listed with approved full names first: enhanced green fluorescent protein (eGFP), NanoLuciferase (NanoLuc) and firefly luciferase (FLuc); only eGFP publishes standard charges
 - roadmap stages on Funding & Support: 5
 - approved funder/support logos referenced on Funding & Support: 6
+- approved `RNAForge` font remains explicitly applied to roadmap, programme and funder components
+- roadmap cards no longer force the supporting-programme heading underneath their visual height
+- logo panels contain source-image backgrounds and align the Northern Gritstone / NG Studios pair without overlap
 
 Branch comparison before the documentation handoff showed `codex/rna-forge-design-direction` ahead of `codex/first-static-site` and not behind.
 
@@ -187,9 +192,9 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 - Review mobile responsiveness across home, technology, services, funding, about, contact and privacy pages.
 - Review hero, RNAbox scheme, equipment concept and team image crops/sizing; compress the large selected PNG assets before final launch.
 - Preserve the approved RNA Forge font implementation; consider WOFF2 only if permitted by the licence.
-- Confirm investor-facing claims and wording with company stakeholders.
+- Keep the user-approved roadmap wording confined to the Funding & Support roadmap and review any later reuse as a separate claim.
 - Confirm the final public wording and supplied dates for company-building support, particularly the Royal Academy of Engineering Enterprise Fellowship record, before launch.
-- Obtain commercial approval for eGFP catalogue pricing, NLuc/FLuc quotation wording and all analytical package inclusions and charges.
+- Obtain commercial approval for eGFP catalogue pricing, NanoLuc/FLuc quotation wording and all analytical package inclusions and charges.
 
 ## Next Steps
 
