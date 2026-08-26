@@ -3,6 +3,7 @@ layout: null
 title: "Contact RNA Forge | RNA Forge"
 description: "Contact RNA Forge about RNA manufacturing, analytical services, RNAbox™ technology, funding, investment or partnership opportunities."
 section: contact
+turnstile: true
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -10,9 +11,36 @@ section: contact
 <body>
 {% include header.html %}
 <main id="main-content">
-<section class="page-hero simple"><div><p class="eyebrow">Contact</p><h1>Contact RNA Forge</h1><p class="lead">Speak with us about RNA manufacturing, analytical services, RNAbox&trade; technology development, funding, investment or partnership opportunities.</p><div class="hero-actions"><a class="button primary" href="mailto:info@rnaforge.com">Email info@rnaforge.com</a></div></div></section>
-<section class="section"><div class="section-heading"><p class="eyebrow">Enquiry routes</p><h2>Choose the most relevant conversation.</h2></div><div class="card-grid three"><article class="card"><h3>Services &amp; quotations</h3><p>Off-the-shelf mRNAs, custom manufacturing, analytical packages and technical development support.</p><a class="button secondary" href="mailto:info@rnaforge.com?subject=RNA%20Forge%20service%20quotation">Request a quote</a></article><article class="card"><h3>RNAbox&trade; &amp; technology</h3><p>Manufacturing challenges, modular integration, technology evaluation and pilot deployment planning.</p><a class="button secondary" href="mailto:info@rnaforge.com?subject=RNAbox%20technology%20enquiry">Discuss RNAbox&trade;</a></article><article class="card"><h3>Funding &amp; collaboration</h3><p>Investment, innovation support, technical collaboration and ecosystem partnerships.</p><a class="button secondary" href="mailto:info@rnaforge.com?subject=RNA%20Forge%20funding%20or%20collaboration">Start a conversation</a></article></div></section>
-<section class="section tight"><div class="notice"><strong>Please do not send confidential RNA sequences, proprietary formulations, unpublished process details or sensitive commercial information by public website or initial email.</strong> Contact us first so an appropriate confidential discussion can be arranged.</div></section>
+<section class="page-hero simple"><div><p class="eyebrow">Contact</p><h1>Contact RNA Forge</h1><p class="lead">Send a protected enquiry about RNA manufacturing, analytical services, RNAbox&trade; technology, funding, investment or partnership opportunities.</p></div></section>
+<section class="section contact-layout">
+  <form class="contact-form" action="{{ site.contact_form_endpoint }}" method="post" accept-charset="UTF-8">
+    <div><p class="eyebrow">Protected enquiry</p><h2>Start a conversation.</h2></div>
+    <div class="notice"><strong>Do not submit confidential RNA sequences, proprietary formulations, unpublished process details or sensitive commercial information.</strong> We will arrange an appropriate confidential channel when needed.</div>
+    <label for="contact-name">Name</label>
+    <input id="contact-name" name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required>
+    <label for="contact-email">Work email</label>
+    <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" inputmode="email" required>
+    <label for="contact-organisation">Organisation</label>
+    <input id="contact-organisation" name="organisation" type="text" autocomplete="organization" maxlength="160">
+    <label for="contact-topic">Enquiry type</label>
+    <select id="contact-topic" name="topic" required>
+      <option value="">Choose an enquiry type</option>
+      <option value="services">Services and quotations</option>
+      <option value="technology">RNAbox&trade; and technology</option>
+      <option value="funding">Funding, investment and collaboration</option>
+      <option value="privacy">Privacy request</option>
+      <option value="other">Other</option>
+    </select>
+    <label for="contact-message">How can we help?</label>
+    <textarea id="contact-message" name="message" rows="8" minlength="20" maxlength="4000" required></textarea>
+    <div class="form-trap" aria-hidden="true"><label for="contact-website">Website</label><input id="contact-website" name="company_website" type="text" tabindex="-1" autocomplete="off"></div>
+    <input name="source" type="hidden" value="rna-forge-website">
+    <label class="form-consent" for="contact-consent"><input id="contact-consent" name="consent" type="checkbox" value="yes" required><span>I have read the <a href="{{ '/privacy/' | relative_url }}">privacy notice</a> and understand the confidentiality warning above.</span></label>
+    <div class="cf-turnstile" data-sitekey="{{ site.turnstile_site_key }}" data-action="contact" data-theme="light" data-size="flexible"></div>
+    <button class="button primary" type="submit">Send protected enquiry</button>
+  </form>
+  <aside class="contact-panel"><p class="eyebrow">What happens next</p><h2>Your enquiry is reviewed by RNA Forge.</h2><p>We use your details only to respond, scope the requested work and arrange appropriate follow-up.</p><p>For sensitive technical or commercial discussions, we will establish a suitable confidential channel before requesting detailed information.</p></aside>
+</section>
 </main>
 {% include footer.html %}
 </body>

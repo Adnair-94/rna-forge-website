@@ -125,11 +125,11 @@ Prefer language such as:
 - improved product understanding
 - analytically informed development
 
-The contact page must keep `info@rnaforge.com` as the primary live route. Any form must remain static/disabled until privacy and security handling is implemented, and must include the warning not to submit confidential RNA sequences, proprietary formulations, unpublished process details or sensitive commercial information through the public form.
+The public website must not expose the destination mailbox in HTML, links, scripts, configuration or documentation. Contact routes must use the protected form. The form must keep server-side Turnstile validation, hostname/action checks, rate limiting, a honeypot field and the warning not to submit confidential RNA sequences, proprietary formulations, unpublished process details or sensitive commercial information.
 
 ## Do Not Do
 
-- Do not add external scripts, analytics, trackers, CDNs, third-party libraries or backend form handling.
+- Do not add analytics, advertising trackers or new external scripts. The only approved external browser script is Cloudflare Turnstile on the contact page; its token must always be verified server-side.
 - Do not add animation unless explicitly requested.
 - Do not replace the approved RNA Forge font files with different font assets unless their website-use rights are confirmed.
 - Do not use funder, partner or ecosystem logos without permission. The live funder/support assets were either supplied for the review or, for EPSRC, obtained from the RNA MINT funder set requested by the user. Northern Triangle Talent currently uses a text wordmark because no approved standalone logo was found.
@@ -213,4 +213,3 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 4. Make only review-driven adjustments on the existing PR branch.
 5. Resolve the stacked PR plan: merge PR #1 first, then decide whether to retarget/rebase PR #2 before final review.
 6. Keep PR #2 as a draft until the user approves moving toward merge.
-
