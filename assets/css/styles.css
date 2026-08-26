@@ -28,7 +28,11 @@
   --line: #dde7e8;
   --paper: #f8faf8;
   --white: #ffffff;
-  --green: #58b96d;
+  --brand-blue: #4dc0e4;
+  --brand-green: #60ba84;
+  --brand-teal: #60bfbd;
+  --brand-light-green: #98c76b;
+  --green: var(--brand-green);
   --green-dark: #247441;
   --blue: #2266a8;
   --blue-soft: #eaf3fa;
@@ -177,9 +181,15 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .about-section .text-stack p { font-size: 1.12rem; line-height: 1.68; }
 .card p { color: var(--muted); font-size: 0.94rem; line-height: 1.58; }
 .band { background: var(--charcoal); color: var(--white); }
-.band .eyebrow { color: #8de39e; }
+.band .eyebrow { color: var(--brand-light-green); }
 .band .text-stack p, .band .section-heading > p:last-child { color: #d3dde1; }
 .band .card { color: var(--ink); background: var(--white); border-color: transparent; }
+.service-capability-grid .card { min-height: 220px; border: 0; }
+.service-capability-grid .card:nth-child(1) { background: var(--brand-blue); }
+.service-capability-grid .card:nth-child(2) { background: var(--brand-green); }
+.service-capability-grid .card:nth-child(3) { background: var(--brand-teal); }
+.service-capability-grid .card:nth-child(4) { background: var(--brand-light-green); }
+.service-capability-grid .card p { color: #1d3035; }
 .card-grid, .team-grid, .price-grid { display: grid; gap: 18px; }
 .card-grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .card-grid.three, .price-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -263,13 +273,37 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .pricing-section .section-heading { margin-bottom: 28px; }
 .analytics-pricing { background: #eef4f8; }
 .manufacturing-price-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.coa-panel {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(28px, 5vw, 70px);
+  margin-top: 38px;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+}
+.coa-panel h3 { max-width: 560px; font-size: 1.55rem; }
+.coa-panel p { color: var(--muted); }
+.coa-list, .support-list { margin: 0; padding-left: 21px; color: var(--muted); }
+.coa-list li + li, .support-list li + li { margin-top: 8px; }
 .analytics-package-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .package-list, .catalogue-list { margin: 0; padding-left: 20px; color: var(--muted); }
 .package-list li + li, .catalogue-list li + li { margin-top: 6px; }
-.methods-heading { margin-top: 36px; }
-.method-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 22px; }
-.method-line { display: flex; justify-content: space-between; gap: 14px; padding: 11px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.94rem; }
-.method-line strong { color: var(--ink); white-space: nowrap; }
+.methods-heading { margin: 0 0 16px; font-size: 1.45rem; }
+.packages-heading { margin: 42px 0 16px; font-size: 1.45rem; }
+.method-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.method-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  min-height: 142px;
+  padding: 22px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.method-card h4 { margin: 0 0 6px; font-size: 1.05rem; line-height: 1.3; }
+.method-card p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+.method-card > strong { align-self: flex-end; color: var(--ink); white-space: nowrap; }
 .service-list { margin: 10px 0 0; padding-left: 20px; }
 .service-list li + li { margin-top: 8px; }
 .service-equipment {
@@ -313,10 +347,10 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .equipment-figure figcaption span { color: var(--muted); font-size: 0.82rem; line-height: 1.4; }
 .cta { justify-content: space-between; background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .cta h2 { margin-bottom: 0; }
-.cta-green { color: var(--white); background: var(--green-dark); border: 0; }
-.cta-green .eyebrow { color: #baf0c4; }
-.cta-green p { color: #e5f3e8; }
-.cta-green .button.primary { color: var(--green-dark); background: var(--white); border-color: var(--white); }
+.cta-green { color: var(--ink); background: var(--brand-green); border: 0; }
+.cta-green .eyebrow { color: #173b29; }
+.cta-green p { color: #173b29; }
+.cta-green .button.primary { color: var(--white); background: var(--ink); border-color: var(--ink); }
 .page-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 420px); align-items: center; gap: clamp(28px, 5vw, 72px); background: var(--white); }
 .page-hero.simple { display: block; }
 .about-hero {
@@ -332,8 +366,9 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .technology-figure img { width: 100%; max-height: none; object-fit: contain; }
 .placeholder { padding: 30px; border: 1px dashed #aab9c0; border-radius: 8px; background: #fbfdfb; color: var(--muted); }
 .roadmap-section { color: var(--white); background: var(--charcoal); }
-.roadmap-section, .roadmap-card, .programme-item, .funders-section, .funder-card { font-family: "RNAForge", "Segoe UI", Arial, sans-serif; }
+.roadmap-section, .roadmap-card, .funders-section, .funder-card, .service-capability-grid, .coa-panel, .method-card { font-family: "RNAForge", "Segoe UI", Arial, sans-serif; }
 .roadmap-section .section-heading { max-width: 900px; margin-inline: auto; text-align: center; }
+.roadmap-section .section-heading .eyebrow { color: var(--brand-light-green); }
 .roadmap-section .section-heading > p:last-child { color: #d3dde1; }
 .roadmap {
   position: relative;
@@ -351,7 +386,7 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   left: 5%;
   right: 5%;
   height: 3px;
-  background: linear-gradient(90deg, #48a8e8, #39bba6 48%, #79bd38);
+  background: linear-gradient(90deg, var(--brand-blue), var(--brand-green) 34%, var(--brand-teal) 55%, var(--brand-light-green));
 }
 .roadmap-stage { position: relative; z-index: 1; display: flex; min-width: 0; flex-direction: column; }
 .roadmap-marker {
@@ -360,23 +395,25 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   width: 56px;
   height: 56px;
   margin: 0 auto 16px;
-  color: var(--white);
-  background: var(--green-dark);
+  color: var(--ink);
+  background: var(--brand-green);
   border: 4px solid var(--charcoal);
   border-radius: 999px;
   font-size: 1.3rem;
   font-weight: 700;
 }
-.roadmap-stage:first-child .roadmap-marker { background: #258dd3; }
-.roadmap-stage:nth-child(3) .roadmap-marker { background: #229c91; }
-.roadmap-stage:nth-child(5) .roadmap-marker { background: #69a92f; }
+.roadmap-stage:first-child .roadmap-marker { background: var(--brand-blue); }
+.roadmap-stage:nth-child(2) .roadmap-marker { background: var(--brand-green); }
+.roadmap-stage:nth-child(3) .roadmap-marker { background: var(--brand-teal); }
+.roadmap-stage:nth-child(4) .roadmap-marker { background: var(--brand-green); }
+.roadmap-stage:nth-child(5) .roadmap-marker { background: var(--brand-light-green); }
 .roadmap-card {
   min-height: 360px;
   flex: 1;
   padding: 22px 20px;
   color: var(--ink);
   background: var(--white);
-  border: 1px solid rgba(88, 185, 109, 0.2);
+  border: 1px solid rgba(96, 186, 132, 0.28);
   border-radius: 8px;
 }
 .roadmap-date, .roadmap-action { display: block; color: var(--green-dark); font-weight: 700; }
@@ -385,15 +422,6 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .roadmap-icon { width: 96px; height: 96px; margin: 10px auto 20px; object-fit: contain; mix-blend-mode: multiply; }
 .roadmap-card h3 { font-size: 1.15rem; font-weight: 600; }
 .roadmap-card p { color: var(--muted); font-size: 0.94rem; font-weight: 400; line-height: 1.58; }
-.roadmap-programmes { position: relative; z-index: 2; margin-top: 42px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.22); }
-.roadmap-programmes > h3 { margin-bottom: 18px; font-size: 1.45rem; }
-.programme-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.programme-item { display: grid; grid-template-columns: minmax(150px, 190px) minmax(0, 1fr); gap: 22px; align-items: center; min-height: 124px; padding: 20px 24px; color: var(--ink); background: var(--white); border-radius: 8px; }
-.programme-logo { display: grid; place-items: center; width: 100%; height: 88px; overflow: hidden; }
-.programme-logo img { display: block; width: auto; height: auto; max-width: 100%; max-height: 80px; object-fit: contain; mix-blend-mode: multiply; }
-.programme-item strong, .programme-item span { display: block; }
-.programme-item strong { font-size: 1.08rem; font-weight: 600; line-height: 1.25; }
-.programme-item span { color: var(--muted); }
 .funders-section { background: var(--white); }
 .funder-groups { display: grid; gap: 54px; margin-top: 36px; }
 .funder-group-heading { margin-bottom: 20px; }
@@ -402,17 +430,21 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .funder-grid { display: grid; gap: 18px; }
 .funder-grid-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .funder-grid-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.funder-card { display: grid; grid-template-rows: 150px 1fr; overflow: hidden; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
-.funder-logo { display: grid; place-items: center; height: 150px; overflow: hidden; padding: 20px 28px; background: var(--paper); border-bottom: 1px solid var(--line); }
-.funder-logo img { display: block; width: auto; height: auto; max-width: min(100%, 340px); max-height: 110px; object-fit: contain; mix-blend-mode: multiply; }
-.funder-logo-pair { grid-template-columns: minmax(90px, 0.65fr) minmax(180px, 1.35fr); gap: 28px; }
-.funder-logo-pair .logo-northern-gritstone { width: 112px; max-height: 104px; }
-.funder-logo-pair .logo-ng-studios { width: 100%; max-width: 270px; max-height: 88px; }
+.funder-grid-support { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.funder-card { display: grid; grid-template-rows: 170px 1fr; overflow: hidden; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.funder-logo { display: grid; place-items: center; height: 170px; overflow: hidden; padding: 22px 30px; background: var(--white); border-bottom: 1px solid var(--line); }
+.funder-logo img { display: block; width: auto; height: auto; max-width: min(100%, 390px); max-height: 124px; object-fit: contain; mix-blend-mode: multiply; }
+.funder-logo .logo-ng-studios { width: min(100%, 360px); max-height: 118px; }
+.funder-logo .logo-epsrc { max-height: 118px; }
+.funder-wordmark { color: #263238; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; line-height: 0.92; text-align: center; }
+.funder-wordmark::after { content: "Project & Mentor Network"; display: block; margin-top: 12px; color: var(--green-dark); font-size: 0.8rem; font-weight: 600; line-height: 1.2; text-transform: uppercase; }
 .logo-innovate-uk, .logo-cepi { transform: none; }
 .funder-card-copy { display: flex; flex-direction: column; padding: 24px; }
 .funder-card-copy .eyebrow { margin-bottom: 8px; }
 .funder-card h4 { margin: 0 0 12px; font-size: 1.2rem; line-height: 1.25; }
 .funder-card p { color: var(--muted); }
+.funder-programme-name { margin-bottom: 10px; color: var(--ink) !important; font-weight: 600; }
+.funder-award { margin: 4px 0 10px; color: var(--green-dark) !important; font-weight: 700; }
 .funder-period { margin: auto 0 0; padding-top: 12px; border-top: 1px solid var(--line); color: var(--green-dark) !important; font-weight: 600; }
 .contact-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 0.55fr); gap: 32px; align-items: start; }
 .contact-form, .contact-panel { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: clamp(24px, 4vw, 36px); }
@@ -432,8 +464,9 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 
 @media (max-width: 1100px) {
   .card-grid.four, .price-grid, .equipment-gallery-grid, .method-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .funder-grid-support { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .roadmap { grid-template-columns: 1fr; gap: 18px; }
-  .roadmap::before { top: 28px; bottom: 28px; left: 26px; right: auto; width: 3px; height: auto; }
+  .roadmap::before { top: 28px; bottom: 28px; left: 26px; right: auto; width: 3px; height: auto; background: linear-gradient(180deg, var(--brand-blue), var(--brand-green) 34%, var(--brand-teal) 55%, var(--brand-light-green)); }
   .roadmap-stage { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; align-items: start; }
   .roadmap-marker { margin: 0; }
   .roadmap-card { min-height: 0; }
@@ -502,8 +535,8 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
     mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 100%);
   }
   .page-hero img { justify-self: start; max-height: 260px; }
-  .card-grid.four, .card-grid.three, .card-grid.two, .team-grid, .price-grid, .capability-grid, .analytics-package-grid, .funder-grid-two, .funder-grid-three { grid-template-columns: 1fr; }
-  .programme-grid { grid-template-columns: 1fr; }
+  .card-grid.four, .card-grid.three, .card-grid.two, .team-grid, .price-grid, .capability-grid, .analytics-package-grid, .funder-grid-two, .funder-grid-three, .funder-grid-support { grid-template-columns: 1fr; }
+  .coa-panel { grid-template-columns: 1fr; gap: 18px; }
   .capability-feature { grid-template-columns: 104px minmax(0, 1fr); }
   .about-section { gap: 24px; padding-top: 48px; padding-bottom: 48px; }
   .about-section .text-stack, .service-equipment .text-stack { padding-top: 0; }
@@ -522,12 +555,9 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   .capability-feature { grid-template-columns: 1fr; min-height: 0; padding: 24px; }
   .capability-feature .card-icon { width: 96px; height: 96px; margin-inline: auto; }
   .method-grid { grid-template-columns: 1fr; }
-  .programme-item { grid-template-columns: 1fr; gap: 12px; }
-  .programme-logo { justify-items: center; height: 80px; }
-  .programme-logo img { width: auto; max-width: min(260px, 100%); max-height: 76px; }
-  .funder-card { grid-template-rows: 132px 1fr; }
-  .funder-logo { height: 132px; padding: 18px 22px; }
-  .funder-logo-pair { grid-template-columns: minmax(80px, 0.6fr) minmax(150px, 1.4fr); gap: 14px; }
+  .method-card { min-height: 0; }
+  .funder-card { grid-template-rows: 166px 1fr; }
+  .funder-logo { height: 166px; padding: 18px 22px; }
   .team-card { grid-template-columns: 1fr; gap: 12px; }
   .team-card img { width: 140px; height: 140px; margin-bottom: 2px; }
   .equipment-gallery-grid { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; }
