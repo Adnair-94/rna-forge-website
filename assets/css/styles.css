@@ -289,20 +289,18 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .package-list li + li, .catalogue-list li + li { margin-top: 6px; }
 .methods-heading { margin: 0 0 16px; font-size: 1.45rem; }
 .packages-heading { margin: 42px 0 16px; font-size: 1.45rem; }
-.method-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.method-card {
-  display: flex;
-  justify-content: space-between;
-  gap: 22px;
-  min-height: 142px;
-  padding: 22px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-}
-.method-card h4 { margin: 0 0 6px; font-size: 1.05rem; line-height: 1.3; }
-.method-card p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
-.method-card > strong { align-self: flex-end; color: var(--ink); white-space: nowrap; }
+.method-table-wrap { overflow: hidden; background: var(--white); border: 1px solid var(--line); border-radius: 8px; }
+.method-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.method-table th, .method-table td { padding: 18px 20px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.method-table thead th { color: var(--ink); background: #e4eef4; font-size: 0.88rem; font-weight: 700; text-transform: uppercase; }
+.method-table thead th:first-child { width: 27%; }
+.method-table thead th:nth-child(2) { width: 55%; }
+.method-table thead th:last-child { width: 18%; text-align: right; }
+.method-table tbody tr:last-child > * { border-bottom: 0; }
+.method-table tbody th { color: var(--ink); font-size: 1rem; font-weight: 600; }
+.method-table tbody td { color: var(--muted); font-size: 0.94rem; line-height: 1.5; }
+.method-table tbody td:last-child { color: var(--ink); text-align: right; white-space: nowrap; }
+.visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
 .service-list { margin: 10px 0 0; padding-left: 20px; }
 .service-list li + li { margin-top: 8px; }
 .service-equipment {
@@ -367,7 +365,7 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .technology-figure img { width: 100%; max-height: none; object-fit: contain; }
 .placeholder { padding: 30px; border: 1px dashed #aab9c0; border-radius: 8px; background: #fbfdfb; color: var(--muted); }
 .roadmap-section { color: var(--white); background: var(--charcoal); }
-.roadmap-section, .roadmap-card, .funders-section, .funder-card, .service-capability-grid, .coa-panel, .method-card { font-family: "RNAForge", "Segoe UI", Arial, sans-serif; }
+.roadmap-section, .roadmap-card, .funders-section, .funder-card, .service-capability-grid, .coa-panel, .method-table { font-family: "RNAForge", "Segoe UI", Arial, sans-serif; }
 .roadmap-section .section-heading { max-width: 900px; margin-inline: auto; text-align: center; }
 .roadmap-section .section-heading .eyebrow { color: var(--brand-light-green); }
 .roadmap-section .section-heading > p:last-child { color: #d3dde1; }
@@ -437,8 +435,7 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .funder-logo img { display: block; width: auto; height: auto; max-width: min(100%, 390px); max-height: 124px; object-fit: contain; mix-blend-mode: multiply; }
 .funder-logo .logo-ng-studios { width: min(100%, 360px); max-height: 118px; }
 .funder-logo .logo-epsrc { max-height: 118px; }
-.funder-wordmark { color: #263238; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; line-height: 0.92; text-align: center; }
-.funder-wordmark::after { content: "Project & Mentor Network"; display: block; margin-top: 12px; color: var(--ink); font-size: 0.8rem; font-weight: 600; line-height: 1.2; text-transform: uppercase; }
+.funder-logo .logo-northern-triangle { width: min(100%, 380px); max-height: 124px; filter: invert(1); mix-blend-mode: normal; }
 .logo-innovate-uk, .logo-cepi { transform: none; }
 .funder-card-copy { display: flex; flex-direction: column; padding: 24px; }
 .funder-card-copy .eyebrow { margin-bottom: 8px; }
@@ -471,7 +468,7 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .footer-contact { color: #e9f0f2; }
 
 @media (max-width: 1100px) {
-  .card-grid.four, .price-grid, .method-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card-grid.four, .price-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .equipment-gallery-grid { grid-template-columns: repeat(2, minmax(0, 320px)); }
   .funder-grid-support { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .roadmap { grid-template-columns: 1fr; gap: 18px; }
@@ -569,8 +566,14 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   .technology-card .card-icon { width: 104px; height: 104px; }
   .capability-feature { grid-template-columns: 1fr; min-height: 0; padding: 24px; }
   .capability-feature .card-icon { width: 96px; height: 96px; margin-inline: auto; }
-  .method-grid { grid-template-columns: 1fr; }
-  .method-card { min-height: 0; }
+  .method-table-wrap { overflow: visible; }
+  .method-table, .method-table tbody, .method-table tr, .method-table th, .method-table td { display: block; width: 100%; }
+  .method-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+  .method-table tbody tr { padding: 18px 20px; border-bottom: 1px solid var(--line); }
+  .method-table tbody tr:last-child { border-bottom: 0; }
+  .method-table tbody th, .method-table tbody td { padding: 0; border: 0; text-align: left; }
+  .method-table tbody td { margin-top: 8px; white-space: normal; }
+  .method-table tbody td::before { display: block; margin-bottom: 2px; color: var(--ink); font-size: 0.76rem; font-weight: 700; text-transform: uppercase; content: attr(data-label); }
   .funder-card { grid-template-rows: 166px 1fr; }
   .funder-logo { height: 166px; padding: 18px 22px; }
   .team-card { grid-template-columns: 1fr; gap: 12px; }

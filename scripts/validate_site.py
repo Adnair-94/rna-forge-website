@@ -114,6 +114,8 @@ def main() -> None:
     css = (ROOT / "assets" / "css" / "styles.css").read_text(encoding="utf-8")
     head = INCLUDES["head.html"]
     contact = (ROOT / "contact" / "index.html").read_text(encoding="utf-8")
+    services = (ROOT / "services" / "index.html").read_text(encoding="utf-8")
+    funding = (ROOT / "funding" / "index.html").read_text(encoding="utf-8")
     config = (ROOT / "_config.yml").read_text(encoding="utf-8")
     workflows = "\n".join(path.read_text(encoding="utf-8") for path in (ROOT / ".github" / "workflows").glob("*.yml"))
 
@@ -131,6 +133,8 @@ def main() -> None:
     check(css.count("{") == css.count("}"), "Unbalanced CSS braces", errors)
     check("@keyframes" not in css and "animation:" not in css, "Animation was introduced", errors)
     check(all(colour in css for colour in ("#4dc0e4", "#60ba84", "#60bfbd", "#98c76b")), "Approved brand colours are incomplete", errors)
+    check("<table class=\"method-table\">" in services and services.count("<tr>") == 9, "Standalone analytical pricing table is incomplete", errors)
+    check("northern-triangle-mentor-network.png" in funding and "funder-wordmark" not in funding, "Northern Triangle logo replacement is incomplete", errors)
 
     action_refs = set(re.findall(r"uses:\s*([^\s#]+)", workflows))
     check(action_refs == APPROVED_ACTIONS, f"Unapproved or missing action references: {sorted(action_refs ^ APPROVED_ACTIONS)}", errors)

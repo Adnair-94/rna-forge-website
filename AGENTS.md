@@ -66,6 +66,7 @@ Active live assets:
 - `assets/logos/funders/selected/innovate-uk-logo.jpg`
 - `assets/logos/funders/selected/cepi-logo-colour.png`
 - `assets/logos/funders/selected/university-of-sheffield-logo-violet.png`
+- `assets/logos/funders/selected/northern-triangle-mentor-network.png`
 - `assets/logos/funders/selected/ng-studios-kq-labs-logo.png`
 - `assets/logos/funders/selected/epsrc-logo.webp`
 - `assets/logos/funders/selected/royal-academy-of-engineering-logo.png`
@@ -132,7 +133,7 @@ The public website must not expose the destination mailbox in HTML, links, scrip
 - Do not add analytics, advertising trackers or new external scripts. The only approved external browser script is Cloudflare Turnstile on the contact page; its token must always be verified server-side.
 - Do not add animation unless explicitly requested.
 - Do not replace the approved RNA Forge font files with different font assets unless their website-use rights are confirmed.
-- Do not use funder, partner or ecosystem logos without permission. The live funder/support assets were either supplied for the review or, for EPSRC, obtained from the RNA MINT funder set requested by the user. Northern Triangle Talent currently uses a text wordmark because no approved standalone logo was found.
+- Do not use funder, partner or ecosystem logos without permission. The live funder/support assets were supplied for the review or, for EPSRC, obtained from the RNA MINT funder set requested by the user.
 - Do not merge without explicit user approval.
 - Do not restart feature implementation when the user asks only for documentation or PR metadata updates.
 
@@ -179,7 +180,7 @@ Latest implementation audit reported:
 - equipment concept references: Technology 4, Services 0
 - workbook-confirmed reporter sequences listed with approved full names first: enhanced green fluorescent protein (eGFP), NanoLuciferase (NanoLuc) and firefly luciferase (FLuc); only eGFP publishes standard charges
 - roadmap stages on Funding & Support: 5
-- approved funder/support logos referenced on Funding & Support: 6
+- approved funder/support logos referenced on Funding & Support: 7
 - approved `RNAForge` font remains explicitly applied to roadmap, programme and funder components
 - duplicate supporting-programme cards below the roadmap removed; full research-programme cards remain in the funder section
 - roadmap icons are centred at a stable 96 × 96 desktop size
@@ -187,7 +188,7 @@ Latest implementation audit reported:
 - Innovate UK, CEPI and company-support marks are centred and enlarged without overlap on desktop and mobile
 - approved RNAForge regular, semibold and bold files loaded successfully in browser checks; body, headings, roadmap, pricing and funder cards resolve to the same family
 - responsive checks at 1440 × 900 and 390 × 844 reported no horizontal overflow
-- Funding & Support contains two research-programme cards, five company-support cards, six logo assets and one Northern Triangle Talent text wordmark
+- Funding & Support contains two research-programme cards, five company-support cards and seven supplied or approved logo assets
 
 Branch comparison before the documentation handoff showed `codex/rna-forge-design-direction` ahead of `codex/first-static-site` and not behind.
 
@@ -201,7 +202,6 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 - Preserve the approved RNA Forge font implementation; consider WOFF2 only if permitted by the licence.
 - Keep the user-approved roadmap wording confined to the Funding & Support roadmap and review any later reuse as a separate claim.
 - Decide whether the roadmap should remain on Funding & Support or move to Technology; do not move it without that decision.
-- Replace the Northern Triangle Talent text wordmark only if the team supplies or approves official standalone artwork.
 - Confirm the final public wording for company-support records, particularly the named Royal Academy of Engineering Enterprise Fellowship recipient, before launch.
 - Obtain commercial approval for eGFP catalogue pricing, NanoLuc/FLuc/Cas9 quotation wording, VAT wording, Certificate of Analysis inclusions and all analytical package charges.
 
