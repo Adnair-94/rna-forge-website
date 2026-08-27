@@ -1,0 +1,13 @@
+title: RNA Forge
+url: "https://adnair-94.github.io"
+baseurl: "/rna-forge-website"
+permalink: pretty
+contact_form_endpoint: "https://contact.rnaforge.com/"
+turnstile_site_key: "__TURNSTILE_SITE_KEY__"
+exclude:
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - contact-worker
+  - docs
+  - scripts

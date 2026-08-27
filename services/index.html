@@ -1,66 +1,137 @@
+---
+layout: null
+title: "RNA Manufacturing and Analytical Services | RNA Forge"
+description: "RNA Forge provides off-the-shelf mRNAs, custom RNA manufacturing, analytical services and technical development support."
+section: services
+---
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Services | RNA Forge</title>
-  <meta name="description" content="RNA Forge provides commercially focused RNA technical services for diligence, development planning, manufacturing strategy, and partner readiness.">
-  <link rel="stylesheet" href="../assets/css/styles.css">
-</head>
+{% include head.html %}
 <body>
-  <header class="site-header">
-    <a class="brand" href="../" aria-label="RNA Forge home"><img src="../assets/logo/1b_Full_Logo_Colour.png" alt="RNA Forge"></a>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a href="../">Home</a><a href="../technology/">Technology</a><a class="active" href="../services/">Services</a><a href="../funding/">Funding &amp; Support</a><a href="../team/">Team</a><a href="../contact/">Contact</a>
-    </nav>
-  </header>
+{% include header.html %}
+<main id="main-content">
+<section class="page-hero simple">
+  <div>
+    <p class="eyebrow">Services</p>
+    <h1>RNA manufacturing and analytical services</h1>
+    <p class="lead">RNA Forge provides off-the-shelf mRNAs, custom manufacturing, analytical services and technical development support for research and translational RNA programmes.</p>
+    <div class="hero-actions"><a class="button primary" href="{{ '/contact/?topic=services' | relative_url }}">Request a quote</a><a class="button secondary" href="#standard-pricing">View standard charges</a></div>
+  </div>
+</section>
 
-  <main>
-    <section class="page-hero">
-      <div>
-        <p class="eyebrow">Services</p>
-        <h1>Technical work packages for RNA programs with commercial momentum.</h1>
-        <p class="lead">We support companies, spinouts, investors, and translational groups that need credible RNA development evidence without building every capability in-house.</p>
-      </div>
-      <img src="../assets/graphics/Layered_Pieces_3.png" alt="">
-    </section>
+<section class="section band">
+  <div class="card-grid four service-capability-grid">
+    <article id="off-the-shelf-mrnas" class="card"><h3>Off-the-shelf mRNAs</h3><p>Defined mRNA options include enhanced green fluorescent protein (eGFP), NanoLuciferase (NanoLuc), firefly luciferase (FLuc) and CRISPR-associated protein 9 (Cas9) for assay development, method setup, screening and non-clinical research.</p></article>
+    <article id="rna-manufacturing" class="card"><h3>Custom manufacturing</h3><p>Custom RNA production and process development support for research and translational applications, quoted according to construct, amount, format and analytical requirements.</p></article>
+    <article id="bioanalytical-services" class="card"><h3>Analytical services</h3><p>Advanced analytical workflows providing deeper insight into RNA quality, integrity and process performance.</p></article>
+    <article id="technical-development-support" class="card"><h3>Technical development support</h3><p>Focused technical input on RNA manufacturing workflows, analytical planning and manufacturability considerations.</p></article>
+  </div>
+</section>
 
-    <section class="section band">
-      <div class="card-grid two">
-        <article class="card">
-          <h3>RNA technical diligence</h3>
-          <p>Independent review of technical assumptions, development gaps, manufacturability risks, and evidence quality for investment or partnering decisions.</p>
-        </article>
-        <article class="card">
-          <h3>Development strategy</h3>
-          <p>Practical roadmaps that connect construct design, materials, analytics, process development, and manufacturing transfer requirements.</p>
-        </article>
-        <article class="card">
-          <h3>Manufacturing readiness</h3>
-          <p>Assessment of process intent, scale-up constraints, vendor dependencies, and information packages needed for CDMO engagement.</p>
-        </article>
-        <article class="card">
-          <h3>Funding and partner materials</h3>
-          <p>Investor- and grant-facing technical narratives that present the program with appropriate confidence, caveats, and execution milestones.</p>
-        </article>
-      </div>
-    </section>
+<section class="section pricing-section" id="standard-pricing">
+  <div class="section-heading">
+    <p class="eyebrow">RNA manufacturing charges</p>
+    <h2>Defined products and custom manufacturing.</h2>
+    <p>Choose a defined capped + N1mΨ catalogue sequence, then select an off-the-shelf amount. Requirements outside the catalogue sequences, formats or batch sizes are scoped as custom RNA manufacturing.</p>
+  </div>
+  <div class="price-grid manufacturing-price-grid">
+    <article class="price-card">
+      <h3>Catalogue mRNA options</h3>
+      <p class="price-meta">Defined capped + N1mΨ reporter and Cas9 mRNAs for research workflows.</p>
+      <ul class="catalogue-list">
+        <li>Enhanced green fluorescent protein (eGFP) reporter mRNA</li>
+        <li>NanoLuciferase (NanoLuc) reporter mRNA</li>
+        <li>Firefly luciferase (FLuc) reporter mRNA</li>
+        <li>CRISPR-associated protein 9 (Cas9) mRNA</li>
+      </ul>
+    </article>
+    <article class="price-card">
+      <h3>Off-the-shelf mRNA</h3>
+      <p class="price-meta">The listed catalogue mRNAs can be supplied in defined amounts at the standard charges below. Availability is confirmed before ordering.</p>
+      <div class="price-line"><span>50 µg</span><strong>£120</strong></div>
+      <div class="price-line"><span>100 µg</span><strong>£200</strong></div>
+      <div class="price-line"><span>200 µg</span><strong>£350</strong></div>
+      <div class="price-line"><span>500 µg</span><strong>£800</strong></div>
+      <div class="price-line"><span>1 mg</span><strong>£1,300</strong></div>
+    </article>
+    <article class="price-card">
+      <h3>Custom RNA manufacturing</h3>
+      <p class="price-meta">A written quotation is prepared for each defined scope.</p>
+      <ul class="catalogue-list">
+        <li>Self-amplifying RNA (saRNA)</li>
+        <li>Alternative nucleotide modifications</li>
+        <li>Alternative capping formats</li>
+        <li>Analytical packages</li>
+        <li>Custom batch sizes</li>
+      </ul>
+      <a class="text-link" href="{{ '/contact/?topic=services' | relative_url }}">Request a custom quote</a>
+    </article>
+  </div>
+  <p class="price-note"><strong>Prices shown exclude VAT.</strong> Catalogue prices and custom quotations may vary with project scope, construct format, turnaround requirements and agreed deliverables. A written quotation confirms applicable taxes, delivery and turnaround before project start.</p>
+  <div class="coa-panel">
+    <div>
+      <p class="eyebrow">Batch documentation</p>
+      <h3>Certificate of Analysis supplied with catalogue batches.</h3>
+      <p>Samples are supplied with a Certificate of Analysis generated from comprehensive characterisation of the production batch.</p>
+    </div>
+    <ul class="coa-list">
+      <li>RNA content quantification by ultraviolet (UV) spectroscopy</li>
+      <li>RNA size/integrity quantification by Fragment Analyser</li>
+      <li>Residual nucleoside triphosphate (NTP) quantification by high-performance liquid chromatography (HPLC)</li>
+      <li>Sequence identity confirmation by high-resolution liquid chromatography-mass spectrometry (LC-MS)</li>
+      <li>Poly(A) tail length and heterogeneity quantification by high-resolution LC-MS</li>
+      <li>5′ capping efficiency quantification by high-resolution LC-MS</li>
+    </ul>
+  </div>
+</section>
 
-    <section class="section split">
-      <div>
-        <p class="eyebrow">Engagement model</p>
-        <h2>Focused, modular, and decision-oriented.</h2>
-      </div>
-      <div class="text-stack">
-        <p>Engagements can be scoped as short diligence sprints, defined work packages, or ongoing technical support. Each project is designed around a decision the client needs to make: invest, fund, partner, transfer, scale, or defer.</p>
-        <p>Outputs are written for mixed technical and commercial audiences, with enough detail to support scientific credibility and enough structure to support board, investor, or partner review.</p>
-      </div>
-    </section>
-  </main>
+<section class="section pricing-section analytics-pricing" id="analytical-pricing">
+  <div class="section-heading">
+    <p class="eyebrow">Bioanalytical charges</p>
+    <h2>Standalone methods and defined packages for RNA quality and process insight.</h2>
+    <p>Begin with a selected method or combine complementary methods in a defined package. Bespoke programmes and larger sample sets are quoted separately.</p>
+  </div>
+  <h3 class="methods-heading">Standalone analytical methods</h3>
+  <p class="table-intro">Prices for single-sample analysis:</p>
+  <div class="method-table-wrap">
+    <table class="method-table">
+      <caption class="visually-hidden">Single-sample prices by quality attribute and analytical method</caption>
+      <thead><tr><th scope="col">Quality attribute</th><th scope="col">Method</th><th scope="col">Price*</th></tr></thead>
+      <tbody>
+        <tr data-quality-attribute="RNA concentration"><th scope="rowgroup" rowspan="2">RNA concentration</th><td data-label="Method">UV spectroscopy</td><td data-label="Price*"><strong>&mdash;</strong></td></tr>
+        <tr data-quality-attribute="RNA concentration"><td data-label="Method">HPLC</td><td data-label="Price*"><strong>£1,000</strong></td></tr>
+        <tr data-quality-attribute="RNA size/integrity"><th scope="rowgroup" rowspan="2">RNA size/integrity</th><td data-label="Method">Fragment Analyser</td><td data-label="Price*"><strong>£500</strong></td></tr>
+        <tr data-quality-attribute="RNA size/integrity"><td data-label="Method">HPLC</td><td data-label="Price*"><strong>£300</strong></td></tr>
+        <tr data-quality-attribute="Sequence identity"><th scope="row">Sequence identity</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong>£2,000</strong></td></tr>
+        <tr data-quality-attribute="Residual NTPs"><th scope="row">Residual NTPs</th><td data-label="Method">HPLC</td><td data-label="Price*"><strong>£300</strong></td></tr>
+        <tr data-quality-attribute="Residual DNA"><th scope="row">Residual DNA</th><td data-label="Method">ddPCR</td><td data-label="Price*"><strong>£1,500</strong></td></tr>
+        <tr data-quality-attribute="Residual protein"><th scope="row">Residual protein</th><td data-label="Method">NanoOrange&trade;</td><td data-label="Price*"><strong>£500</strong></td></tr>
+        <tr data-quality-attribute="dsRNA content"><th scope="rowgroup" rowspan="3">dsRNA content</th><td data-label="Method">Dot blot</td><td data-label="Price*"><strong>£700</strong></td></tr>
+        <tr data-quality-attribute="dsRNA content"><td data-label="Method">ELISA</td><td data-label="Price*"><strong>£1,000</strong></td></tr>
+        <tr data-quality-attribute="dsRNA content"><td data-label="Method">Lumit&trade;</td><td data-label="Price*"><strong>£1,500</strong></td></tr>
+        <tr data-quality-attribute="5′ capping efficiency"><th scope="row">5′ capping efficiency</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong>£1,200</strong></td></tr>
+        <tr data-quality-attribute="Poly(A) tail length/heterogeneity"><th scope="row">Poly(A) tail length/heterogeneity</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong>£1,200</strong></td></tr>
+        <tr data-quality-attribute="DNA template"><th scope="row">DNA template</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong>£900</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="price-note analytical-table-note"><strong>*Prices exclude VAT.</strong> Batch discounts are available.</p>
+  <h3 class="packages-heading">Defined analytical packages</h3>
+  <div class="analytics-package-grid">
+    <article class="price-card"><h3>Standard QC</h3><div class="price-line"><span>Package charge</span><strong>from £750</strong></div><ul class="package-list"><li>RNA concentration</li><li>RNA size/integrity</li><li>Residual NTPs</li></ul></article>
+    <article class="price-card"><h3>Process characterisation</h3><div class="price-line"><span>Package charge</span><strong>from £3,100</strong></div><ul class="package-list"><li>Standard QC</li><li>Residual DNA</li><li>Residual protein</li><li>dsRNA content</li></ul></article>
+    <article class="price-card"><h3>Advanced characterisation</h3><div class="price-line"><span>Package charge</span><strong>from £4,500</strong></div><ul class="package-list"><li>Standard QC</li><li>Sequence identity</li><li>5′ capping efficiency</li><li>Poly(A) tail length/heterogeneity</li></ul></article>
+    <article class="price-card"><h3>Comprehensive characterisation</h3><div class="price-line"><span>Package charge</span><strong>from £7,300</strong></div><ul class="package-list"><li>Standard QC</li><li>Process characterisation</li><li>Advanced characterisation</li></ul></article>
+  </div>
+  <p class="price-note">Method selection, sample number and matrix can affect final scope. Custom mass spectrometry workflows and additional RNA characterisation services are available by quotation. A written quotation confirms the selected methods, sample plan, turnaround and deliverables.</p>
+</section>
 
-  <footer class="site-footer">
-    <div><img src="../assets/logo/3b_Full_Logo_White.png" alt="RNA Forge"><p>Manufacturability-focused RNA technologies and services.</p></div>
-    <nav aria-label="Footer navigation"><a href="../technology/">Technology</a><a href="../services/">Services</a><a href="../funding/">Funding &amp; Support</a><a href="../team/">Team</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a></nav>
-  </footer>
+<section class="section split service-equipment" id="equipment">
+  <div><p class="eyebrow">Technical capabilities</p><h2>Specialised workflows for RNA development.</h2></div>
+  <div class="text-stack"><p>RNA Forge combines RNA manufacturing and analytical workflows to support material generation, process development and product understanding.</p><ul class="service-list"><li>RNA synthesis and process development</li><li>Purification and formulation development</li><li>Bioanalytical assessment of RNA quality and process performance</li></ul></div>
+</section>
+<section class="section cta"><div><p class="eyebrow">Discuss a project</p><h2>Request a service quotation.</h2><p>Tell us which material, analytical package or development support you need. Custom work is scoped and quoted before project start.</p></div><a class="button primary" href="{{ '/contact/?topic=services' | relative_url }}">Contact RNA Forge</a></section>
+</main>
+{% include footer.html %}
 </body>
 </html>

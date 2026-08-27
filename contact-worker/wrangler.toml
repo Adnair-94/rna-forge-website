@@ -1,0 +1,25 @@
+name = "rna-forge-contact"
+main = "src/index.js"
+compatibility_date = "2026-08-26"
+workers_dev = false
+routes = [{ pattern = "contact.rnaforge.com", custom_domain = true }]
+
+[vars]
+ALLOWED_HOSTNAMES = "rnaforge.com,www.rnaforge.com"
+ALLOWED_ORIGINS = "https://rnaforge.com,https://www.rnaforge.com"
+CONTACT_SENDER = "website@rnaforge.com"
+SITE_ORIGIN = "https://rnaforge.com"
+
+[[send_email]]
+name = "EMAIL"
+
+[[ratelimits]]
+name = "CONTACT_RATE_LIMITER"
+namespace_id = "26082601"
+
+  [ratelimits.simple]
+  limit = 5
+  period = 60
+
+[observability.logs]
+enabled = true

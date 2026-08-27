@@ -1,70 +1,186 @@
+---
+layout: null
+title: "Projects, Funding and Support | RNA Forge"
+description: "Explore RNA Forge project priorities, development timeline and opportunities for innovation funding, investment and collaboration."
+section: funding
+---
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Funding &amp; Support | RNA Forge</title>
-  <meta name="description" content="RNA Forge supports investors, grant funders, and strategic partners evaluating RNA technologies and development plans.">
-  <link rel="stylesheet" href="../assets/css/styles.css">
-</head>
+{% include head.html %}
 <body>
-  <header class="site-header">
-    <a class="brand" href="../" aria-label="RNA Forge home"><img src="../assets/logo/1b_Full_Logo_Colour.png" alt="RNA Forge"></a>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a href="../">Home</a><a href="../technology/">Technology</a><a href="../services/">Services</a><a class="active" href="../funding/">Funding &amp; Support</a><a href="../team/">Team</a><a href="../contact/">Contact</a>
-    </nav>
-  </header>
+{% include header.html %}
+<main id="main-content">
+<section class="page-hero simple"><div><p class="eyebrow">Projects, funding &amp; support</p><h1>A staged programme for RNA manufacturing innovation.</h1><p class="lead">RNA Forge advances defined RNAbox&trade; and service-development projects through innovation funding, strategic collaboration and investment aligned to practical technical milestones.</p><div class="hero-actions"><a class="button primary" href="{{ '/contact/?topic=funding' | relative_url }}">Start a conversation</a></div></div></section>
 
-  <main>
-    <section class="page-hero">
-      <div>
-        <p class="eyebrow">Funding &amp; Support</p>
-        <h1>Technical clarity for capital, grants, and strategic partnerships.</h1>
-        <p class="lead">RNA Forge helps stakeholders understand whether an RNA opportunity is technically credible, manufacturable, and ready for the next commitment.</p>
-      </div>
-      <img src="../assets/graphics/Layered_Pieces_4.png" alt="">
-    </section>
+<section class="section roadmap-section" id="project-timeline" aria-labelledby="roadmap-title">
+  <div class="section-heading">
+    <p class="eyebrow">Development roadmap</p>
+    <h2 id="roadmap-title">RNAbox&trade; Development Roadmap</h2>
+    <p>From integrated prototype to GMP-ready deployment.</p>
+  </div>
+  <ol class="roadmap">
+    <li class="roadmap-stage">
+      <div class="roadmap-marker" aria-hidden="true">1</div>
+      <article class="roadmap-card">
+        <span class="roadmap-date">2023&ndash;2026</span>
+        <span class="roadmap-action">Prove</span>
+        <img class="roadmap-icon" src="../assets/icons/selected/icon-technology-readiness.png" alt="" aria-hidden="true" decoding="sync">
+        <h3>Integrated RNAbox&trade; prototype demonstrated</h3>
+        <p>Continuous RNA synthesis, purification and lipid nanoparticle (LNP) formulation demonstrated in a compact, automated platform.</p>
+      </article>
+    </li>
+    <li class="roadmap-stage">
+      <div class="roadmap-marker" aria-hidden="true">2</div>
+      <article class="roadmap-card">
+        <span class="roadmap-date">2024&ndash;2027</span>
+        <span class="roadmap-action">Optimise</span>
+        <img class="roadmap-icon" src="../assets/icons/selected/icon-workflow-optimisation.png" alt="" aria-hidden="true" decoding="sync">
+        <h3>Advanced RNAbox&trade; technologies developed</h3>
+        <p>Process optimisation, analytics, soft sensors, recycling and digital control advanced across the platform.</p>
+      </article>
+    </li>
+    <li class="roadmap-stage">
+      <div class="roadmap-marker" aria-hidden="true">3</div>
+      <article class="roadmap-card">
+        <span class="roadmap-date">2027</span>
+        <span class="roadmap-action">Validate</span>
+        <img class="roadmap-icon" src="../assets/icons/selected/icon-bioanalytical-services.png" alt="" aria-hidden="true" decoding="sync">
+        <h3>Next-generation RNAbox&trade; validated</h3>
+        <p>Integrated manufacturing runs, comparability and stability studies demonstrate high-level platform performance.</p>
+      </article>
+    </li>
+    <li class="roadmap-stage">
+      <div class="roadmap-marker" aria-hidden="true">4</div>
+      <article class="roadmap-card">
+        <span class="roadmap-date">2027&ndash;2028</span>
+        <span class="roadmap-action">GMP-ready</span>
+        <img class="roadmap-icon" src="../assets/icons/selected/icon-quality-control.png" alt="" aria-hidden="true" decoding="sync">
+        <h3>GMP-compatible platform developed</h3>
+        <p>GMP-aligned design, single-use components, supply-chain strategy and deployment documentation established.</p>
+      </article>
+    </li>
+    <li class="roadmap-stage">
+      <div class="roadmap-marker" aria-hidden="true">5</div>
+      <article class="roadmap-card">
+        <span class="roadmap-date">2028&ndash;2029</span>
+        <span class="roadmap-action">Deploy</span>
+        <img class="roadmap-icon" src="../assets/icons/selected/icon-partner-confidence.png" alt="" aria-hidden="true" decoding="sync">
+        <h3>External GMP validation and commercial readiness</h3>
+        <p>Technology transfer, engineering verification and partner-facing deployment strategy prepared for commercial rollout.</p>
+      </article>
+    </li>
+  </ol>
+</section>
 
-    <section class="section split">
-      <div>
-        <p class="eyebrow">For funders and partners</p>
-        <h2>Evidence that supports disciplined conviction.</h2>
+<section class="section funders-section" id="funder-details">
+  <div class="section-heading">
+    <p class="eyebrow">Funders &amp; programmes</p>
+    <h2>Technology development programmes and company support.</h2>
+    <p>From core platform innovation to company scaling, our work is backed by leading research funders, translation partners and enterprise programmes.</p>
+  </div>
+  <div class="funder-groups">
+    <div class="funder-group">
+      <div class="funder-group-heading">
+        <p class="eyebrow">RNAbox&trade; research programmes</p>
+        <h3>University-led technology development programmes</h3>
       </div>
-      <div class="text-stack">
-        <p>RNA opportunities often combine strong scientific promise with unresolved manufacturing and translation questions. We help identify which risks are manageable, which require evidence, and which may affect valuation, milestones, or partner strategy.</p>
-        <p>Our work can support investment diligence, grant applications, translational funding cases, strategic collaboration discussions, and board-level technical planning.</p>
-      </div>
-    </section>
-
-    <section class="section band">
-      <div class="card-grid three">
-        <article class="card">
-          <h3>Investor diligence</h3>
-          <p>Commercially framed technical review for venture, strategic, and company-side financing processes.</p>
+      <div class="funder-grid funder-grid-two">
+        <article class="funder-card">
+          <div class="funder-logo"><img class="logo-innovate-uk" src="../assets/logos/funders/selected/innovate-uk-logo.jpg" alt="UK Research and Innovation and Innovate UK" decoding="sync"></div>
+          <div class="funder-card-copy">
+            <p class="eyebrow">Research programme</p>
+            <h4>Innovate UK Stage 1</h4>
+            <p class="funder-programme-name">SBRI: Vaccine development for potential epidemic diseases, UK Vaccine Network</p>
+            <p>Automated and digitalised RNA process-in-a-box for rapid outbreak-response RNA vaccine and therapeutic development and manufacturing.</p>
+            <p class="funder-award">£2 million award</p>
+            <p class="funder-period">1 October 2023 &ndash; 31 March 2026</p>
+          </div>
         </article>
-        <article class="card">
-          <h3>Grant readiness</h3>
-          <p>Clear technical work plans, milestone logic, and manufacturability narratives for non-dilutive funding routes.</p>
-        </article>
-        <article class="card">
-          <h3>Partner positioning</h3>
-          <p>Evidence packages that help potential collaborators understand the technical basis and development path.</p>
+        <article class="funder-card">
+          <div class="funder-logo"><img class="logo-cepi" src="../assets/logos/funders/selected/cepi-logo-colour.png" alt="Coalition for Epidemic Preparedness Innovations" decoding="sync"></div>
+          <div class="funder-card-copy">
+            <p class="eyebrow">Research programme</p>
+            <h4>Coalition for Epidemic Preparedness Innovations (CEPI)</h4>
+            <p>Proof-of-concept research for RNAbox&trade; as an automated continuous closed RNA platform for rapid outbreak-response vaccine development and manufacturing.</p>
+            <p class="funder-award">£3.7 million award (US$4.8 million)</p>
+            <p class="funder-period">1 October 2024 &ndash; 30 September 2027</p>
+          </div>
         </article>
       </div>
-    </section>
-
-    <section class="section cta">
-      <div>
-        <p class="eyebrow">Discuss a funding case</p>
-        <h2>We can help pressure-test the technical story.</h2>
+    </div>
+    <div class="funder-group">
+      <div class="funder-group-heading">
+        <p class="eyebrow">RNA Forge funding &amp; support</p>
+        <h3>Spinout and company-building support</h3>
       </div>
-      <a class="button primary" href="../contact/">Contact RNA Forge</a>
-    </section>
-  </main>
+      <div class="funder-grid funder-grid-support">
+        <article class="funder-card">
+          <div class="funder-logo"><img class="logo-sheffield" src="../assets/logos/funders/selected/university-of-sheffield-logo-violet.png" alt="University of Sheffield" decoding="sync"></div>
+          <div class="funder-card-copy">
+            <p class="eyebrow">Spinout &amp; translation</p>
+            <h4>University of Sheffield</h4>
+            <ul class="support-list">
+              <li>Spinout formation and foundational intellectual property licensing</li>
+              <li>Pre-seed translation funding through the Commercialisation Journey</li>
+              <li>Dedicated founder training, mentorship and commercial validation</li>
+            </ul>
+          </div>
+        </article>
+        <article class="funder-card">
+          <div class="funder-logo"><img class="logo-northern-triangle" src="../assets/logos/funders/selected/northern-triangle-mentor-network.png" alt="Northern Triangle Mentor Network" decoding="sync"></div>
+          <div class="funder-card-copy">
+            <p class="eyebrow">Mentorship &amp; spinout support</p>
+            <h4>Northern Triangle Talent Project and Mentor Network</h4>
+            <ul class="support-list">
+              <li>£35K Management Grant supporting founder leadership time and spinout preparation</li>
+              <li>Dedicated commercial mentorship through tailored matching with two experienced mentors</li>
+              <li>Innovation Sprint providing intensive mentor engagement, commercial challenge and pitch refinement</li>
+            </ul>
+          </div>
+        </article>
+        <article class="funder-card">
+          <div class="funder-logo"><img class="logo-ng-studios" src="../assets/logos/funders/selected/ng-studios-kq-labs-logo.png" alt="NG Studios powered by KQ Labs" decoding="sync"></div>
+          <div class="funder-card-copy">
+            <p class="eyebrow">Life-science accelerator</p>
+            <h4>NG Studios powered by KQ Labs</h4>
+            <ul class="support-list">
+              <li>£200K acceleration funding and venture building</li>
+              <li>Commercial validation and corporate strategy development</li>
+              <li>Dedicated mentor connectivity and investor readiness support</li>
+            </ul>
+          </div>
+        </article>
+        <article class="funder-card">
+          <div class="funder-logo"><img class="logo-epsrc" src="../assets/logos/funders/selected/epsrc-logo.webp" alt="Engineering and Physical Sciences Research Council" decoding="sync"></div>
+          <div class="funder-card-copy">
+            <p class="eyebrow">Founder transition</p>
+            <h4>EPSRC Impact Acceleration Account</h4>
+            <ul class="support-list">
+              <li>£35K Impact Acceleration Account Management Grant</li>
+              <li>Enabled the transition of a spinout founder from an academic role to full-time company leadership</li>
+              <li>Accelerated company formation, spinout and development</li>
+            </ul>
+          </div>
+        </article>
+        <article class="funder-card">
+          <div class="funder-logo"><img class="logo-raeng" src="../assets/logos/funders/selected/royal-academy-of-engineering-logo.png" alt="Royal Academy of Engineering" decoding="sync"></div>
+          <div class="funder-card-copy">
+            <p class="eyebrow">Leadership development</p>
+            <h4>Royal Academy of Engineering Enterprise Fellowship</h4>
+            <ul class="support-list">
+              <li>Enterprise Fellowship awarded to Dr Emma Welbourne, COO</li>
+              <li>Up to £80K equity-free funding and executive leadership coaching</li>
+              <li>Mentorship and access to the Royal Academy of Engineering network</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer class="site-footer">
-    <div><img src="../assets/logo/3b_Full_Logo_White.png" alt="RNA Forge"><p>Manufacturability-focused RNA technologies and services.</p></div>
-    <nav aria-label="Footer navigation"><a href="../technology/">Technology</a><a href="../services/">Services</a><a href="../funding/">Funding &amp; Support</a><a href="../team/">Team</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a></nav>
-  </footer>
+<section class="section split" id="investors-collaborators"><div><p class="eyebrow">Investors &amp; collaborators</p><h2>Partnerships for RNA manufacturing innovation.</h2></div><div class="text-stack"><p>RNA Forge welcomes conversations with RNA therapeutic product developers, investors, technology providers, biomanufacturing organisations and research collaborators.</p><p>Potential discussions may cover service delivery, workflow evaluation, pilot deployment, technical collaboration and company development.</p><a class="button primary" href="{{ '/contact/?topic=funding' | relative_url }}">Contact RNA Forge</a></div></section>
+</main>
+{% include footer.html %}
 </body>
 </html>

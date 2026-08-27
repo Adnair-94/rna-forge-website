@@ -1,0 +1,35 @@
+name: Deploy protected contact service
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy contact worker
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: contact-production
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Test worker
+        run: npm test --prefix contact-worker
+      - name: Deploy worker
+        uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: contact-worker
+          wranglerVersion: "4.81.0"
+          command: deploy
+          secrets: |
+            TURNSTILE_SECRET
+            CONTACT_RECIPIENT
+        env:
+          TURNSTILE_SECRET: ${{ secrets.TURNSTILE_SECRET }}
+          CONTACT_RECIPIENT: ${{ secrets.CONTACT_RECIPIENT }}

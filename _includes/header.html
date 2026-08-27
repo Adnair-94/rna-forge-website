@@ -1,0 +1,25 @@
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header">
+  <a class="brand" href="{{ '/' | relative_url }}" aria-label="RNA Forge home"><img src="{{ '/assets/logos/rna-forge-logo-standard-colour.png' | relative_url }}" alt="RNA Forge"></a>
+  <nav class="site-nav desktop-primary-nav" aria-label="Primary navigation">
+    <a class="nav-link{% if page.section == 'home' %} active{% endif %}" href="{{ '/' | relative_url }}"{% if page.section == 'home' %} aria-current="page"{% endif %}>Home</a>
+    <a class="nav-link{% if page.section == 'technology' %} active{% endif %}" href="{{ '/technology/' | relative_url }}"{% if page.section == 'technology' %} aria-current="page"{% endif %}>Technology</a>
+    <a class="nav-link{% if page.section == 'services' %} active{% endif %}" href="{{ '/services/' | relative_url }}"{% if page.section == 'services' %} aria-current="page"{% endif %}>Services</a>
+    <a class="nav-link{% if page.section == 'funding' %} active{% endif %}" href="{{ '/funding/' | relative_url }}"{% if page.section == 'funding' %} aria-current="page"{% endif %}>Funding &amp; Support</a>
+    <a class="nav-link{% if page.section == 'about' %} active{% endif %}" href="{{ '/about/' | relative_url }}"{% if page.section == 'about' %} aria-current="page"{% endif %}>About</a>
+    <a class="nav-contact" href="{{ '/contact/' | relative_url }}"{% if page.section == 'contact' %} aria-current="page"{% endif %}>Contact</a>
+  </nav>
+  <details class="navigation-shell">
+    <summary class="nav-menu-toggle" aria-label="Toggle primary navigation">
+      <span class="nav-menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+    </summary>
+    <nav class="site-nav mobile-primary-nav" aria-label="Mobile primary navigation">
+      <a class="nav-link{% if page.section == 'home' %} active{% endif %}" href="{{ '/' | relative_url }}"{% if page.section == 'home' %} aria-current="page"{% endif %}>Home</a>
+      <a class="nav-link{% if page.section == 'technology' %} active{% endif %}" href="{{ '/technology/' | relative_url }}"{% if page.section == 'technology' %} aria-current="page"{% endif %}>Technology</a>
+      <a class="nav-link{% if page.section == 'services' %} active{% endif %}" href="{{ '/services/' | relative_url }}"{% if page.section == 'services' %} aria-current="page"{% endif %}>Services</a>
+      <a class="nav-link{% if page.section == 'funding' %} active{% endif %}" href="{{ '/funding/' | relative_url }}"{% if page.section == 'funding' %} aria-current="page"{% endif %}>Funding &amp; Support</a>
+      <a class="nav-link{% if page.section == 'about' %} active{% endif %}" href="{{ '/about/' | relative_url }}"{% if page.section == 'about' %} aria-current="page"{% endif %}>About</a>
+      <a class="nav-contact" href="{{ '/contact/' | relative_url }}"{% if page.section == 'contact' %} aria-current="page"{% endif %}>Contact</a>
+    </nav>
+  </details>
+</header>
