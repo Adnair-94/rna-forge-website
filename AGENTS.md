@@ -179,7 +179,7 @@ Latest implementation audit reported:
 - approved `RNAForge` font faces and three head preloads retained
 - equipment concept references: Technology 4, Services 0
 - catalogue reporter sequences list approved full names first: enhanced green fluorescent protein (eGFP), NanoLuciferase (NanoLuc) and firefly luciferase (FLuc); the off-the-shelf amount schedule does not present eGFP as the only catalogue product
-- standalone analytical pricing uses the supplied `Quality attribute`, `Method` and `Price*` nomenclature, with alternative methods shown separately for each applicable attribute
+- standalone analytical pricing uses the supplied `Quality attribute`, `Method` and `Price*` nomenclature, with alternative methods shown separately for each applicable attribute; retain the supplied assay names, including `NanoOrange™` and `Lumit™`
 - roadmap stages on Funding & Support: 5
 - approved funder/support logos referenced on Funding & Support: 7
 - approved `RNAForge` font remains explicitly applied to roadmap, programme and funder components
