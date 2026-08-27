@@ -133,7 +133,10 @@ def main() -> None:
     check(css.count("{") == css.count("}"), "Unbalanced CSS braces", errors)
     check("@keyframes" not in css and "animation:" not in css, "Animation was introduced", errors)
     check(all(colour in css for colour in ("#4dc0e4", "#60ba84", "#60bfbd", "#98c76b")), "Approved brand colours are incomplete", errors)
-    check("<table class=\"method-table\">" in services and services.count("<tr>") == 9, "Standalone analytical pricing table is incomplete", errors)
+    analytical_terms = ("Quality attribute", "UV spectroscopy", "HPLC", "Fragment Analyser", "High resolution LC-MS", "ddPCR", "NanoOrange&trade;", "Dot blot", "ELISA", "Lumi&trade;", "DNA template")
+    check("<table class=\"method-table\">" in services and services.count("<tr") == 15 and all(term in services for term in analytical_terms), "Standalone analytical pricing table is incomplete", errors)
+    check(services.index("<h3>Catalogue mRNA options</h3>") < services.index("<h3>Off-the-shelf mRNA</h3>") < services.index("<h3>Custom RNA manufacturing</h3>"), "Manufacturing pricing cards are out of order", errors)
+    check("Enhanced green fluorescent protein (eGFP), capped" not in services, "Off-the-shelf pricing still presents eGFP as the only product", errors)
     check("northern-triangle-mentor-network.png" in funding and "funder-wordmark" not in funding, "Northern Triangle logo replacement is incomplete", errors)
 
     action_refs = set(re.findall(r"uses:\s*([^\s#]+)", workflows))

@@ -32,27 +32,27 @@ section: services
   <div class="section-heading">
     <p class="eyebrow">RNA manufacturing charges</p>
     <h2>Defined products and custom manufacturing.</h2>
-    <p>Standard charges are shown for the defined enhanced green fluorescent protein (eGFP) catalogue product. NanoLuciferase (NanoLuc), firefly luciferase (FLuc), CRISPR-associated protein 9 (Cas9) and custom RNA manufacturing are quoted according to amount and specification.</p>
+    <p>Catalogue mRNAs are available as defined capped + N1mΨ sequences for research workflows. Standard off-the-shelf charges are shown by supplied amount; sequence availability, custom formats and bespoke manufacturing requirements are confirmed before ordering.</p>
   </div>
   <div class="price-grid manufacturing-price-grid">
     <article class="price-card">
+      <h3>Catalogue mRNA options</h3>
+      <p class="price-meta">Defined capped + N1mΨ sequences for research workflows.</p>
+      <ul class="catalogue-list">
+        <li>Enhanced green fluorescent protein (eGFP)</li>
+        <li>NanoLuciferase (NanoLuc)</li>
+        <li>Firefly luciferase (FLuc)</li>
+        <li>CRISPR-associated protein 9 (Cas9)</li>
+      </ul>
+    </article>
+    <article class="price-card">
       <h3>Off-the-shelf mRNA</h3>
-      <p class="price-meta">Enhanced green fluorescent protein (eGFP), capped + N1mΨ catalogue material.</p>
+      <p class="price-meta">Standard catalogue charges by supplied amount. Sequence availability and applicable pricing are confirmed before ordering.</p>
       <div class="price-line"><span>50 µg</span><strong>£120</strong></div>
       <div class="price-line"><span>100 µg</span><strong>£200</strong></div>
       <div class="price-line"><span>200 µg</span><strong>£350</strong></div>
       <div class="price-line"><span>500 µg</span><strong>£800</strong></div>
       <div class="price-line"><span>1 mg</span><strong>£1,300</strong></div>
-    </article>
-    <article class="price-card">
-      <h3>Catalogue mRNA options</h3>
-      <p class="price-meta">Defined sequences for research workflows.</p>
-      <ul class="catalogue-list">
-        <li><strong>Enhanced green fluorescent protein (eGFP):</strong> standard charges shown</li>
-        <li><strong>NanoLuciferase (NanoLuc):</strong> quoted by amount</li>
-        <li><strong>Firefly luciferase (FLuc):</strong> quoted by amount</li>
-        <li><strong>CRISPR-associated protein 9 (Cas9):</strong> quoted by amount</li>
-      </ul>
     </article>
     <article class="price-card">
       <h3>Custom RNA manufacturing</h3>
@@ -92,22 +92,30 @@ section: services
     <p>Begin with a selected method or combine complementary methods in a defined package. Bespoke programmes and larger sample sets are quoted separately.</p>
   </div>
   <h3 class="methods-heading">Standalone analytical methods</h3>
+  <p class="table-intro">Prices for single-sample analysis:</p>
   <div class="method-table-wrap">
     <table class="method-table">
-      <caption class="visually-hidden">Indicative prices for standalone analytical methods</caption>
-      <thead><tr><th scope="col">Method</th><th scope="col">What it measures</th><th scope="col">Indicative price</th></tr></thead>
+      <caption class="visually-hidden">Single-sample prices by quality attribute and analytical method</caption>
+      <thead><tr><th scope="col">Quality attribute</th><th scope="col">Method</th><th scope="col">Price*</th></tr></thead>
       <tbody>
-        <tr><th scope="row">RNA size and integrity</th><td data-label="What it measures">Fragment Analyzer assessment of RNA size distribution and integrity.</td><td data-label="Indicative price"><strong>from £500</strong></td></tr>
-        <tr><th scope="row">Residual NTPs</th><td data-label="What it measures">High-performance liquid chromatography quantification of residual nucleoside triphosphates.</td><td data-label="Indicative price"><strong>from £300</strong></td></tr>
-        <tr><th scope="row">Residual DNA</th><td data-label="What it measures">Quantification of residual DNA in the submitted RNA sample.</td><td data-label="Indicative price"><strong>from £1,500</strong></td></tr>
-        <tr><th scope="row">Residual protein</th><td data-label="What it measures">Quantification of residual protein in the submitted RNA sample.</td><td data-label="Indicative price"><strong>from £500</strong></td></tr>
-        <tr><th scope="row">Double-stranded RNA content</th><td data-label="What it measures">Quantification of double-stranded RNA (dsRNA) process impurities.</td><td data-label="Indicative price"><strong>from £700</strong></td></tr>
-        <tr><th scope="row">Sequence identity</th><td data-label="What it measures">Sequence identity confirmation by high-resolution LC-MS.</td><td data-label="Indicative price"><strong>from £2,000</strong></td></tr>
-        <tr><th scope="row">5′ capping efficiency</th><td data-label="What it measures">Capping efficiency quantification by high-resolution LC-MS.</td><td data-label="Indicative price"><strong>from £1,200</strong></td></tr>
-        <tr><th scope="row">Poly(A) tail analysis</th><td data-label="What it measures">Poly(A) tail length and heterogeneity quantification by high-resolution LC-MS.</td><td data-label="Indicative price"><strong>from £1,200</strong></td></tr>
+        <tr data-quality-attribute="RNA concentration"><th scope="rowgroup" rowspan="2">RNA concentration</th><td data-label="Method">UV spectroscopy</td><td data-label="Price*"><strong>&mdash;</strong></td></tr>
+        <tr data-quality-attribute="RNA concentration"><td data-label="Method">HPLC</td><td data-label="Price*"><strong>£1,000</strong></td></tr>
+        <tr data-quality-attribute="RNA size/integrity"><th scope="rowgroup" rowspan="2">RNA size/integrity</th><td data-label="Method">Fragment Analyser</td><td data-label="Price*"><strong>£500</strong></td></tr>
+        <tr data-quality-attribute="RNA size/integrity"><td data-label="Method">HPLC</td><td data-label="Price*"><strong>£300</strong></td></tr>
+        <tr data-quality-attribute="Sequence identity"><th scope="row">Sequence identity</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong>£2,000</strong></td></tr>
+        <tr data-quality-attribute="Residual NTPs"><th scope="row">Residual NTPs</th><td data-label="Method">HPLC</td><td data-label="Price*"><strong>£300</strong></td></tr>
+        <tr data-quality-attribute="Residual DNA"><th scope="row">Residual DNA</th><td data-label="Method">ddPCR</td><td data-label="Price*"><strong>£1,500</strong></td></tr>
+        <tr data-quality-attribute="Residual protein"><th scope="row">Residual protein</th><td data-label="Method">NanoOrange&trade;</td><td data-label="Price*"><strong>£500</strong></td></tr>
+        <tr data-quality-attribute="dsRNA content"><th scope="rowgroup" rowspan="3">dsRNA content</th><td data-label="Method">Dot blot</td><td data-label="Price*"><strong>£700</strong></td></tr>
+        <tr data-quality-attribute="dsRNA content"><td data-label="Method">ELISA</td><td data-label="Price*"><strong>£1,000</strong></td></tr>
+        <tr data-quality-attribute="dsRNA content"><td data-label="Method">Lumi&trade;</td><td data-label="Price*"><strong>£1,500</strong></td></tr>
+        <tr data-quality-attribute="5′ capping efficiency"><th scope="row">5′ capping efficiency</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong>£1,200</strong></td></tr>
+        <tr data-quality-attribute="Poly(A) tail length/heterogeneity"><th scope="row">Poly(A) tail length/heterogeneity</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong>£1,200</strong></td></tr>
+        <tr data-quality-attribute="DNA template"><th scope="row">DNA template</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong>£900</strong></td></tr>
       </tbody>
     </table>
   </div>
+  <p class="price-note analytical-table-note"><strong>*Prices exclude VAT.</strong> Batch discounts are available.</p>
   <h3 class="packages-heading">Defined analytical packages</h3>
   <div class="analytics-package-grid">
     <article class="price-card"><h3>Standard QC</h3><div class="price-line"><span>Package charge</span><strong>from £750</strong></div><ul class="package-list"><li>RNA concentration</li><li>RNA size and integrity</li><li>Residual NTPs</li></ul></article>

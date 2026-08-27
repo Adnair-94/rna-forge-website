@@ -178,7 +178,8 @@ Latest implementation audit reported:
 - scripts, public forms and animation introduced by the 2026-08-20 revision: 0
 - approved `RNAForge` font faces and three head preloads retained
 - equipment concept references: Technology 4, Services 0
-- workbook-confirmed reporter sequences listed with approved full names first: enhanced green fluorescent protein (eGFP), NanoLuciferase (NanoLuc) and firefly luciferase (FLuc); only eGFP publishes standard charges
+- catalogue reporter sequences list approved full names first: enhanced green fluorescent protein (eGFP), NanoLuciferase (NanoLuc) and firefly luciferase (FLuc); the off-the-shelf amount schedule does not present eGFP as the only catalogue product
+- standalone analytical pricing uses the supplied `Quality attribute`, `Method` and `Price*` nomenclature, with alternative methods shown separately for each applicable attribute
 - roadmap stages on Funding & Support: 5
 - approved funder/support logos referenced on Funding & Support: 7
 - approved `RNAForge` font remains explicitly applied to roadmap, programme and funder components
@@ -203,7 +204,7 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 - Keep the user-approved roadmap wording confined to the Funding & Support roadmap and review any later reuse as a separate claim.
 - Decide whether the roadmap should remain on Funding & Support or move to Technology; do not move it without that decision.
 - Confirm the final public wording for company-support records, particularly the named Royal Academy of Engineering Enterprise Fellowship recipient, before launch.
-- Obtain commercial approval for eGFP catalogue pricing, NanoLuc/FLuc/Cas9 quotation wording, VAT wording, Certificate of Analysis inclusions and all analytical package charges.
+- Obtain commercial approval for catalogue availability and amount pricing, VAT wording, Certificate of Analysis inclusions and all analytical method/package charges.
 
 ## Next Steps
 
