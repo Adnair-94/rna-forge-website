@@ -19,12 +19,16 @@ section: services
   </div>
 </section>
 
+<section class="section split service-equipment" id="equipment">
+  <div><p class="eyebrow">Technical capabilities</p><h2>Specialised workflows for RNA development.</h2></div>
+  <div class="text-stack"><p>RNA Forge combines RNA manufacturing and analytical workflows to support material generation, process development and product understanding.</p><ul class="service-list"><li>RNA synthesis and process development</li><li>Purification and formulation development</li><li>Bioanalytical assessment of RNA quality and process performance</li></ul></div>
+</section>
 <section class="section band">
   <div class="card-grid four service-capability-grid">
-    <article id="off-the-shelf-mrnas" class="card"><h3>Off-the-shelf mRNAs</h3><p>Defined mRNA options include enhanced green fluorescent protein (eGFP), NanoLuciferase (NanoLuc), firefly luciferase (FLuc) and CRISPR-associated protein 9 (Cas9) for assay development, method setup, screening and non-clinical research.</p></article>
-    <article id="rna-manufacturing" class="card"><h3>Custom manufacturing</h3><p>Custom RNA production and process development support for research and translational applications, quoted according to construct, amount, format and analytical requirements.</p></article>
-    <article id="bioanalytical-services" class="card"><h3>Analytical services</h3><p>Advanced analytical workflows providing deeper insight into RNA quality, integrity and process performance.</p></article>
-    <article id="technical-development-support" class="card"><h3>Technical development support</h3><p>Focused technical input on RNA manufacturing workflows, analytical planning and manufacturability considerations.</p></article>
+    <article id="off-the-shelf-mrnas" class="card service-link-card"><h3><a href="#catalogue-mrnas">Off-the-shelf mRNAs</a></h3><p>Defined mRNA options include enhanced green fluorescent protein (eGFP), NanoLuciferase (NanoLuc), firefly luciferase (FLuc) and CRISPR-associated protein 9 (Cas9) for assay development, method setup, screening and non-clinical research.</p></article>
+    <article id="rna-manufacturing" class="card service-link-card"><h3><a href="#custom-rna-manufacturing">Custom manufacturing</a></h3><p>Custom RNA production and process development support for research and translational applications, quoted according to construct, amount, format and analytical requirements.</p></article>
+    <article id="bioanalytical-services" class="card service-link-card"><h3><a href="#analytical-pricing">Analytical services</a></h3><p>Advanced analytical workflows providing deeper insight into RNA quality, integrity and process performance.</p></article>
+    <article id="technical-development-support" class="card service-link-card"><h3><a href="#equipment">Technical development support</a></h3><p>Focused technical input on RNA manufacturing workflows, analytical planning and manufacturability considerations.</p></article>
   </div>
 </section>
 
@@ -35,7 +39,7 @@ section: services
     <p>Choose a defined capped + N1mΨ catalogue sequence, then select an off-the-shelf amount. Requirements outside the catalogue sequences, formats or batch sizes are scoped as custom RNA manufacturing.</p>
   </div>
   <div class="price-grid manufacturing-price-grid">
-    <article class="price-card">
+    <article class="price-card" id="catalogue-mrnas">
       <h3>Catalogue mRNA options</h3>
       <p class="price-meta">Defined capped + N1mΨ reporter and Cas9 mRNAs for research workflows.</p>
       <ul class="catalogue-list">
@@ -54,7 +58,7 @@ section: services
       <div class="price-line"><span>500 µg</span><strong>£800</strong></div>
       <div class="price-line"><span>1 mg</span><strong>£1,300</strong></div>
     </article>
-    <article class="price-card">
+    <article class="price-card" id="custom-rna-manufacturing">
       <h3>Custom RNA manufacturing</h3>
       <p class="price-meta">A written quotation is prepared for each defined scope.</p>
       <ul class="catalogue-list">
@@ -126,10 +130,6 @@ section: services
   <p class="price-note">Method selection, sample number and matrix can affect final scope. Custom mass spectrometry workflows and additional RNA characterisation services are available by quotation. A written quotation confirms the selected methods, sample plan, turnaround and deliverables.</p>
 </section>
 
-<section class="section split service-equipment" id="equipment">
-  <div><p class="eyebrow">Technical capabilities</p><h2>Specialised workflows for RNA development.</h2></div>
-  <div class="text-stack"><p>RNA Forge combines RNA manufacturing and analytical workflows to support material generation, process development and product understanding.</p><ul class="service-list"><li>RNA synthesis and process development</li><li>Purification and formulation development</li><li>Bioanalytical assessment of RNA quality and process performance</li></ul></div>
-</section>
 <section class="section cta"><div><p class="eyebrow">Discuss a project</p><h2>Request a service quotation.</h2><p>Tell us which material, analytical package or development support you need. Custom work is scoped and quoted before project start.</p></div><a class="button primary" href="{{ '/contact/?topic=services' | relative_url }}">Contact RNA Forge</a></section>
 </main>
 {% include footer.html %}

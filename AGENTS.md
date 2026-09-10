@@ -1,6 +1,6 @@
 # RNA Forge Website Implementation Brief
 
-Last updated: 2026-08-26.
+Last updated: 2026-09-10.
 
 Use this file as the source of truth for future Codex work on the RNA Forge GitHub Pages website.
 
@@ -214,3 +214,12 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 4. Make only review-driven adjustments on the existing PR branch.
 5. Resolve the stacked PR plan: merge PR #1 first, then decide whether to retarget/rebase PR #2 before final review.
 6. Keep PR #2 as a draft until the user approves moving toward merge.
+
+## September Review
+
+- Retain the six top-level navigation headings and the separate Home and About pages, as confirmed by the user.
+- Keep the LNP mixer and other process illustrations conceptual; retain the previously confirmed chromatography unit caption.
+- Use model-based process monitoring and control in Technology copy. The workflow illustration's monitoring labels are live HTML beneath the process artwork, using the approved font.
+- Keep the compact shared footer logo linked to Home.
+- Services starts with the technical-capabilities overview before linked capability cards and pricing. Preserve existing section IDs for incoming links.
+- Equipment concepts follow the modular-hardware description; use RNA synthesis reactor for the reactor caption.
