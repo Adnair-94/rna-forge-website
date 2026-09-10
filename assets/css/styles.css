@@ -609,6 +609,14 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   .equipment-gallery-grid { grid-template-columns: 1fr; max-width: 360px; margin-inline: auto; }
 }
 
+.currency-toolbar:not([hidden]) { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-block: 24px 10px; }
+.currency-toolbar label { font-weight: 600; }
+.currency-toolbar select { width: 236px; max-width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 4px; background: #fff; color: var(--ink); font: inherit; }
+.currency-toolbar select:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.currency-note { max-width: 900px; margin-bottom: 24px; }
+[data-price-gbp] { font-variant-numeric: tabular-nums; }
+.pricing-section .price-line { flex-wrap: wrap; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }

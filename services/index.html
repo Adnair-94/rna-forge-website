@@ -38,6 +38,15 @@ section: services
     <h2>Defined products and custom manufacturing.</h2>
     <p>Choose a defined capped + N1mΨ catalogue sequence, then select an off-the-shelf amount. Requirements outside the catalogue sequences, formats or batch sizes are scoped as custom RNA manufacturing.</p>
   </div>
+  <div class="currency-toolbar" data-currency-controls hidden>
+    <label for="currency-manufacturing">Display currency</label>
+    <select id="currency-manufacturing" data-currency-select aria-describedby="currency-note-manufacturing">
+      <option value="GBP">GBP - Pound sterling</option>
+      <option value="USD">USD - US dollar</option>
+      <option value="EUR">EUR - Euro</option>
+    </select>
+  </div>
+  <p class="price-note currency-note" id="currency-note-manufacturing"><span data-currency-note>Prices in GBP, excluding VAT.</span> Final pricing and billing currency confirmed in your quotation.<span data-rate-source hidden> <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html">ECB reference rates</a>.</span></p>
   <div class="price-grid manufacturing-price-grid">
     <article class="price-card" id="catalogue-mrnas">
       <h3>Catalogue mRNA options</h3>
@@ -52,11 +61,11 @@ section: services
     <article class="price-card">
       <h3>Off-the-shelf mRNA</h3>
       <p class="price-meta">The listed catalogue mRNAs can be supplied in defined amounts at the standard charges below. Availability is confirmed before ordering.</p>
-      <div class="price-line"><span>50 µg</span><strong>£120</strong></div>
-      <div class="price-line"><span>100 µg</span><strong>£200</strong></div>
-      <div class="price-line"><span>200 µg</span><strong>£350</strong></div>
-      <div class="price-line"><span>500 µg</span><strong>£800</strong></div>
-      <div class="price-line"><span>1 mg</span><strong>£1,300</strong></div>
+      <div class="price-line"><span>50 µg</span><strong data-price-gbp="120">£120</strong></div>
+      <div class="price-line"><span>100 µg</span><strong data-price-gbp="200">£200</strong></div>
+      <div class="price-line"><span>200 µg</span><strong data-price-gbp="350">£350</strong></div>
+      <div class="price-line"><span>500 µg</span><strong data-price-gbp="800">£800</strong></div>
+      <div class="price-line"><span>1 mg</span><strong data-price-gbp="1300">£1,300</strong></div>
     </article>
     <article class="price-card" id="custom-rna-manufacturing">
       <h3>Custom RNA manufacturing</h3>
@@ -95,6 +104,15 @@ section: services
     <h2>Standalone methods and defined packages for RNA quality and process insight.</h2>
     <p>Begin with a selected method or combine complementary methods in a defined package. Bespoke programmes and larger sample sets are quoted separately.</p>
   </div>
+  <div class="currency-toolbar" data-currency-controls hidden>
+    <label for="currency-analytics">Display currency</label>
+    <select id="currency-analytics" data-currency-select aria-describedby="currency-note-analytics">
+      <option value="GBP">GBP - Pound sterling</option>
+      <option value="USD">USD - US dollar</option>
+      <option value="EUR">EUR - Euro</option>
+    </select>
+  </div>
+  <p class="price-note currency-note" id="currency-note-analytics"><span data-currency-note>Prices in GBP, excluding VAT.</span> Final pricing and billing currency confirmed in your quotation.<span data-rate-source hidden> <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html">ECB reference rates</a>.</span></p>
   <h3 class="methods-heading">Standalone analytical methods</h3>
   <p class="table-intro">Prices for single-sample analysis:</p>
   <div class="method-table-wrap">
@@ -103,35 +121,37 @@ section: services
       <thead><tr><th scope="col">Quality attribute</th><th scope="col">Method</th><th scope="col">Price*</th></tr></thead>
       <tbody>
         <tr data-quality-attribute="RNA concentration"><th scope="rowgroup" rowspan="2">RNA concentration</th><td data-label="Method">UV spectroscopy</td><td data-label="Price*"><strong>&mdash;</strong></td></tr>
-        <tr data-quality-attribute="RNA concentration"><td data-label="Method">HPLC</td><td data-label="Price*"><strong>£1,000</strong></td></tr>
-        <tr data-quality-attribute="RNA size/integrity"><th scope="rowgroup" rowspan="2">RNA size/integrity</th><td data-label="Method">Fragment Analyser</td><td data-label="Price*"><strong>£500</strong></td></tr>
-        <tr data-quality-attribute="RNA size/integrity"><td data-label="Method">HPLC</td><td data-label="Price*"><strong>£300</strong></td></tr>
-        <tr data-quality-attribute="Sequence identity"><th scope="row">Sequence identity</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong>£2,000</strong></td></tr>
-        <tr data-quality-attribute="Residual NTPs"><th scope="row">Residual NTPs</th><td data-label="Method">HPLC</td><td data-label="Price*"><strong>£300</strong></td></tr>
-        <tr data-quality-attribute="Residual DNA"><th scope="row">Residual DNA</th><td data-label="Method">ddPCR</td><td data-label="Price*"><strong>£1,500</strong></td></tr>
-        <tr data-quality-attribute="Residual protein"><th scope="row">Residual protein</th><td data-label="Method">NanoOrange&trade;</td><td data-label="Price*"><strong>£500</strong></td></tr>
-        <tr data-quality-attribute="dsRNA content"><th scope="rowgroup" rowspan="3">dsRNA content</th><td data-label="Method">Dot blot</td><td data-label="Price*"><strong>£700</strong></td></tr>
-        <tr data-quality-attribute="dsRNA content"><td data-label="Method">ELISA</td><td data-label="Price*"><strong>£1,000</strong></td></tr>
-        <tr data-quality-attribute="dsRNA content"><td data-label="Method">Lumit&trade;</td><td data-label="Price*"><strong>£1,500</strong></td></tr>
-        <tr data-quality-attribute="5′ capping efficiency"><th scope="row">5′ capping efficiency</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong>£1,200</strong></td></tr>
-        <tr data-quality-attribute="Poly(A) tail length/heterogeneity"><th scope="row">Poly(A) tail length/heterogeneity</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong>£1,200</strong></td></tr>
-        <tr data-quality-attribute="DNA template"><th scope="row">DNA template</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong>£900</strong></td></tr>
+        <tr data-quality-attribute="RNA concentration"><td data-label="Method">HPLC</td><td data-label="Price*"><strong data-price-gbp="1000">£1,000</strong></td></tr>
+        <tr data-quality-attribute="RNA size/integrity"><th scope="rowgroup" rowspan="2">RNA size/integrity</th><td data-label="Method">Fragment Analyser</td><td data-label="Price*"><strong data-price-gbp="500">£500</strong></td></tr>
+        <tr data-quality-attribute="RNA size/integrity"><td data-label="Method">HPLC</td><td data-label="Price*"><strong data-price-gbp="300">£300</strong></td></tr>
+        <tr data-quality-attribute="Sequence identity"><th scope="row">Sequence identity</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong data-price-gbp="2000">£2,000</strong></td></tr>
+        <tr data-quality-attribute="Residual NTPs"><th scope="row">Residual NTPs</th><td data-label="Method">HPLC</td><td data-label="Price*"><strong data-price-gbp="300">£300</strong></td></tr>
+        <tr data-quality-attribute="Residual DNA"><th scope="row">Residual DNA</th><td data-label="Method">ddPCR</td><td data-label="Price*"><strong data-price-gbp="1500">£1,500</strong></td></tr>
+        <tr data-quality-attribute="Residual protein"><th scope="row">Residual protein</th><td data-label="Method">NanoOrange&trade;</td><td data-label="Price*"><strong data-price-gbp="500">£500</strong></td></tr>
+        <tr data-quality-attribute="dsRNA content"><th scope="rowgroup" rowspan="3">dsRNA content</th><td data-label="Method">Dot blot</td><td data-label="Price*"><strong data-price-gbp="700">£700</strong></td></tr>
+        <tr data-quality-attribute="dsRNA content"><td data-label="Method">ELISA</td><td data-label="Price*"><strong data-price-gbp="1000">£1,000</strong></td></tr>
+        <tr data-quality-attribute="dsRNA content"><td data-label="Method">Lumit&trade;</td><td data-label="Price*"><strong data-price-gbp="1500">£1,500</strong></td></tr>
+        <tr data-quality-attribute="5′ capping efficiency"><th scope="row">5′ capping efficiency</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong data-price-gbp="1200">£1,200</strong></td></tr>
+        <tr data-quality-attribute="Poly(A) tail length/heterogeneity"><th scope="row">Poly(A) tail length/heterogeneity</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong data-price-gbp="1200">£1,200</strong></td></tr>
+        <tr data-quality-attribute="DNA template"><th scope="row">DNA template</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong data-price-gbp="900">£900</strong></td></tr>
       </tbody>
     </table>
   </div>
   <p class="price-note analytical-table-note"><strong>*Prices exclude VAT.</strong> Batch discounts are available.</p>
   <h3 class="packages-heading">Defined analytical packages</h3>
   <div class="analytics-package-grid">
-    <article class="price-card"><h3>Standard QC</h3><div class="price-line"><span>Package charge</span><strong>from £750</strong></div><ul class="package-list"><li>RNA concentration</li><li>RNA size/integrity</li><li>Residual NTPs</li></ul></article>
-    <article class="price-card"><h3>Process characterisation</h3><div class="price-line"><span>Package charge</span><strong>from £3,100</strong></div><ul class="package-list"><li>Standard QC</li><li>Residual DNA</li><li>Residual protein</li><li>dsRNA content</li></ul></article>
-    <article class="price-card"><h3>Advanced characterisation</h3><div class="price-line"><span>Package charge</span><strong>from £4,500</strong></div><ul class="package-list"><li>Standard QC</li><li>Sequence identity</li><li>5′ capping efficiency</li><li>Poly(A) tail length/heterogeneity</li></ul></article>
-    <article class="price-card"><h3>Comprehensive characterisation</h3><div class="price-line"><span>Package charge</span><strong>from £7,300</strong></div><ul class="package-list"><li>Standard QC</li><li>Process characterisation</li><li>Advanced characterisation</li></ul></article>
+    <article class="price-card"><h3>Standard QC</h3><div class="price-line"><span>Package charge</span><strong data-price-gbp="750" data-price-prefix="from ">from £750</strong></div><ul class="package-list"><li>RNA concentration</li><li>RNA size/integrity</li><li>Residual NTPs</li></ul></article>
+    <article class="price-card"><h3>Process characterisation</h3><div class="price-line"><span>Package charge</span><strong data-price-gbp="3100" data-price-prefix="from ">from £3,100</strong></div><ul class="package-list"><li>Standard QC</li><li>Residual DNA</li><li>Residual protein</li><li>dsRNA content</li></ul></article>
+    <article class="price-card"><h3>Advanced characterisation</h3><div class="price-line"><span>Package charge</span><strong data-price-gbp="4500" data-price-prefix="from ">from £4,500</strong></div><ul class="package-list"><li>Standard QC</li><li>Sequence identity</li><li>5′ capping efficiency</li><li>Poly(A) tail length/heterogeneity</li></ul></article>
+    <article class="price-card"><h3>Comprehensive characterisation</h3><div class="price-line"><span>Package charge</span><strong data-price-gbp="7300" data-price-prefix="from ">from £7,300</strong></div><ul class="package-list"><li>Standard QC</li><li>Process characterisation</li><li>Advanced characterisation</li></ul></article>
   </div>
   <p class="price-note">Method selection, sample number and matrix can affect final scope. Custom mass spectrometry workflows and additional RNA characterisation services are available by quotation. A written quotation confirms the selected methods, sample plan, turnaround and deliverables.</p>
 </section>
 
 <section class="section cta"><div><p class="eyebrow">Discuss a project</p><h2>Request a service quotation.</h2><p>Tell us which material, analytical package or development support you need. Custom work is scoped and quoted before project start.</p></div><a class="button primary" href="{{ '/contact/?topic=services' | relative_url }}">Contact RNA Forge</a></section>
 </main>
+<p class="visually-hidden" id="currency-status" role="status" aria-live="polite"></p>
 {% include footer.html %}
+<script src="{{ '/assets/js/pricing-currency.js' | relative_url }}?v=20260910-1" defer></script>
 </body>
 </html>

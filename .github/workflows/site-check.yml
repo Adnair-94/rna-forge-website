@@ -23,3 +23,5 @@ jobs:
         run: python scripts/validate_site.py
       - name: Test protected contact worker
         run: npm test --prefix contact-worker
+      - name: Test currency display
+        run: node --test scripts/test-pricing-currency.cjs

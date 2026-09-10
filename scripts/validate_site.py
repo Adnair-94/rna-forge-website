@@ -122,7 +122,11 @@ def main() -> None:
     check("mailto:" not in public_source.lower(), "A public mailto link remains", errors)
     check("info@rnaforge.com" not in public_source.lower(), "The public mailbox remains exposed", errors)
     check(public_source.lower().count("<form") == 1, "Expected exactly one public form", errors)
-    check(public_source.lower().count("<script") == 1, "Expected only the conditional Turnstile script", errors)
+    script_sources = re.findall(r'<script\b[^>]*src="([^"]+)"', public_source, re.I)
+    approved_scripts = {"https://challenges.cloudflare.com/turnstile/v0/api.js", "{{ '/assets/js/pricing-currency.js' | relative_url }}?v=20260910-1"}
+    check(len(script_sources) == 2 and set(script_sources) == approved_scripts and public_source.lower().count("<script") == 2, "Unexpected or inline script introduced", errors)
+    check((ROOT / "assets/js/pricing-currency.js").exists(), "Local currency script missing", errors)
+    check(services.count('data-price-gbp=') == 22 and services.count('data-currency-select') == 2, "Currency coverage is incomplete", errors)
     check("https://challenges.cloudflare.com/turnstile/v0/api.js" in head, "Turnstile client script missing", errors)
     check("Content-Security-Policy" in head and "object-src 'none'" in head and "form-action 'self'" in head, "CSP baseline missing", errors)
     check(all(item in contact for item in ("company_website", "cf-turnstile", "data-action=\"contact\"", "name=\"consent\"")), "Protected form controls are incomplete", errors)

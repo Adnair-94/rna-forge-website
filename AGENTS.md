@@ -217,6 +217,11 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 
 ## September Review
 
+- Services has synchronised GBP/USD/EUR display selectors. GBP is the authoritative base; all 22 catalogue, method and package prices convert from explicit `data-price-gbp` amounts. Preserve `from` prefixes and unpriced dashes.
+- `assets/js/pricing-currency.js` is an approved first-party script on Services only. No external runtime currency API, cookies or browser storage are used. Without JavaScript, retain GBP prices and hide selectors.
+- Conversion uses the ECB snapshot dated 10 September 2026 (EUR base: GBP 0.85915, USD 1.1616). To refresh, verify the source then update both rates and date together; bump the script cache token and matching validation allowlist. Display the snapshot date, approximate marker, VAT exclusion and quote/billing disclaimer. These are not live or transaction rates.
+- Currency selection does not alter grant/funding amounts. Funding changes remain deferred by the user.
+
 - Retain the six top-level navigation headings and the separate Home and About pages, as confirmed by the user.
 - Keep the LNP mixer and other process illustrations conceptual; retain the previously confirmed chromatography unit caption.
 - Use model-based process monitoring and control in Technology copy. The workflow illustration's monitoring labels are live HTML beneath the process artwork, using the approved font.
