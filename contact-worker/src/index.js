@@ -44,11 +44,39 @@ function escapeHtml(value) {
   })[character]);
 }
 
-async function rateLimitKey(email, request) {
+async function rateLimitKey(request) {
   const address = request.headers.get("CF-Connecting-IP") || "unknown";
-  const input = new TextEncoder().encode(`${email.toLowerCase()}|${address}`);
+  const input = new TextEncoder().encode(`contact-ip|${address}`);
   const digest = await crypto.subtle.digest("SHA-256", input);
   return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+const MAX_BODY_BYTES = 25000;
+class BodyTooLargeError extends Error {}
+
+async function boundedFormData(request, contentType) {
+  const reader = request.body?.getReader();
+  if (!reader) throw new Error("Missing body");
+  const bytes = new Uint8Array(MAX_BODY_BYTES);
+  let size = 0;
+  try {
+    // Bound the bytes before parsing, including requests without Content-Length.
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      if (value.byteLength > MAX_BODY_BYTES - size) {
+        await reader.cancel();
+        throw new BodyTooLargeError();
+      }
+      bytes.set(value, size);
+      size += value.byteLength;
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  return new Response(bytes.subarray(0, size), {
+    headers: { "Content-Type": contentType },
+  }).formData();
 }
 
 async function verifyTurnstile(token, request, env, fetchImpl) {
@@ -79,13 +107,27 @@ export async function handleRequest(request, env, fetchImpl = fetch) {
   const origin = request.headers.get("Origin");
   if (!splitList(env.ALLOWED_ORIGINS).has(origin)) return response("Forbidden", 403);
 
+  try {
+    const key = await rateLimitKey(request);
+    const allowance = await env.CONTACT_RATE_LIMITER.limit({ key });
+    if (!allowance.success) return response("Too many requests", 429, { "Retry-After": "60" });
+  } catch {
+    return response("Service unavailable", 503);
+  }
+
+  const contentType = request.headers.get("Content-Type") || "";
+  const mediaType = contentType.split(";", 1)[0].trim().toLowerCase();
+  if (!["application/x-www-form-urlencoded", "multipart/form-data"].includes(mediaType)) {
+    return response("Unsupported media type", 415);
+  }
   const length = Number(request.headers.get("Content-Length") || 0);
-  if (length > 25000) return redirect(env, "/contact/error/");
+  if (length > MAX_BODY_BYTES) return response("Request too large", 413);
 
   let form;
   try {
-    form = await request.formData();
-  } catch {
+    form = await boundedFormData(request, contentType);
+  } catch (error) {
+    if (error instanceof BodyTooLargeError) return response("Request too large", 413);
     return redirect(env, "/contact/error/");
   }
 
@@ -102,10 +144,6 @@ export async function handleRequest(request, env, fetchImpl = fetch) {
   if (name.length < 2 || !validEmail(email) || !TOPICS.has(topic) || message.length < 20 || consent !== "yes" || !token) {
     return redirect(env, "/contact/error/");
   }
-
-  const key = await rateLimitKey(email, request);
-  const allowance = await env.CONTACT_RATE_LIMITER.limit({ key });
-  if (!allowance.success) return response("Too many requests", 429, { "Retry-After": "60" });
 
   let verified = false;
   try {
