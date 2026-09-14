@@ -217,6 +217,14 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 
 ## September Review
 
+### Final September 14 Feedback
+
+- Restore the workflow monitoring panel with both original icons, reused as CSS image sprites from the unchanged 2246 by 1097 PNG. Keep live HTML wording and the approved Model-based process monitoring & control label. Do not remove the icons when changing captions.
+- The user approved the supplied Home integration copy and Technology overview, modular architecture and GMP-readiness development wording in the final screenshots. This approval is specific to those passages, not a general claim of achieved GMP compliance.
+- Funding labels now use Innovate UK, the full EPSRC name and the CEPI call title Innovations to Prepare for Future Epidemics and Pandemics. Use end-user deployment strategy in the final roadmap stage. Grant values and dates are unchanged.
+- Contact stays visibly unavailable while the Turnstile key is blank or the placeholder. Do not load a broken challenge or allow submissions in this state. Once configured, restore the widget and retain all server-side checks; production delivery still requires a launch test.
+- GitHub Pages currently publishes the review branch automatically. A successful deployment can be live without merging PR #2; do not equate an unmerged PR with an unpublished website.
+
 - Services has synchronised GBP/USD/EUR display selectors. GBP is the authoritative base; all 22 catalogue, method and package prices convert from explicit `data-price-gbp` amounts. Preserve `from` prefixes and unpriced dashes.
 - `assets/js/pricing-currency.js` is an approved first-party script on Services only. No external runtime currency API, cookies or browser storage are used. Without JavaScript, retain GBP prices and hide selectors.
 - Conversion uses the ECB snapshot dated 10 September 2026 (EUR base: GBP 0.85915, USD 1.1616). To refresh, verify the source then update both rates and date together; bump the script cache token and matching validation allowlist. Display the snapshot date, approximate marker, VAT exclusion and quote/billing disclaimer. These are not live or transaction rates.

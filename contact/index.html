@@ -16,6 +16,9 @@ turnstile: true
   <form class="contact-form" action="{{ site.contact_form_endpoint }}" method="post" accept-charset="UTF-8">
     <div><p class="eyebrow">Protected enquiry</p><h2>Start a conversation.</h2></div>
     <div class="notice"><strong>Do not submit confidential RNA sequences, proprietary formulations, unpublished process details or sensitive commercial information.</strong> We will arrange an appropriate confidential channel when needed.</div>
+    {% unless contact_ready %}<p class="notice" role="status">Online enquiries will open when the website launches. This review form is not accepting submissions yet.</p>{% endunless %}
+    <fieldset class="contact-fields" {% unless contact_ready %}disabled{% endunless %}>
+    <legend class="visually-hidden">Enquiry details</legend>
     <label for="contact-name">Name</label>
     <input id="contact-name" name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required>
     <label for="contact-email">Work email</label>
@@ -36,8 +39,9 @@ turnstile: true
     <div class="form-trap" aria-hidden="true"><label for="contact-website">Website</label><input id="contact-website" name="company_website" type="text" tabindex="-1" autocomplete="off"></div>
     <input name="source" type="hidden" value="rna-forge-website">
     <label class="form-consent" for="contact-consent"><input id="contact-consent" name="consent" type="checkbox" value="yes" required><span>I have read the <a href="{{ '/privacy/' | relative_url }}">privacy notice</a> and understand the confidentiality warning above.</span></label>
-    <div class="cf-turnstile" data-sitekey="{{ site.turnstile_site_key }}" data-action="contact" data-theme="light" data-size="flexible"></div>
+    {% if contact_ready %}<div class="cf-turnstile" data-sitekey="{{ site.turnstile_site_key }}" data-action="contact" data-theme="light" data-size="flexible"></div>{% endif %}
     <button class="button primary" type="submit">Send protected enquiry</button>
+    </fieldset>
   </form>
   <aside class="contact-panel"><p class="eyebrow">What happens next</p><h2>Your enquiry is reviewed by RNA Forge.</h2><p>We use your details only to respond, scope the requested work and arrange appropriate follow-up.</p><p>For sensitive technical or commercial discussions, we will establish a suitable confidential channel before requesting detailed information.</p></aside>
 </section>
