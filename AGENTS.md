@@ -217,7 +217,14 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 
 ## September Review
 
-### Final September 14 Feedback
+### September 14 Workflow Repair
+
+- The workflow now uses one complete PowerPoint-derived image, `assets/images/technology/selected/rnabox-workflow-data-informed.png`, including both monitoring icons and the compact connected panel. Do not crop its bottom or recreate the panel in HTML/CSS.
+- The supplied deck used Arial/Calibri. The web export uses the approved RNAForge regular/bold font and the heading Data-informed process control. Its source illustrations remain unchanged; export text layout and the right-hand connector were corrected to match the original composition.
+- The image and a full-size link open the complete export for inspection. Preserve the accessible workflow description. The former sprite rules and cropped-image wrapper have been removed.
+- Customer-facing contact copy says Send an enquiry / Send enquiry, without the adjective protected. Keep the actual security controls and review-mode disabled state.
+
+### Final September 14 Feedback (Historical)
 
 - Restore the workflow monitoring panel with both original icons, reused as CSS image sprites from the unchanged 2246 by 1097 PNG. The user's latest correction sets the diagram heading to Data-informed process control, keeping the original supporting sentence. This supersedes the earlier Model-based diagram heading; other Technology narrative is unchanged. Do not remove the icons when changing captions.
 - The user approved the supplied Home integration copy and Technology overview, modular architecture and GMP-readiness development wording in the final screenshots. This approval is specific to those passages, not a general claim of achieved GMP compliance.
