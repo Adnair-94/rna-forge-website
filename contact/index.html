@@ -11,10 +11,10 @@ turnstile: true
 <body>
 {% include header.html %}
 <main id="main-content">
-<section class="page-hero simple"><div><p class="eyebrow">Contact</p><h1>Contact RNA Forge</h1><p class="lead">Send a protected enquiry about RNA manufacturing, analytical services, RNAbox&trade; technology, funding, investment or partnership opportunities.</p></div></section>
+<section class="page-hero simple"><div><p class="eyebrow">Contact</p><h1>Contact RNA Forge</h1><p class="lead">Send an enquiry about RNA manufacturing, analytical services, RNAbox&trade; technology, funding, investment or partnership opportunities.</p></div></section>
 <section class="section contact-layout">
   <form class="contact-form" action="{{ site.contact_form_endpoint }}" method="post" accept-charset="UTF-8">
-    <div><p class="eyebrow">Protected enquiry</p><h2>Start a conversation.</h2></div>
+    <div><p class="eyebrow">Enquiry</p><h2>Start a conversation.</h2></div>
     <div class="notice"><strong>Do not submit confidential RNA sequences, proprietary formulations, unpublished process details or sensitive commercial information.</strong> We will arrange an appropriate confidential channel when needed.</div>
     {% unless contact_ready %}<p class="notice" role="status">Online enquiries will open when the website launches. This review form is not accepting submissions yet.</p>{% endunless %}
     <fieldset class="contact-fields" {% unless contact_ready %}disabled{% endunless %}>
@@ -40,7 +40,7 @@ turnstile: true
     <input name="source" type="hidden" value="rna-forge-website">
     <label class="form-consent" for="contact-consent"><input id="contact-consent" name="consent" type="checkbox" value="yes" required><span>I have read the <a href="{{ '/privacy/' | relative_url }}">privacy notice</a> and understand the confidentiality warning above.</span></label>
     {% if contact_ready %}<div class="cf-turnstile" data-sitekey="{{ site.turnstile_site_key }}" data-action="contact" data-theme="light" data-size="flexible"></div>{% endif %}
-    <button class="button primary" type="submit">Send protected enquiry</button>
+    <button class="button primary" type="submit">Send enquiry</button>
     </fieldset>
   </form>
   <aside class="contact-panel"><p class="eyebrow">What happens next</p><h2>Your enquiry is reviewed by RNA Forge.</h2><p>We use your details only to respond, scope the requested work and arrange appropriate follow-up.</p><p>For sensitive technical or commercial discussions, we will establish a suitable confidential channel before requesting detailed information.</p></aside>
