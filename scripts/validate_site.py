@@ -132,7 +132,7 @@ def main() -> None:
     check('{% unless contact_ready %}disabled{% endunless %}' in contact and '{% if contact_ready %}<div class="cf-turnstile"' in contact, "Unconfigured form must be disabled without a broken widget", errors)
     technology = (ROOT / "technology/index.html").read_text(encoding="utf-8")
     check(all(name in technology and name in css for name in ('workflow-monitoring-icon-process', 'workflow-monitoring-icon-control')), "Original workflow monitoring icons missing", errors)
-    check('Model-based process monitoring &amp; control' in technology, "Approved monitoring wording missing", errors)
+    check('<h3>Data-informed process control</h3>' in technology, "Approved monitoring wording missing", errors)
     check('Platform refinement and GMP readiness.' in technology and 'end-user deployment strategy' in funding, "Final roadmap feedback missing", errors)
     check('Innovations to Prepare for Future Epidemics and Pandemics' in funding and '<h4>Engineering and Physical Sciences Research Council</h4>' in funding, "Final programme naming feedback missing", errors)
     check("Content-Security-Policy" in head and "object-src 'none'" in head and "form-action 'self'" in head, "CSP baseline missing", errors)

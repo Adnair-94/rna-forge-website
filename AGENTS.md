@@ -219,7 +219,7 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 
 ### Final September 14 Feedback
 
-- Restore the workflow monitoring panel with both original icons, reused as CSS image sprites from the unchanged 2246 by 1097 PNG. Keep live HTML wording and the approved Model-based process monitoring & control label. Do not remove the icons when changing captions.
+- Restore the workflow monitoring panel with both original icons, reused as CSS image sprites from the unchanged 2246 by 1097 PNG. The user's latest correction sets the diagram heading to Data-informed process control, keeping the original supporting sentence. This supersedes the earlier Model-based diagram heading; other Technology narrative is unchanged. Do not remove the icons when changing captions.
 - The user approved the supplied Home integration copy and Technology overview, modular architecture and GMP-readiness development wording in the final screenshots. This approval is specific to those passages, not a general claim of achieved GMP compliance.
 - Funding labels now use Innovate UK, the full EPSRC name and the CEPI call title Innovations to Prepare for Future Epidemics and Pandemics. Use end-user deployment strategy in the final roadmap stage. Grant values and dates are unchanged.
 - Contact stays visibly unavailable while the Turnstile key is blank or the placeholder. Do not load a broken challenge or allow submissions in this state. Once configured, restore the widget and retain all server-side checks; production delivery still requires a launch test.
