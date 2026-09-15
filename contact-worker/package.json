@@ -2,6 +2,9 @@
   "name": "rna-forge-contact-worker",
   "private": true,
   "type": "module",
+  "devDependencies": {
+    "wrangler": "4.131.2"
+  },
   "scripts": {
     "test": "node --test"
   }

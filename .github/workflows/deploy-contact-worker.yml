@@ -24,13 +24,17 @@ jobs:
         env:
           CONTACT_HOSTING_APPROVED: ${{ vars.CONTACT_HOSTING_APPROVED }}
         run: test "$CONTACT_HOSTING_APPROVED" = "true"
+      - name: Install and audit locked deployment tooling
+        run: |
+          npm ci --ignore-scripts --prefix contact-worker
+          npm audit --audit-level=low --prefix contact-worker
       - name: Deploy worker
         uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: contact-worker
-          wranglerVersion: "4.81.0"
+          wranglerVersion: "4.131.2"
           command: deploy
           secrets: |
             TURNSTILE_SECRET
