@@ -34,6 +34,7 @@ def validate(root):
         assert page.select("html")[0].get("lang") == "en"
         assert any(m.get("name") == "viewport" for m in page.select("meta"))
         assert any(m.get("name") == "robots" and "noindex" in m.get("content", "") for m in page.select("meta"))
+        assert any(m.get("name") == "referrer" and m.get("content") == "strict-origin" for m in page.select("meta")), "Form POST must preserve Origin without sharing URL paths"
         csp = next(m["content"] for m in page.select("meta") if m.get("http-equiv") == "Content-Security-Policy")
         assert "default-src 'none'" in csp and "base-uri 'none'" in csp and "object-src 'none'" in csp
         for tag, attrs in page.tags:
