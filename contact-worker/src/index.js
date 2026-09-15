@@ -182,6 +182,8 @@ export async function handleRequest(request, env, fetchImpl = fetch) {
   ].join("\n");
   const html = `<h1>RNA Forge website enquiry</h1><p><strong>Type:</strong> ${escapeHtml(topicLabel)}</p><p><strong>Name:</strong> ${escapeHtml(name)}<br><strong>Work email:</strong> ${escapeHtml(email)}<br><strong>Organisation:</strong> ${escapeHtml(organisation || "Not supplied")}</p><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`;
 
+  let deliveryStage = "request";
+  let deliveryStatus = null;
   try {
     const delivery = await fetchImpl("https://api.resend.com/emails", {
       method: "POST",
@@ -200,12 +202,22 @@ export async function handleRequest(request, env, fetchImpl = fetch) {
         html,
       }),
     });
+    deliveryStatus = delivery.status;
+    deliveryStage = "http_status";
     if (!delivery.ok) throw new Error("Delivery rejected");
+    deliveryStage = "response_json";
     const result = await delivery.json();
+    deliveryStage = "delivery_id";
     if (typeof result.id !== "string" || !result.id.trim()) throw new Error("Missing delivery ID");
-  } catch {
-    // Provider errors can contain addresses or message content; never log them.
-    console.error("Contact delivery failed");
+  } catch (error) {
+    // Only fixed categories and HTTP status: never log provider bodies or exception messages.
+    const errorType = ["TimeoutError", "AbortError", "TypeError", "SyntaxError"].includes(error?.name)
+      ? error.name : "Error";
+    console.error("Contact delivery failed", {
+      stage: deliveryStage,
+      status: deliveryStatus,
+      errorType,
+    });
     return redirect(env, "/contact/error/");
   }
 
