@@ -187,7 +187,8 @@ export async function handleRequest(request, env, fetchImpl = fetch) {
   try {
     const delivery = await fetchImpl("https://api.resend.com/emails", {
       method: "POST",
-      redirect: "error",
+      // Workers supports manual, not error; the status check below rejects redirects.
+      redirect: "manual",
       headers: {
         Authorization: `Bearer ${env.RESEND_API_KEY}`,
         "Content-Type": "application/json",
