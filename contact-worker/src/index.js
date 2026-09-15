@@ -35,6 +35,18 @@ function validEmail(value) {
   return typeof value === "string" && value.length <= 254 && /^[^\s@<>,;]+@[^\s@<>,;]+\.[^\s@<>,;]+$/.test(value);
 }
 
+function deliveryAllowed(env) {
+  if (env.CONTACT_DELIVERY_ENABLED !== "true") return false;
+  if (env.CONTACT_TEST_MODE !== "true") return true;
+  const start = Number(env.CONTACT_TEST_STARTED_AT);
+  const end = Number(env.CONTACT_TEST_EXPIRES_AT);
+  const now = Date.now() / 1000;
+  return /^\d+$/.test(env.CONTACT_TEST_STARTED_AT || "") &&
+    /^\d+$/.test(env.CONTACT_TEST_EXPIRES_AT || "") &&
+    Number.isSafeInteger(start) && Number.isSafeInteger(end) &&
+    end > start && end - start <= 1800 && now >= start && now < end;
+}
+
 function escapeHtml(value) {
   return value.replace(/[&<>"']/g, (character) => ({
     "&": "&amp;",
@@ -101,7 +113,7 @@ async function verifyTurnstile(token, request, env, fetchImpl) {
 
 export async function handleRequest(request, env, fetchImpl = fetch) {
   if (request.method !== "POST") return response("Not found", 404);
-  if (env.CONTACT_DELIVERY_ENABLED !== "true" || !env.TURNSTILE_SECRET || !env.RESEND_API_KEY ||
+  if (!deliveryAllowed(env) || !env.TURNSTILE_SECRET || !env.RESEND_API_KEY ||
       !validEmail(env.CONTACT_RECIPIENT) || !validEmail(env.CONTACT_SENDER)) {
     return response("Service unavailable", 503);
   }
@@ -155,6 +167,9 @@ export async function handleRequest(request, env, fetchImpl = fetch) {
   }
   if (!verified) return response("Verification failed", 403);
 
+  // A request may have crossed the test deadline while its challenge was verified.
+  if (!deliveryAllowed(env)) return response("Service unavailable", 503);
+
   const topicLabel = TOPICS.get(topic);
   const text = [
     `RNA Forge website enquiry: ${topicLabel}`,
@@ -202,4 +217,3 @@ export default {
     return handleRequest(request, env);
   },
 };
-

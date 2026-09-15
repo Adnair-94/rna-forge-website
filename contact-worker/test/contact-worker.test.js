@@ -45,6 +45,79 @@ function provider(send = async () => Response.json({ id: "test-message" })) {
 }
 const verified = provider();
 
+for (const [label, start, end, now, allowed] of [
+  ["missing timestamps", undefined, undefined, 1000, false],
+  ["empty timestamps", "", "", 1000, false],
+  ["malformed timestamp", "1000", "NaN", 1000, false],
+  ["fractional timestamp", "1000", "2800.5", 1000, false],
+  ["unbounded window", "1000", "2801", 1000, false],
+  ["reversed window", "2800", "1000", 1500, false],
+  ["future window", "1000", "2800", 999, false],
+  ["opening boundary", "1000", "2800", 1000, true],
+  ["inside window", "1000", "2800", 2799, true],
+  ["closing boundary", "1000", "2800", 2800, false],
+  ["expired window", "1000", "2800", 2801, false],
+]) {
+  test(`staging delivery window: ${label}`, async context => {
+    context.mock.method(Date, "now", () => now * 1000);
+    const env = { ...baseEnv(), CONTACT_TEST_MODE: "true", CONTACT_TEST_STARTED_AT: start, CONTACT_TEST_EXPIRES_AT: end };
+    let calls = 0;
+    const result = await handleRequest(request(), env, async (...args) => { calls++; return verified(...args); });
+    assert.equal(result.status, allowed ? 303 : 503);
+    assert.equal(calls, allowed ? 2 : 0);
+    if (!allowed) assert.equal(result.headers.get("Cache-Control"), "no-store");
+  });
+}
+
+test("test deadline is checked again before sending after Turnstile", async context => {
+  let now = 1000;
+  context.mock.method(Date, "now", () => now * 1000);
+  const env = { ...baseEnv(), CONTACT_TEST_MODE: "true", CONTACT_TEST_STARTED_AT: "1000", CONTACT_TEST_EXPIRES_AT: "2800" };
+  const result = await handleRequest(request(), env, async url => {
+    assert.equal(url, "https://challenges.cloudflare.com/turnstile/v0/siteverify");
+    now = 2800;
+    return Response.json({ success: true, action: "contact", hostname: "rnaforge.com" });
+  });
+  assert.equal(result.status, 503);
+});
+
+test("delivery switch still blocks an otherwise valid test window", async context => {
+  context.mock.method(Date, "now", () => 1500000);
+  const env = { ...baseEnv(), CONTACT_DELIVERY_ENABLED: "false", CONTACT_TEST_MODE: "true", CONTACT_TEST_STARTED_AT: "1000", CONTACT_TEST_EXPIRES_AT: "2800" };
+  assert.equal((await handleRequest(request(), env, () => assert.fail("No provider calls"))).status, 503);
+});
+
+test("test-page return routes retain their isolated subdirectory", async () => {
+  const env = { ...baseEnv(), SITE_ORIGIN: "https://adnair-94.github.io/rna-forge-website/delivery-test" };
+  for (const [fields, page] of [[{}, "sent"], [{ message: "short" }, "error"]]) {
+    const result = await handleRequest(request(fields), env, verified);
+    assert.equal(result.headers.get("location"), `${env.SITE_ORIGIN}/contact/${page}/`);
+  }
+});
+
+test("test workflow is manual, main-only, approved, isolated and time-limited", () => {
+  const workflow = readFileSync(new URL("../../.github/workflows/test-contact-delivery.yml", import.meta.url), "utf8");
+  const staging = readFileSync(new URL("../wrangler.staging.toml", import.meta.url), "utf8");
+  assert.match(staging, /CONTACT_TEST_MODE = "true"/);
+  assert.match(staging, /CONTACT_TEST_STARTED_AT = "0"/);
+  assert.match(staging, /CONTACT_TEST_EXPIRES_AT = "0"/);
+  assert.match(staging, /CONTACT_DELIVERY_ENABLED = "false"/);
+  assert.match(workflow, /workflow_dispatch:/);
+  assert.ok(!/^  (push|pull_request|pull_request_target):/m.test(workflow));
+  assert.equal((workflow.match(/if: github.ref == 'refs\/heads\/main'/g) || []).length, 2);
+  assert.match(workflow, /needs: test/);
+  assert.match(workflow, /environment: contact-production/);
+  assert.match(workflow, /end=\$\(\(start \+ 1800\)\)/);
+  assert.ok(workflow.includes('cp contact-worker/wrangler.staging.toml "$RUNNER_TEMP/rna-forge-contact-staging/wrangler.toml"'));
+  assert.ok(!workflow.includes("cp contact-worker/wrangler.toml"));
+  assert.ok(workflow.includes('workingDirectory: ${{ runner.temp }}/rna-forge-contact-staging'));
+  assert.match(workflow, /CONTACT_TEST_MODE:true/);
+  assert.ok(workflow.includes('CONTACT_TEST_EXPIRES_AT:${{ steps.window.outputs.end }}'));
+  assert.match(workflow, /SITE_ORIGIN:https:\/\/adnair-94.github.io\/rna-forge-website\/delivery-test/);
+  assert.match(workflow, /group: contact-staging-deployment/);
+  assert.match(workflow, /cancel-in-progress: false/);
+});
+
 test("rejects non-POST requests", async () => {
   const result = await handleRequest(new Request("https://contact.rnaforge.com/"), baseEnv(), verified);
   assert.equal(result.status, 404);
@@ -323,4 +396,3 @@ test("initial staging deployment requires approval and cannot enable delivery", 
     assert.ok(workflow.includes(`secrets.${name}`));
   }
 });
-

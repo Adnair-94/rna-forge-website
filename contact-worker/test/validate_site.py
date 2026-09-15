@@ -66,7 +66,7 @@ if __name__ == '__main__':
     errors = validate(pages, tracked)
     base = os.environ.get('SITE_BASE_SHA', '')
     if base:
-        allowed_workflows = {'.github/workflows/contact-backend-check.yml', '.github/workflows/deploy-contact-staging.yml', '.github/workflows/deploy-contact-worker.yml'}
+        allowed_workflows = {'.github/workflows/contact-backend-check.yml', '.github/workflows/deploy-contact-staging.yml', '.github/workflows/deploy-contact-worker.yml', '.github/workflows/test-contact-delivery.yml'}
         changed = git('diff', '--name-only', base, 'HEAD').splitlines()
         errors.extend(f'Outside backend-only scope: {name}' for name in changed if not name.startswith('contact-worker/') and name not in allowed_workflows)
     if errors:
@@ -74,4 +74,3 @@ if __name__ == '__main__':
     print(f'Validated {len(pages)} existing site pages: landmarks, titles, language, viewport, IDs, image alternatives and internal links/assets/anchors.')
     if base:
         print('Website files are unchanged from the PR base; backend-only scope confirmed.')
-
