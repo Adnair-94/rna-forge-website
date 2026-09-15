@@ -294,15 +294,20 @@ test("configured secrets alone cannot activate delivery", async () => {
   assert.equal(result.status, 503);
 });
 
-for (const [label, send] of [
-  ["unauthorised", async () => Response.json({ message: "private details" }, { status: 401 })],
-  ["quota exceeded", async () => Response.json({ message: "private details" }, { status: 429 })],
-  ["unavailable", async () => new Response("private details", { status: 503 })],
-  ["invalid JSON", async () => new Response("not JSON")],
-  ["missing ID", async () => Response.json({})],
-  ["empty ID", async () => Response.json({ id: " " })],
-  ["network failure", async () => { throw new Error("private details"); }],
-  ["timeout", async () => { throw new DOMException("private details", "TimeoutError"); }],
+for (const [label, send, stage, status, errorType] of [
+  ["unauthorised", async () => Response.json({ message: "private details" }, { status: 401 }), "http_status", 401, "Error"],
+  ["forbidden", async () => Response.json({ message: "private details" }, { status: 403 }), "http_status", 403, "Error"],
+  ["invalid payload", async () => Response.json({ message: "private details" }, { status: 422 }), "http_status", 422, "Error"],
+  ["quota exceeded", async () => Response.json({ message: "private details" }, { status: 429 }), "http_status", 429, "Error"],
+  ["unavailable", async () => new Response("private details", { status: 503 }), "http_status", 503, "Error"],
+  ["invalid JSON", async () => new Response("not JSON"), "response_json", 200, "SyntaxError"],
+  ["missing ID", async () => Response.json({}), "delivery_id", 200, "Error"],
+  ["empty ID", async () => Response.json({ id: " " }), "delivery_id", 200, "Error"],
+  ["network failure", async () => { throw new Error("private details"); }, "request", null, "Error"],
+  ["invalid header", async () => { throw new TypeError("private details"); }, "request", null, "TypeError"],
+  ["timeout", async () => { throw new DOMException("private details", "TimeoutError"); }, "request", null, "TimeoutError"],
+  ["abort", async () => { throw new DOMException("private details", "AbortError"); }, "request", null, "AbortError"],
+  ["untrusted exception name", async () => { throw { name: "private details", message: "private details" }; }, "request", null, "Error"],
 ]) {
   test(`delivery ${label} never reports success or leaks provider errors`, async (t) => {
     const log = t.mock.method(console, "error", () => {});
@@ -315,7 +320,9 @@ for (const [label, send] of [
     assert.equal(result.status, 303);
     assert.equal(result.headers.get("location"), "https://rnaforge.com/contact/error/");
     assert.equal(await result.text(), "");
-    assert.deepEqual(log.mock.calls.map(call => call.arguments), [["Contact delivery failed"]]);
+    assert.deepEqual(log.mock.calls.map(call => call.arguments), [
+      ["Contact delivery failed", { stage, status, errorType }],
+    ]);
   });
 }
 
