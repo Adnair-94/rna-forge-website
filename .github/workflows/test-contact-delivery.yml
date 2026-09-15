@@ -42,7 +42,12 @@ jobs:
           mkdir -p "$RUNNER_TEMP/rna-forge-contact-staging/src"
           cp contact-worker/src/index.js "$RUNNER_TEMP/rna-forge-contact-staging/src/index.js"
           cp contact-worker/package.json "$RUNNER_TEMP/rna-forge-contact-staging/package.json"
+          cp contact-worker/package-lock.json "$RUNNER_TEMP/rna-forge-contact-staging/package-lock.json"
           cp contact-worker/wrangler.staging.toml "$RUNNER_TEMP/rna-forge-contact-staging/wrangler.toml"
+      - name: Install and audit locked deployment tooling
+        run: |
+          npm ci --ignore-scripts --prefix "$RUNNER_TEMP/rna-forge-contact-staging"
+          npm audit --audit-level=low --prefix "$RUNNER_TEMP/rna-forge-contact-staging"
       - name: Set deadline after deployment approval
         id: window
         shell: bash
@@ -57,7 +62,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: ${{ runner.temp }}/rna-forge-contact-staging
-          wranglerVersion: "4.81.0"
+          wranglerVersion: "4.131.2"
           command: deploy --var CONTACT_DELIVERY_ENABLED:true --var CONTACT_TEST_MODE:true --var CONTACT_TEST_STARTED_AT:${{ steps.window.outputs.start }} --var CONTACT_TEST_EXPIRES_AT:${{ steps.window.outputs.end }} --var SITE_ORIGIN:https://adnair-94.github.io/rna-forge-website/delivery-test
           secrets: |
             TURNSTILE_SECRET

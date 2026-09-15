@@ -18,6 +18,7 @@ permissions:
 jobs:
   site:
     name: Validate site
+    needs: test
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -41,4 +42,15 @@ jobs:
           persist-credentials: false
       - name: Test worker without live credentials
         run: npm test --prefix contact-worker
+      - name: Install locked deployment tooling without lifecycle scripts
+        run: npm ci --ignore-scripts --prefix contact-worker
+      - name: Audit deployment dependencies
+        run: npm audit --audit-level=low --prefix contact-worker
+      - name: Validate production and staging bundles without deploying
+        working-directory: contact-worker
+        env:
+          WRANGLER_SEND_METRICS: "false"
+        run: |
+          npx --no-install wrangler deploy --dry-run --outdir "$RUNNER_TEMP/contact-production-bundle"
+          npx --no-install wrangler deploy --dry-run --config wrangler.staging.toml --outdir "$RUNNER_TEMP/contact-staging-bundle"
 
