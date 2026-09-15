@@ -152,6 +152,10 @@ def main() -> None:
     check(public_key_configured or (not args.production and '__TURNSTILE_SITE_KEY__' in config), "Turnstile public-key state is incorrect for this build", errors)
     if not args.production:
         check(bool(re.search(r'^contact_form_enabled: false\s*$', config, re.MULTILINE)), "Review form must remain disabled until launch approval", errors)
+    else:
+        check(bool(re.search(r'^contact_form_enabled: true\s*$', config, re.MULTILINE)), "Production contact form must be enabled", errors)
+        check('url: "https://rnaforge.com"' in config and 'baseurl: ""' in config, "Production URLs must use the canonical root domain", errors)
+        check('  - delivery-test' in config, "Staging test pages must be excluded from the production build", errors)
     check(css.count("@font-face") == 3 and all(name in css for name in ("vag-rounded-next-regular.otf", "vag-rounded-next-semibold.otf", "vag-rounded-next-bold.otf")), "Approved font faces changed", errors)
     check(css.count("{") == css.count("}"), "Unbalanced CSS braces", errors)
     check("@keyframes" not in css and "animation:" not in css, "Animation was introduced", errors)

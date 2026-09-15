@@ -20,7 +20,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Validate static site and security controls
-        run: python scripts/validate_site.py
+        run: python scripts/validate_site.py --production
       - name: Test protected contact worker
         run: npm test --prefix contact-worker
       - name: Test currency display
