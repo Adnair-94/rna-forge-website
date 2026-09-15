@@ -1,0 +1,45 @@
+name: Deploy protected contact service
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy contact worker
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: contact-production
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Test worker
+        run: npm test --prefix contact-worker
+      - name: Require production endpoint sign-off
+        env:
+          CONTACT_HOSTING_APPROVED: ${{ vars.CONTACT_HOSTING_APPROVED }}
+        run: test "$CONTACT_HOSTING_APPROVED" = "true"
+      - name: Deploy worker
+        uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: contact-worker
+          wranglerVersion: "4.81.0"
+          command: deploy
+          secrets: |
+            TURNSTILE_SECRET
+            CONTACT_RECIPIENT
+            CONTACT_SENDER
+            RESEND_API_KEY
+        env:
+          TURNSTILE_SECRET: ${{ secrets.TURNSTILE_SECRET }}
+          CONTACT_RECIPIENT: ${{ secrets.CONTACT_RECIPIENT }}
+          CONTACT_SENDER: ${{ secrets.CONTACT_SENDER }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+

@@ -1,0 +1,44 @@
+name: Contact backend checks
+
+on:
+  pull_request:
+    paths:
+      - "contact-worker/**"
+      - ".github/workflows/*contact*.yml"
+  push:
+    branches: [main]
+    paths:
+      - "contact-worker/**"
+      - ".github/workflows/*contact*.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  site:
+    name: Validate site
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Validate existing pages and backend-only change scope
+        env:
+          SITE_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python contact-worker/test/validate_site.py
+  test:
+    name: Test contact backend
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Test worker without live credentials
+        run: npm test --prefix contact-worker
+

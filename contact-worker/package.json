@@ -1,0 +1,9 @@
+{
+  "name": "rna-forge-contact-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
+

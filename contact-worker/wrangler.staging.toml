@@ -1,0 +1,23 @@
+name = "rna-forge-contact-staging"
+main = "src/index.js"
+compatibility_date = "2026-08-26"
+workers_dev = true
+preview_urls = false
+
+[vars]
+ALLOWED_HOSTNAMES = "adnair-94.github.io"
+ALLOWED_ORIGINS = "https://adnair-94.github.io"
+SITE_ORIGIN = "https://adnair-94.github.io/rna-forge-website"
+CONTACT_DELIVERY_ENABLED = "false"
+
+[[ratelimits]]
+name = "CONTACT_RATE_LIMITER"
+namespace_id = "26091502"
+
+  [ratelimits.simple]
+  limit = 5
+  period = 60
+
+[observability.logs]
+enabled = true
+
