@@ -1,0 +1,71 @@
+name: Open 30-minute contact delivery test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: contact-staging-deployment
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: Test contact staging
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Test worker
+        run: npm test --prefix contact-worker
+
+  deploy:
+    name: Open staging test window
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: contact-production
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Prepare isolated staging directory
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/rna-forge-contact-staging/src"
+          cp contact-worker/src/index.js "$RUNNER_TEMP/rna-forge-contact-staging/src/index.js"
+          cp contact-worker/package.json "$RUNNER_TEMP/rna-forge-contact-staging/package.json"
+          cp contact-worker/wrangler.staging.toml "$RUNNER_TEMP/rna-forge-contact-staging/wrangler.toml"
+      - name: Set deadline after deployment approval
+        id: window
+        shell: bash
+        run: |
+          start=$(date -u +%s)
+          end=$((start + 1800))
+          printf 'start=%s\nend=%s\n' "$start" "$end" >> "$GITHUB_OUTPUT"
+          printf 'Test window closes at **%s UTC**. No new email send will start after that deadline.\n' "$(date -u -d "@$end" '+%Y-%m-%d %H:%M:%S')" >> "$GITHUB_STEP_SUMMARY"
+      - name: Deploy staging with time-limited delivery
+        uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: ${{ runner.temp }}/rna-forge-contact-staging
+          wranglerVersion: "4.81.0"
+          command: deploy --var CONTACT_DELIVERY_ENABLED:true --var CONTACT_TEST_MODE:true --var CONTACT_TEST_STARTED_AT:${{ steps.window.outputs.start }} --var CONTACT_TEST_EXPIRES_AT:${{ steps.window.outputs.end }} --var SITE_ORIGIN:https://adnair-94.github.io/rna-forge-website/delivery-test
+          secrets: |
+            TURNSTILE_SECRET
+            CONTACT_RECIPIENT
+            CONTACT_SENDER
+            RESEND_API_KEY
+        env:
+          TURNSTILE_SECRET: ${{ secrets.TURNSTILE_SECRET }}
+          CONTACT_RECIPIENT: ${{ secrets.CONTACT_RECIPIENT }}
+          CONTACT_SENDER: ${{ secrets.CONTACT_SENDER }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}

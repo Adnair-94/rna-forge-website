@@ -39,6 +39,18 @@ Setup evidence from the user's dashboards confirms the Resend sending domain and
 
 The staging hostname/action and origin checks stay active. Its return URL retains the GitHub Pages repository path. Prepare a controlled test-page build with the actual endpoint in both the form action and CSP, a real Turnstile widget restricted to the test host, and no browser-side credentials. Do not enable the current public review form as a substitute for staging. Turn off staging delivery after testing.
 
+## Controlled delivery test
+
+The disabled staging deployment completed successfully on 15 September 2026. Live GET returned 404 and POST returned 503 without sending mail. This supersedes the initial setup notes above; secret values remain private and actual inbox delivery is still unverified.
+
+After review and an explicitly approved merge, run `Open 30-minute contact delivery test` on `main`. It uses the same protected environment and requires independent deployment approval. It targets only the staging Worker, keeps the normal website form disabled, and redirects to the separate `/delivery-test/contact/sent/` and `/delivery-test/contact/error/` pages. Publish and check the dedicated test page before starting this workflow.
+
+The deadline is calculated after environment approval, immediately before deployment. Deployment time consumes part of the 30-minute window. Staging requires both integer Unix timestamps with a positive interval of at most 1,800 seconds. Missing, malformed, future or expired windows return 503 without calling either provider. The deadline is checked again after Turnstile, before starting an email send. A provider request already started before the deadline may finish afterward. Expiry is enforced on each request, not by a scheduled job, so no second approval is needed to close the window. The configured enable flag may remain true afterward, but expired timestamps prevent delivery.
+
+The unlinked, noindex test page is publicly reachable, not an authentication boundary. Origin, Turnstile hostname/action, honeypot and rate limiting remain mandatory. The tester should submit only a harmless enquiry, check the receiving inbox and provider delivery event, and check that Reply-To points to the tester. An accepted message ID alone does not confirm delivery. Do not retry an uncertain send before checking the provider and inbox.
+
+To close earlier or restore the baseline configuration, run `Deploy disabled contact staging`, which still explicitly forces delivery off and requires approval. Reopening a test requires a new approved deployment. No production routes, DNS settings, mailbox settings or public form activation are changed by this workflow.
+
 ## Production hosting remains a launch blocker
 
 The old `contact.rnaforge.com` Worker route required Cloudflare DNS. It has been removed from the deployment configuration, not from live DNS. The disabled website still has that placeholder endpoint until an actual endpoint is approved. Do not migrate nameservers as part of email setup.
@@ -48,4 +60,3 @@ Cloudflare recommends a custom route/domain for business-critical production Wor
 Sources: [Resend sending API](https://resend.com/docs/api-reference/emails/send-email), [Cloudflare workers.dev guidance](https://developers.cloudflare.com/workers/configuration/routing/workers-dev/).
 
 Run the dependency-free tests from this directory with `npm test`, or from the repository root with `npm test --prefix contact-worker`. The separate website review contains the broader launch checklist; it is not part of this backend-only release.
-

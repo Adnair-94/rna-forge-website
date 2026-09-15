@@ -9,6 +9,9 @@ ALLOWED_HOSTNAMES = "adnair-94.github.io"
 ALLOWED_ORIGINS = "https://adnair-94.github.io"
 SITE_ORIGIN = "https://adnair-94.github.io/rna-forge-website"
 CONTACT_DELIVERY_ENABLED = "false"
+CONTACT_TEST_MODE = "true"
+CONTACT_TEST_STARTED_AT = "0"
+CONTACT_TEST_EXPIRES_AT = "0"
 
 [[ratelimits]]
 name = "CONTACT_RATE_LIMITER"
@@ -20,4 +23,3 @@ namespace_id = "26091502"
 
 [observability.logs]
 enabled = true
-
