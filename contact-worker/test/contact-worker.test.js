@@ -157,7 +157,7 @@ test("sends a validated enquiry to the private recipient", async () => {
   const result = await handleRequest(request({ to: "attacker@example.test", from: "attacker@example.test" }), env,
     provider(async (options) => {
       assert.equal(options.method, "POST");
-      assert.equal(options.redirect, "error");
+      assert.equal(options.redirect, "manual");
       assert.equal(options.headers.Authorization, `Bearer ${env.RESEND_API_KEY}`);
       assert.equal(options.headers["Content-Type"], "application/json");
       assert.ok(options.signal instanceof AbortSignal);
@@ -322,6 +322,23 @@ for (const [label, send, stage, status, errorType] of [
     assert.equal(await result.text(), "");
     assert.deepEqual(log.mock.calls.map(call => call.arguments), [
       ["Contact delivery failed", { stage, status, errorType }],
+    ]);
+  });
+}
+
+for (const status of [301, 302, 303, 307, 308]) {
+  test(`rejects provider redirect ${status} without following or retrying`, async t => {
+    const log = t.mock.method(console, "error", () => {});
+    let sends = 0;
+    const result = await handleRequest(request(), baseEnv(), provider(async options => {
+      assert.equal(options.redirect, "manual");
+      sends++;
+      return new Response(null, { status, headers: { Location: "https://untrusted.example.test/" } });
+    }));
+    assert.equal(sends, 1);
+    assert.equal(result.headers.get("location"), "https://rnaforge.com/contact/error/");
+    assert.deepEqual(log.mock.calls[0].arguments, [
+      "Contact delivery failed", { stage: "http_status", status, errorType: "Error" },
     ]);
   });
 }
