@@ -3,7 +3,7 @@ url: "https://adnair-94.github.io"
 baseurl: "/rna-forge-website"
 permalink: pretty
 contact_form_endpoint: "https://contact.rnaforge.com/"
-turnstile_site_key: "__TURNSTILE_SITE_KEY__"
+turnstile_site_key: "0x4AAAAAAE136Q1DEdl5FcZ2"
 contact_form_enabled: false
 exclude:
   - AGENTS.md

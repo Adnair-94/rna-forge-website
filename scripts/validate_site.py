@@ -142,7 +142,10 @@ def main() -> None:
     check("site.contact_form_endpoint" in contact and "https://contact.rnaforge.com/" in config, "Protected form endpoint is not configured", errors)
     check("TURNSTILE_SECRET" not in public_source, "A private Turnstile secret appears in public site source", errors)
     check("RESEND_API_KEY" not in public_source and "api.resend.com" not in public_source, "Sending credentials or API must not appear in browser code", errors)
-    check("__TURNSTILE_SITE_KEY__" not in config if args.production else "__TURNSTILE_SITE_KEY__" in config, "Turnstile public-key state is incorrect for this build", errors)
+    public_key_configured = bool(re.search(r'^turnstile_site_key: "0x[A-Za-z0-9_-]+"\s*$', config, re.MULTILINE))
+    check(public_key_configured or (not args.production and '__TURNSTILE_SITE_KEY__' in config), "Turnstile public-key state is incorrect for this build", errors)
+    if not args.production:
+        check(bool(re.search(r'^contact_form_enabled: false\s*$', config, re.MULTILINE)), "Review form must remain disabled until launch approval", errors)
     check(css.count("@font-face") == 3 and all(name in css for name in ("vag-rounded-next-regular.otf", "vag-rounded-next-semibold.otf", "vag-rounded-next-bold.otf")), "Approved font faces changed", errors)
     check(css.count("{") == css.count("}"), "Unbalanced CSS braces", errors)
     check("@keyframes" not in css and "animation:" not in css, "Animation was introduced", errors)
