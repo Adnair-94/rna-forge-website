@@ -4,6 +4,7 @@ baseurl: "/rna-forge-website"
 permalink: pretty
 contact_form_endpoint: "https://contact.rnaforge.com/"
 turnstile_site_key: "__TURNSTILE_SITE_KEY__"
+contact_form_enabled: false
 exclude:
   - AGENTS.md
   - README.md
@@ -11,3 +12,4 @@ exclude:
   - contact-worker
   - docs
   - scripts
+

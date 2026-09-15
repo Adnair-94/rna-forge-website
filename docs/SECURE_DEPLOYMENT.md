@@ -2,6 +2,8 @@
 
 This runbook separates source control, website deployment, contact-form security and domain email authentication. Do not merge or change production DNS until the relevant reviewer has approved the release.
 
+See [the launch checklist](LAUNCH_CHECKLIST.md) for the latest verified state, DNS inventory and outstanding decisions. The controls below are requirements, not a claim that they are already configured.
+
 ## 1. GitHub repository
 
 Create a ruleset targeting `main` with these controls:
@@ -36,11 +38,14 @@ Never store a Turnstile secret or mailbox destination as a repository variable.
 
 Before the first Worker deployment:
 
+Cloudflare Email Service requires Cloudflare DNS. The domain currently uses IONOS DNS, so agree on either a separately approved DNS migration that preserves Google email or a different sending provider before proceeding. Do not replace Google's MX records with Cloudflare Email Routing records.
+
 1. Add the domain to Cloudflare and create a Turnstile widget for the final apex and `www` hostnames.
 2. Onboard the sending domain to Cloudflare Email Service and verify the private destination mailbox.
 3. Review the existing SPF record before adding another sender. A domain must have one combined SPF record, not multiple competing records.
 4. Add the four required secrets above to the `contact-production` environment.
-5. Run **Deploy protected contact service** manually and test a real enquiry before enabling the public Pages deployment.
+5. Run **Deploy protected contact service** manually and have the team test a real enquiry through a controlled staging form before enabling public enquiries.
+6. After delivery and security sign-off, set `contact_form_enabled: true` in `_config.yml` through the approved release process. The public Turnstile key alone does not enable the form.
 
 The Worker uses the custom hostname `contact.rnaforge.com`, validates Turnstile server-side, checks the expected action and hostname, rate limits repeated submissions, silently absorbs honeypot traffic and never takes its delivery address from the browser.
 
@@ -62,3 +67,4 @@ Do not add a `CNAME` file or alter production DNS before the final hostname is c
 Inventory every legitimate sender first: the mailbox provider, newsletter service, CRM, contact Worker and any transactional service. Use the provider-specific DKIM keys and combine all authorised senders into one SPF record. Then roll out DMARC in stages: monitoring, quarantine and finally reject after reports show that legitimate mail passes.
 
 SPF, DKIM and DMARC reduce domain spoofing; they do not stop inbound spam sent to a mailbox that has already been harvested. Keep the destination out of public source, disable catch-all mail, use provider spam filtering and require two-step verification for mailbox administrators.
+

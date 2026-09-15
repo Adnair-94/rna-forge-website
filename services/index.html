@@ -118,22 +118,22 @@ section: services
   <div class="method-table-wrap">
     <table class="method-table">
       <caption class="visually-hidden">Single-sample prices by quality attribute and analytical method</caption>
-      <thead><tr><th scope="col">Quality attribute</th><th scope="col">Method</th><th scope="col">Price*</th></tr></thead>
+      <thead><tr><th scope="col" id="analytical-column-1">Quality attribute</th><th scope="col" id="analytical-column-2">Method</th><th scope="col" id="analytical-column-3">Price*</th></tr></thead>
       <tbody>
-        <tr data-quality-attribute="RNA concentration"><th scope="rowgroup" rowspan="2">RNA concentration</th><td data-label="Method">UV spectroscopy</td><td data-label="Price*"><strong>&mdash;</strong></td></tr>
-        <tr data-quality-attribute="RNA concentration"><td data-label="Method">HPLC</td><td data-label="Price*"><strong data-price-gbp="1000">£1,000</strong></td></tr>
-        <tr data-quality-attribute="RNA size/integrity"><th scope="rowgroup" rowspan="2">RNA size/integrity</th><td data-label="Method">Fragment Analyser</td><td data-label="Price*"><strong data-price-gbp="500">£500</strong></td></tr>
-        <tr data-quality-attribute="RNA size/integrity"><td data-label="Method">HPLC</td><td data-label="Price*"><strong data-price-gbp="300">£300</strong></td></tr>
-        <tr data-quality-attribute="Sequence identity"><th scope="row">Sequence identity</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong data-price-gbp="2000">£2,000</strong></td></tr>
-        <tr data-quality-attribute="Residual NTPs"><th scope="row">Residual NTPs</th><td data-label="Method">HPLC</td><td data-label="Price*"><strong data-price-gbp="300">£300</strong></td></tr>
-        <tr data-quality-attribute="Residual DNA"><th scope="row">Residual DNA</th><td data-label="Method">ddPCR</td><td data-label="Price*"><strong data-price-gbp="1500">£1,500</strong></td></tr>
-        <tr data-quality-attribute="Residual protein"><th scope="row">Residual protein</th><td data-label="Method">NanoOrange&trade;</td><td data-label="Price*"><strong data-price-gbp="500">£500</strong></td></tr>
-        <tr data-quality-attribute="dsRNA content"><th scope="rowgroup" rowspan="3">dsRNA content</th><td data-label="Method">Dot blot</td><td data-label="Price*"><strong data-price-gbp="700">£700</strong></td></tr>
-        <tr data-quality-attribute="dsRNA content"><td data-label="Method">ELISA</td><td data-label="Price*"><strong data-price-gbp="1000">£1,000</strong></td></tr>
-        <tr data-quality-attribute="dsRNA content"><td data-label="Method">Lumit&trade;</td><td data-label="Price*"><strong data-price-gbp="1500">£1,500</strong></td></tr>
-        <tr data-quality-attribute="5′ capping efficiency"><th scope="row">5′ capping efficiency</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong data-price-gbp="1200">£1,200</strong></td></tr>
-        <tr data-quality-attribute="Poly(A) tail length/heterogeneity"><th scope="row">Poly(A) tail length/heterogeneity</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong data-price-gbp="1200">£1,200</strong></td></tr>
-        <tr data-quality-attribute="DNA template"><th scope="row">DNA template</th><td data-label="Method">High resolution LC-MS</td><td data-label="Price*"><strong data-price-gbp="900">£900</strong></td></tr>
+        <tr data-quality-attribute="RNA concentration"><th scope="row" rowspan="2" id="analytical-attribute-1">RNA concentration</th><td data-label="Method" headers="analytical-attribute-1 analytical-column-2">UV spectroscopy</td><td data-label="Price*" headers="analytical-attribute-1 analytical-column-3"><strong>&mdash;</strong></td></tr>
+        <tr data-quality-attribute="RNA concentration"><td data-label="Method" headers="analytical-attribute-1 analytical-column-2">HPLC</td><td data-label="Price*" headers="analytical-attribute-1 analytical-column-3"><strong data-price-gbp="1000">£1,000</strong></td></tr>
+        <tr data-quality-attribute="RNA size/integrity"><th scope="row" rowspan="2" id="analytical-attribute-2">RNA size/integrity</th><td data-label="Method" headers="analytical-attribute-2 analytical-column-2">Fragment Analyser</td><td data-label="Price*" headers="analytical-attribute-2 analytical-column-3"><strong data-price-gbp="500">£500</strong></td></tr>
+        <tr data-quality-attribute="RNA size/integrity"><td data-label="Method" headers="analytical-attribute-2 analytical-column-2">HPLC</td><td data-label="Price*" headers="analytical-attribute-2 analytical-column-3"><strong data-price-gbp="300">£300</strong></td></tr>
+        <tr data-quality-attribute="Sequence identity"><th scope="row" id="analytical-attribute-3">Sequence identity</th><td data-label="Method" headers="analytical-attribute-3 analytical-column-2">High resolution LC-MS</td><td data-label="Price*" headers="analytical-attribute-3 analytical-column-3"><strong data-price-gbp="2000">£2,000</strong></td></tr>
+        <tr data-quality-attribute="Residual NTPs"><th scope="row" id="analytical-attribute-4">Residual NTPs</th><td data-label="Method" headers="analytical-attribute-4 analytical-column-2">HPLC</td><td data-label="Price*" headers="analytical-attribute-4 analytical-column-3"><strong data-price-gbp="300">£300</strong></td></tr>
+        <tr data-quality-attribute="Residual DNA"><th scope="row" id="analytical-attribute-5">Residual DNA</th><td data-label="Method" headers="analytical-attribute-5 analytical-column-2">ddPCR</td><td data-label="Price*" headers="analytical-attribute-5 analytical-column-3"><strong data-price-gbp="1500">£1,500</strong></td></tr>
+        <tr data-quality-attribute="Residual protein"><th scope="row" id="analytical-attribute-6">Residual protein</th><td data-label="Method" headers="analytical-attribute-6 analytical-column-2">NanoOrange&trade;</td><td data-label="Price*" headers="analytical-attribute-6 analytical-column-3"><strong data-price-gbp="500">£500</strong></td></tr>
+        <tr data-quality-attribute="dsRNA content"><th scope="row" rowspan="3" id="analytical-attribute-7">dsRNA content</th><td data-label="Method" headers="analytical-attribute-7 analytical-column-2">Dot blot</td><td data-label="Price*" headers="analytical-attribute-7 analytical-column-3"><strong data-price-gbp="700">£700</strong></td></tr>
+        <tr data-quality-attribute="dsRNA content"><td data-label="Method" headers="analytical-attribute-7 analytical-column-2">ELISA</td><td data-label="Price*" headers="analytical-attribute-7 analytical-column-3"><strong data-price-gbp="1000">£1,000</strong></td></tr>
+        <tr data-quality-attribute="dsRNA content"><td data-label="Method" headers="analytical-attribute-7 analytical-column-2">Lumit&trade;</td><td data-label="Price*" headers="analytical-attribute-7 analytical-column-3"><strong data-price-gbp="1500">£1,500</strong></td></tr>
+        <tr data-quality-attribute="5′ capping efficiency"><th scope="row" id="analytical-attribute-8">5′ capping efficiency</th><td data-label="Method" headers="analytical-attribute-8 analytical-column-2">High resolution LC-MS</td><td data-label="Price*" headers="analytical-attribute-8 analytical-column-3"><strong data-price-gbp="1200">£1,200</strong></td></tr>
+        <tr data-quality-attribute="Poly(A) tail length/heterogeneity"><th scope="row" id="analytical-attribute-9">Poly(A) tail length/heterogeneity</th><td data-label="Method" headers="analytical-attribute-9 analytical-column-2">High resolution LC-MS</td><td data-label="Price*" headers="analytical-attribute-9 analytical-column-3"><strong data-price-gbp="1200">£1,200</strong></td></tr>
+        <tr data-quality-attribute="DNA template"><th scope="row" id="analytical-attribute-10">DNA template</th><td data-label="Method" headers="analytical-attribute-10 analytical-column-2">High resolution LC-MS</td><td data-label="Price*" headers="analytical-attribute-10 analytical-column-3"><strong data-price-gbp="900">£900</strong></td></tr>
       </tbody>
     </table>
   </div>
@@ -155,3 +155,4 @@ section: services
 <script src="{{ '/assets/js/pricing-currency.js' | relative_url }}?v=20260910-1" defer></script>
 </body>
 </html>
+

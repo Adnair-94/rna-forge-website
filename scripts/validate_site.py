@@ -129,6 +129,7 @@ def main() -> None:
     check(services.count('data-price-gbp=') == 22 and services.count('data-currency-select') == 2, "Currency coverage is incomplete", errors)
     check("https://challenges.cloudflare.com/turnstile/v0/api.js" in head, "Turnstile client script missing", errors)
     check("page.turnstile and contact_ready" in head and "site.turnstile_site_key != '__TURNSTILE_SITE_KEY__'" in head and "site.turnstile_site_key != blank" in head, "Turnstile readiness guard missing", errors)
+    check("site.contact_form_enabled == true" in head and "contact_form_enabled:" in config, "Explicit contact launch approval switch missing", errors)
     check('{% unless contact_ready %}disabled{% endunless %}' in contact and '{% if contact_ready %}<div class="cf-turnstile"' in contact, "Unconfigured form must be disabled without a broken widget", errors)
     technology = (ROOT / "technology/index.html").read_text(encoding="utf-8")
     check('rnabox-workflow-data-informed.png' in technology and 'workflow-full-image' in css, "Complete workflow export missing", errors)
@@ -147,6 +148,7 @@ def main() -> None:
     check(all(colour in css for colour in ("#4dc0e4", "#60ba84", "#60bfbd", "#98c76b")), "Approved brand colours are incomplete", errors)
     analytical_terms = ("RNA concentration", "RNA size/integrity", "Sequence identity", "Residual NTPs", "Residual DNA", "Residual protein", "dsRNA content", "5′ capping efficiency", "Poly(A) tail length/heterogeneity", "DNA template", "UV spectroscopy", "HPLC", "Fragment Analyser", "High resolution LC-MS", "ddPCR", "NanoOrange&trade;", "Dot blot", "ELISA", "Lumit&trade;")
     check("<table class=\"method-table\">" in services and services.count("<tr") == 15 and all(term in services for term in analytical_terms), "Standalone analytical pricing table is incomplete", errors)
+    check(services.count('headers="analytical-attribute-') == 28 and 'scope="rowgroup"' not in services, "Analytical cell header associations missing", errors)
     check("Lumi&trade;" not in services, "The Lumit assay name is misspelled", errors)
     check(services.index("<h3>Catalogue mRNA options</h3>") < services.index("<h3>Off-the-shelf mRNA</h3>") < services.index("<h3>Custom RNA manufacturing</h3>"), "Manufacturing pricing cards are out of order", errors)
     check("Enhanced green fluorescent protein (eGFP), capped" not in services, "Off-the-shelf pricing still presents eGFP as the only product", errors)
@@ -178,3 +180,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

@@ -98,9 +98,10 @@ section[id], article[id] { scroll-margin-top: 114px; }
   color: #263238;
   border-bottom: 2px solid transparent;
 }
-.nav-link:hover, .nav-link:focus, .nav-link.active { color: var(--ink); border-color: var(--brand-green); outline: none; }
+.nav-link:hover, .nav-link:focus, .nav-link.active { color: var(--ink); border-color: var(--brand-green); }
 .nav-contact { margin-left: 4px; padding: 9px 16px; color: var(--white); background: var(--ink); border: 1px solid var(--ink); border-radius: 999px; font-size: 1rem; font-weight: 600; text-decoration: none; }
-.nav-contact:hover, .nav-contact:focus { color: var(--ink); background: var(--brand-green); border-color: var(--brand-green); outline: none; }
+.nav-contact:hover, .nav-contact:focus { color: var(--ink); background: var(--brand-green); border-color: var(--brand-green); }
+.site-header a:focus-visible, .site-header summary:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 
 .hero, .page-hero, .section { padding: clamp(56px, 8vw, 108px) clamp(20px, 5vw, 64px); }
 .hero {
@@ -331,6 +332,7 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 .equipment-figure { min-width: 0; margin: 0; }
 .equipment-figure img {
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center;
@@ -596,7 +598,7 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
   .method-table tbody tr { padding: 18px 20px; border-bottom: 1px solid var(--line); }
   .method-table tbody tr:last-child { border-bottom: 0; }
   .method-table tbody tr::before { display: block; margin-bottom: 8px; color: var(--ink); font-size: 1rem; font-weight: 600; content: attr(data-quality-attribute); }
-  .method-table tbody th { display: none; }
+  .method-table tbody th { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
   .method-table tbody td { padding: 0; border: 0; text-align: left; }
   .method-table tbody td { margin-top: 8px; white-space: normal; }
   .method-table tbody td::before { display: block; margin-bottom: 2px; color: var(--ink); font-size: 0.76rem; font-weight: 700; text-transform: uppercase; content: attr(data-label); }
@@ -618,3 +620,8 @@ h3 { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; line-height: 1.2
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+@media (max-width: 360px) {
+  h1, .about-hero h1 { font-size: 2rem; }
+}
+
