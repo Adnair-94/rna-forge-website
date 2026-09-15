@@ -208,6 +208,10 @@ Branch comparison before the documentation handoff showed `codex/rna-forge-desig
 
 ## Next Steps
 
+### Isolated Delivery Test
+
+The user authorized a controlled staging email test on 15 September 2026. The standalone `/delivery-test/` pages are the only exception to the single public contact-form layout and may load the existing approved Turnstile script. They post only to the staging Worker and remain unlinked and noindex; this is not authentication or private access. Normal `contact_form_enabled` remains false. The staging backend requires an independently approved, server-enforced 30-minute window. Do not treat the test as production launch approval. Validate these pages with `scripts/validate_delivery_test.py` in addition to the unchanged normal-site checks. Keep the test out of the sitemap.
+
 1. Perform manual visual QA of the Jekyll-rendered GitHub Pages preview.
 2. Obtain legal review of the Privacy notice and commercial review of pricing before launch.
 3. Compress selected hero, icon, scheme and equipment PNG assets.

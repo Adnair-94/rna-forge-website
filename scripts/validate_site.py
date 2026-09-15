@@ -6,6 +6,7 @@ from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
+from validate_delivery_test import validate as validate_delivery_test
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -86,7 +87,12 @@ def main() -> None:
     errors: list[str] = []
 
     source_files = list(ROOT.rglob("*.html")) + list(ROOT.rglob("*.css"))
-    public_source = "\n".join(path.read_text(encoding="utf-8") for path in source_files)
+    all_public_source = "\n".join(path.read_text(encoding="utf-8") for path in source_files)
+    public_source = "\n".join(path.read_text(encoding="utf-8") for path in source_files if not path.is_relative_to(ROOT / "delivery-test"))
+    try:
+        validate_delivery_test(ROOT)
+    except (AssertionError, KeyError, IndexError, StopIteration, OSError) as error:
+        errors.append(f"Invalid isolated delivery test: {error}")
 
     for page in PAGES:
         check(page.exists(), f"Missing page: {page.relative_to(ROOT)}", errors)
@@ -119,8 +125,8 @@ def main() -> None:
     config = (ROOT / "_config.yml").read_text(encoding="utf-8")
     workflows = "\n".join(path.read_text(encoding="utf-8") for path in (ROOT / ".github" / "workflows").glob("*.yml"))
 
-    check("mailto:" not in public_source.lower(), "A public mailto link remains", errors)
-    check("info@rnaforge.com" not in public_source.lower(), "The public mailbox remains exposed", errors)
+    check("mailto:" not in all_public_source.lower(), "A public mailto link remains", errors)
+    check("info@rnaforge.com" not in all_public_source.lower(), "The public mailbox remains exposed", errors)
     check(public_source.lower().count("<form") == 1, "Expected exactly one public form", errors)
     script_sources = re.findall(r'<script\b[^>]*src="([^"]+)"', public_source, re.I)
     approved_scripts = {"https://challenges.cloudflare.com/turnstile/v0/api.js", "{{ '/assets/js/pricing-currency.js' | relative_url }}?v=20260910-1"}
@@ -140,8 +146,8 @@ def main() -> None:
     check("Content-Security-Policy" in head and "object-src 'none'" in head and "form-action 'self'" in head, "CSP baseline missing", errors)
     check(all(item in contact for item in ("company_website", "cf-turnstile", "data-action=\"contact\"", "name=\"consent\"")), "Protected form controls are incomplete", errors)
     check("site.contact_form_endpoint" in contact and "https://contact.rnaforge.com/" in config, "Protected form endpoint is not configured", errors)
-    check("TURNSTILE_SECRET" not in public_source, "A private Turnstile secret appears in public site source", errors)
-    check("RESEND_API_KEY" not in public_source and "api.resend.com" not in public_source, "Sending credentials or API must not appear in browser code", errors)
+    check("TURNSTILE_SECRET" not in all_public_source, "A private Turnstile secret appears in public site source", errors)
+    check("RESEND_API_KEY" not in all_public_source and "api.resend.com" not in all_public_source, "Sending credentials or API must not appear in browser code", errors)
     public_key_configured = bool(re.search(r'^turnstile_site_key: "0x[A-Za-z0-9_-]+"\s*$', config, re.MULTILINE))
     check(public_key_configured or (not args.production and '__TURNSTILE_SITE_KEY__' in config), "Turnstile public-key state is incorrect for this build", errors)
     if not args.production:
@@ -184,4 +190,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

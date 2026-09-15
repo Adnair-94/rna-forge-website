@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; object-src &#x27;none&#x27;; form-action &#x27;self&#x27; https://rna-forge-contact-staging.adithya-nair.workers.dev/; img-src &#x27;self&#x27;; style-src &#x27;self&#x27;; font-src &#x27;self&#x27;; script-src https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; connect-src https://challenges.cloudflare.com">
+  <title>Test enquiry | RNA Forge</title>
+  <link rel="stylesheet" href="./assets/test.css">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header><div class="header-inner"><img src="./assets/logo.png" width="65" height="70" alt="RNA Forge"><span>Enquiry delivery test</span></div></header>
+  <main id="main">
+    <h1>Test enquiry</h1>
+<p class="status" role="status">Delivery test</p>
+<p class="warning" id="confidentiality">Do not submit confidential RNA sequences, proprietary formulations, unpublished process details or sensitive commercial information.</p>
+<form action="https://rna-forge-contact-staging.adithya-nair.workers.dev/" method="post" accept-charset="UTF-8" aria-describedby="confidentiality">
+  <fieldset >
+    <legend class="visually-hidden">Test enquiry details</legend>
+    <div class="field-row">
+      <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" minlength="2" maxlength="100" required></div>
+      <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required></div>
+    </div>
+    <div class="field"><label for="organisation">Organisation <span class="optional">(optional)</span></label><input id="organisation" name="organisation" autocomplete="organization" maxlength="160"></div>
+    <div class="field"><label for="topic">Enquiry type</label><select id="topic" name="topic" required>
+      <option value="services">Services and quotations</option>
+      <option value="technology">RNAbox and technology</option>
+      <option value="funding">Funding, investment and collaboration</option>
+      <option value="privacy">Privacy request</option>
+      <option value="other" selected>Other</option>
+    </select></div>
+    <div class="field"><label for="message">Message</label><textarea id="message" name="message" rows="6" minlength="20" maxlength="4000" required>RNA Forge delivery test. Reference: RF-DELIVERY-01. This is a non-confidential test enquiry. Please confirm receipt and reply to the sender.</textarea></div>
+    <div class="trap" aria-hidden="true"><label for="website">Website</label><input id="website" name="company_website" tabindex="-1" autocomplete="off"></div>
+    <input type="hidden" name="source" value="rna-forge-delivery-test">
+    <label class="consent" for="consent"><input id="consent" name="consent" type="checkbox" value="yes" required><span>I have read the <a href="https://adnair-94.github.io/rna-forge-website/privacy/">privacy notice</a> and understand the confidentiality warning.</span></label>
+    <div class="challenge cf-turnstile" data-sitekey="0x4AAAAAAE136Q1DEdl5FcZ2" data-action="contact" data-theme="light" data-size="flexible"></div>
+    <button type="submit">Send test enquiry</button>
+  </fieldset>
+</form>
+
+  </main>
+  <footer>RNA Forge Ltd</footer>
+</body>
+</html>
