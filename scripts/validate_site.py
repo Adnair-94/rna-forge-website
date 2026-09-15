@@ -141,6 +141,7 @@ def main() -> None:
     check(all(item in contact for item in ("company_website", "cf-turnstile", "data-action=\"contact\"", "name=\"consent\"")), "Protected form controls are incomplete", errors)
     check("site.contact_form_endpoint" in contact and "https://contact.rnaforge.com/" in config, "Protected form endpoint is not configured", errors)
     check("TURNSTILE_SECRET" not in public_source, "A private Turnstile secret appears in public site source", errors)
+    check("RESEND_API_KEY" not in public_source and "api.resend.com" not in public_source, "Sending credentials or API must not appear in browser code", errors)
     check("__TURNSTILE_SITE_KEY__" not in config if args.production else "__TURNSTILE_SITE_KEY__" in config, "Turnstile public-key state is incorrect for this build", errors)
     check(css.count("@font-face") == 3 and all(name in css for name in ("vag-rounded-next-regular.otf", "vag-rounded-next-semibold.otf", "vag-rounded-next-bold.otf")), "Approved font faces changed", errors)
     check(css.count("{") == css.count("}"), "Unbalanced CSS braces", errors)

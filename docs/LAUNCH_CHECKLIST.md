@@ -49,13 +49,13 @@ Use one record per IP, not a semicolon-separated value. The www target has no re
 
 Source: [GitHub custom-domain documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
 
-## Contact-service decision required
+## Contact-service integration, not yet activated
 
-The existing Worker uses Cloudflare Email Service. That service requires Cloudflare DNS; the current domain uses IONOS DNS. Do not activate Cloudflare onboarding or replace nameservers as an incidental form step. Choose either an approved DNS migration that preserves Google email, or a revised sending service compatible with the existing DNS arrangement. The domain registration can remain with IONOS in either case.
+The user selected keeping IONOS DNS and Google email. The Worker now sends via Resend with a private sending key, fixed server-side recipient, bounded timeout and generic failure logging. Both public-form and server-delivery switches remain disabled. A staging configuration is prepared, but no account, key, DNS record, Worker or real delivery test has been configured.
 
-Source: [Cloudflare Email Service setup](https://developers.cloudflare.com/email-service/get-started/send-emails/).
+The production address/hosting remains unresolved. The legacy custom-domain Worker route has been removed from configuration to avoid initiating a Cloudflare DNS dependency. The public disabled form's endpoint is a placeholder, not a working service. The production workflow now requires explicit hosting sign-off as well as the existing main-branch/environment approval controls. See the [current deployment instructions](SECURE_DEPLOYMENT.md) and [Worker README](../contact-worker/README.md).
 
-After the architecture is agreed, provision the sending domain and Worker, restrict the Turnstile widget to the approved hosts, and store credentials only in protected environment secrets. Do not add incoming Cloudflare Email Routing MX records over Google's MX records. The contact-production environment must require the named reviewer before deployment.
+Verify the sending subdomain with the exact Resend-provided records in IONOS, without replacing Google's records. Use a domain-restricted sending-only key, disable tracking and review processing terms. Production host provisioning, account access, real delivery and reviewer sign-off are still required; passing mocked tests does not establish live deliverability or uptime.
 
 ## Team delivery test, before enabling enquiries
 

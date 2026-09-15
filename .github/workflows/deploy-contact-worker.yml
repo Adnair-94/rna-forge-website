@@ -20,6 +20,10 @@ jobs:
           persist-credentials: false
       - name: Test worker
         run: npm test --prefix contact-worker
+      - name: Require production endpoint sign-off
+        env:
+          CONTACT_HOSTING_APPROVED: ${{ vars.CONTACT_HOSTING_APPROVED }}
+        run: test "$CONTACT_HOSTING_APPROVED" = "true"
       - name: Deploy worker
         uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
         with:
@@ -31,6 +35,11 @@ jobs:
           secrets: |
             TURNSTILE_SECRET
             CONTACT_RECIPIENT
+            CONTACT_SENDER
+            RESEND_API_KEY
         env:
           TURNSTILE_SECRET: ${{ secrets.TURNSTILE_SECRET }}
           CONTACT_RECIPIENT: ${{ secrets.CONTACT_RECIPIENT }}
+          CONTACT_SENDER: ${{ secrets.CONTACT_SENDER }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+

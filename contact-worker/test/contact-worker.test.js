@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFileSync } from "node:fs";
 
 import { handleRequest } from "../src/index.js";
 
@@ -10,8 +11,9 @@ const baseEnv = () => ({
   CONTACT_SENDER: "website@rnaforge.com",
   SITE_ORIGIN: "https://rnaforge.com",
   TURNSTILE_SECRET: "test-secret",
+  RESEND_API_KEY: "test-sending-key",
+  CONTACT_DELIVERY_ENABLED: "true",
   CONTACT_RATE_LIMITER: { limit: async () => ({ success: true }) },
-  EMAIL: { send: async () => ({ messageId: "test-message" }) },
 });
 
 function request(overrides = {}, address = "192.0.2.1") {
@@ -32,7 +34,16 @@ function request(overrides = {}, address = "192.0.2.1") {
   });
 }
 
-const verified = async () => Response.json({ success: true, action: "contact", hostname: "rnaforge.com" });
+function provider(send = async () => Response.json({ id: "test-message" })) {
+  return async (url, options) => {
+    if (url === "https://challenges.cloudflare.com/turnstile/v0/siteverify") {
+      return Response.json({ success: true, action: "contact", hostname: "rnaforge.com" });
+    }
+    assert.equal(url, "https://api.resend.com/emails");
+    return send(options);
+  };
+}
+const verified = provider();
 
 test("rejects non-POST requests", async () => {
   const result = await handleRequest(new Request("https://contact.rnaforge.com/"), baseEnv(), verified);
@@ -47,8 +58,8 @@ test("rejects unapproved origins", async () => {
 test("silently accepts honeypot submissions without sending email", async () => {
   const env = baseEnv();
   let sent = false;
-  env.EMAIL.send = async () => { sent = true; };
-  const result = await handleRequest(request({ company_website: "spam.example" }), env, verified);
+  const result = await handleRequest(request({ company_website: "spam.example" }), env,
+    provider(async () => { sent = true; return Response.json({ id: "unexpected" }); }));
   assert.equal(result.status, 303);
   assert.equal(result.headers.get("location"), "https://rnaforge.com/contact/sent/");
   assert.equal(sent, false);
@@ -70,12 +81,21 @@ test("rate limits repeated submissions before sending", async () => {
 test("sends a validated enquiry to the private recipient", async () => {
   const env = baseEnv();
   let delivered;
-  env.EMAIL.send = async (message) => { delivered = message; return { messageId: "message-1" }; };
-  const result = await handleRequest(request(), env, verified);
+  const result = await handleRequest(request({ to: "attacker@example.test", from: "attacker@example.test" }), env,
+    provider(async (options) => {
+      assert.equal(options.method, "POST");
+      assert.equal(options.redirect, "error");
+      assert.equal(options.headers.Authorization, `Bearer ${env.RESEND_API_KEY}`);
+      assert.equal(options.headers["Content-Type"], "application/json");
+      assert.ok(options.signal instanceof AbortSignal);
+      delivered = JSON.parse(options.body);
+      return Response.json({ id: "message-1" });
+    }));
   assert.equal(result.status, 303);
   assert.equal(result.headers.get("location"), "https://rnaforge.com/contact/sent/");
-  assert.equal(delivered.to, env.CONTACT_RECIPIENT);
-  assert.equal(delivered.replyTo.email, "ada@example.test");
+  assert.deepEqual(delivered.to, [env.CONTACT_RECIPIENT]);
+  assert.equal(delivered.from, `RNA Forge website <${env.CONTACT_SENDER}>`);
+  assert.equal(delivered.reply_to, "ada@example.test");
   assert.match(delivered.subject, /Services and quotations/);
 });
 
@@ -83,7 +103,7 @@ test("changing email does not reset the IP allowance; other IPs remain independe
   const env = baseEnv();
   const counts = new Map();
   let sent = 0;
-  env.EMAIL.send = async () => { sent++; };
+  const fetchImpl = provider(async () => { sent++; return Response.json({ id: "message" }); });
   env.CONTACT_RATE_LIMITER.limit = async ({ key }) => {
     assert.match(key, /^[a-f0-9]{64}$/);
     const count = (counts.get(key) || 0) + 1;
@@ -91,12 +111,12 @@ test("changing email does not reset the IP allowance; other IPs remain independe
     return { success: count <= 5 };
   };
   for (let i = 0; i < 6; i++) {
-    const result = await handleRequest(request({ email: `person${i}@example.test` }), env, verified);
+    const result = await handleRequest(request({ email: `person${i}@example.test` }), env, fetchImpl);
     assert.equal(result.status, i < 5 ? 303 : 429);
   }
   assert.equal(sent, 5);
   assert.equal(counts.size, 1);
-  const other = await handleRequest(request({}, "192.0.2.2"), env, verified);
+  const other = await handleRequest(request({}, "192.0.2.2"), env, fetchImpl);
   assert.equal(other.status, 303);
   assert.equal(counts.size, 2);
 });
@@ -113,7 +133,6 @@ test("rate limiting happens before reading the body or checking Turnstile", asyn
 test("rate limiter failures fail closed", async () => {
   const env = baseEnv();
   env.CONTACT_RATE_LIMITER.limit = async () => { throw new Error("Unavailable"); };
-  env.EMAIL.send = () => assert.fail("Must not deliver");
   const result = await handleRequest(request(), env, () => assert.fail("Must not verify"));
   assert.equal(result.status, 503);
 });
@@ -121,7 +140,6 @@ test("rate limiter failures fail closed", async () => {
 for (const header of [null, "1", "not-a-number", "30000"]) {
   test(`rejects oversized body with Content-Length ${header}`, async () => {
     const env = baseEnv();
-    env.EMAIL.send = () => assert.fail("Must not deliver");
     const incoming = request({ padding: "x".repeat(30000) });
     if (header !== null) incoming.headers.set("Content-Length", header);
     const result = await handleRequest(incoming, env, () => assert.fail("Must not verify"));
@@ -185,3 +203,106 @@ test("handles malformed multipart bodies without delivery", async () => {
   const result = await handleRequest(incoming, baseEnv(), () => assert.fail("Must not verify"));
   assert.equal(result.headers.get("location"), "https://rnaforge.com/contact/error/");
 });
+
+for (const key of ["RESEND_API_KEY", "TURNSTILE_SECRET", "CONTACT_RECIPIENT", "CONTACT_SENDER", "CONTACT_DELIVERY_ENABLED"]) {
+  test(`fails closed when ${key} is missing`, async () => {
+    const env = baseEnv();
+    delete env[key];
+    const incoming = request();
+    const result = await handleRequest(incoming, env, () => assert.fail("Must not make network calls"));
+    assert.equal(result.status, 503);
+    assert.equal(incoming.bodyUsed, false);
+  });
+}
+
+test("configured secrets alone cannot activate delivery", async () => {
+  const result = await handleRequest(request(), { ...baseEnv(), CONTACT_DELIVERY_ENABLED: "false" },
+    () => assert.fail("Must not make network calls"));
+  assert.equal(result.status, 503);
+});
+
+for (const [label, send] of [
+  ["unauthorised", async () => Response.json({ message: "private details" }, { status: 401 })],
+  ["quota exceeded", async () => Response.json({ message: "private details" }, { status: 429 })],
+  ["unavailable", async () => new Response("private details", { status: 503 })],
+  ["invalid JSON", async () => new Response("not JSON")],
+  ["missing ID", async () => Response.json({})],
+  ["empty ID", async () => Response.json({ id: " " })],
+  ["network failure", async () => { throw new Error("private details"); }],
+  ["timeout", async () => { throw new DOMException("private details", "TimeoutError"); }],
+]) {
+  test(`delivery ${label} never reports success or leaks provider errors`, async (t) => {
+    const log = t.mock.method(console, "error", () => {});
+    let attempts = 0;
+    const result = await handleRequest(request(), baseEnv(), provider(async (options) => {
+      attempts++;
+      return send(options);
+    }));
+    assert.equal(attempts, 1, "Do not blindly retry an ambiguously accepted send");
+    assert.equal(result.status, 303);
+    assert.equal(result.headers.get("location"), "https://rnaforge.com/contact/error/");
+    assert.equal(await result.text(), "");
+    assert.deepEqual(log.mock.calls.map(call => call.arguments), [["Contact delivery failed"]]);
+  });
+}
+
+for (const email of ["ada@example.test,other@example.test", "Ada <ada@example.test>", "ada@example.test\r\nBcc:other@example.test"]) {
+  test(`rejects unsafe reply address ${JSON.stringify(email)}`, async () => {
+    const result = await handleRequest(request({ email }), baseEnv(), () => assert.fail("Must not send"));
+    assert.equal(result.headers.get("location"), "https://rnaforge.com/contact/error/");
+  });
+}
+
+test("escapes HTML and includes complete plain-text enquiry", async () => {
+  let message;
+  const result = await handleRequest(request({ name: "<Ada>", organisation: "A&B", message: "Please review <script>alert('test')</script> & reply." }),
+    baseEnv(), provider(async options => {
+      message = JSON.parse(options.body);
+      return Response.json({ id: "test-message" });
+    }));
+  assert.equal(result.headers.get("location"), "https://rnaforge.com/contact/sent/");
+  assert.ok(!message.html.includes("<script>"));
+  assert.match(message.html, /&lt;Ada&gt;/);
+  assert.match(message.html, /A&amp;B/);
+  assert.match(message.text, /Please review <script>/);
+});
+
+test("staging redirects retain the website subdirectory", async () => {
+  const env = { ...baseEnv(), SITE_ORIGIN: "https://adnair-94.github.io/rna-forge-website" };
+  for (const [fields, page] of [[{}, "sent"], [{ message: "short" }, "error"]]) {
+    const result = await handleRequest(request(fields), env, verified);
+    assert.equal(result.headers.get("location"), `https://adnair-94.github.io/rna-forge-website/contact/${page}/`);
+  }
+});
+
+for (const verification of [
+  { success: true, action: "other", hostname: "rnaforge.com" },
+  { success: true, action: "contact", hostname: "attacker.example" },
+]) {
+  test(`rejects Turnstile scope ${JSON.stringify(verification)}`, async () => {
+    const result = await handleRequest(request(), baseEnv(), async url => {
+      assert.equal(url, "https://challenges.cloudflare.com/turnstile/v0/siteverify");
+      return Response.json(verification);
+    });
+    assert.equal(result.status, 403);
+  });
+}
+
+test("deployment configurations declare delivery state and retain release protections", () => {
+  const production = readFileSync(new URL("../wrangler.toml", import.meta.url), "utf8");
+  const staging = readFileSync(new URL("../wrangler.staging.toml", import.meta.url), "utf8");
+  const workflow = readFileSync(new URL("../../.github/workflows/deploy-contact-worker.yml", import.meta.url), "utf8");
+  for (const config of [production, staging]) {
+    assert.match(config, /CONTACT_DELIVERY_ENABLED = "(?:false|true)"/);
+    assert.ok(!config.includes("[[send_email]]"));
+    assert.ok(!config.includes("RESEND_API_KEY"));
+  }
+  assert.match(production, /workers_dev = false/);
+  assert.match(production, /routes = \[/);
+  assert.match(staging, /workers_dev = true/);
+  assert.match(workflow, /CONTACT_HOSTING_APPROVED/);
+  assert.match(workflow, /environment: contact-production/);
+  assert.match(workflow, /github.ref == 'refs\/heads\/main'/);
+  assert.match(workflow, /RESEND_API_KEY: \$\{\{ secrets.RESEND_API_KEY \}\}/);
+});
+

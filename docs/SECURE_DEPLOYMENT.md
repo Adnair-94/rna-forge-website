@@ -31,6 +31,8 @@ Repository or environment secrets:
 - `CLOUDFLARE_ACCOUNT_ID`
 - `TURNSTILE_SECRET`
 - `CONTACT_RECIPIENT`
+- `CONTACT_SENDER`
+- `RESEND_API_KEY`
 
 Never store a Turnstile secret or mailbox destination as a repository variable.
 
@@ -38,16 +40,16 @@ Never store a Turnstile secret or mailbox destination as a repository variable.
 
 Before the first Worker deployment:
 
-Cloudflare Email Service requires Cloudflare DNS. The domain currently uses IONOS DNS, so agree on either a separately approved DNS migration that preserves Google email or a different sending provider before proceeding. Do not replace Google's MX records with Cloudflare Email Routing records.
+The user selected IONOS DNS with Resend for outgoing enquiries. Do not migrate nameservers, enable inbound Resend mail or replace Google's MX records. Cloudflare remains the current form-handler runtime, not the sending service. Production hosting/address setup is still unresolved; see the [Worker README](../contact-worker/README.md).
 
-1. Add the domain to Cloudflare and create a Turnstile widget for the final apex and `www` hostnames.
-2. Onboard the sending domain to Cloudflare Email Service and verify the private destination mailbox.
-3. Review the existing SPF record before adding another sender. A domain must have one combined SPF record, not multiple competing records.
-4. Add the four required secrets above to the `contact-production` environment.
-5. Run **Deploy protected contact service** manually and have the team test a real enquiry through a controlled staging form before enabling public enquiries.
-6. After delivery and security sign-off, set `contact_form_enabled: true` in `_config.yml` through the approved release process. The public Turnstile key alone does not enable the form.
+1. Use a company-owned Resend account with MFA. No paid plan or add-on is authorised. Review its data processing, retention and regional settings before passing real enquiry data through it.
+2. Verify an agreed sending subdomain using only the exact DNS records supplied by Resend. Keep incoming email disabled and open/click tracking off. Preserve Google's apex MX, verification and DKIM records. Any provider return-path MX belongs only at the specified sending subdomain, not the apex. Avoid duplicate SPF policies at the same hostname.
+3. Create a sending-only key restricted to that verified domain. Configure the Worker secrets above securely, never through chat or committed files. Keep staging and production secrets separate.
+4. Create real Turnstile widgets restricted to the corresponding test/production hosts. Prepare controlled staging using `wrangler.staging.toml`; review the actual endpoint and test page before setting staging `CONTACT_DELIVERY_ENABLED` to true. Have the team check inbox delivery, Reply-To, spam placement and authentication. An API acceptance alone is not a delivery test.
+5. Resolve production hosting while retaining IONOS DNS. Review and configure the actual route/endpoint and CSP. Only then set the protected environment variable `CONTACT_HOSTING_APPROVED` to true. Keep required reviewer approval and the main-branch restriction; run **Deploy protected contact service** manually after approval.
+6. Before launch, update the privacy notice to identify the active processing providers and confirm their terms. Enable production `CONTACT_DELIVERY_ENABLED` only after sign-off, then set `contact_form_enabled: true` in `_config.yml` through the approved release process. A Turnstile key or sending credential alone does not enable enquiries. Verify production delivery once more.
 
-The Worker uses the custom hostname `contact.rnaforge.com`, validates Turnstile server-side, checks the expected action and hostname, rate limits repeated submissions, silently absorbs honeypot traffic and never takes its delivery address from the browser.
+The Worker validates Turnstile server-side, checks the expected action and hostname, rate limits repeated submissions, silently absorbs honeypot traffic and never takes its delivery address from the browser. No production route is configured yet. Disable either delivery switch immediately if abuse or delivery failures occur, and check provider usage/delivery events without logging message contents.
 
 ## 4. Custom website domain
 

@@ -19,7 +19,8 @@ function response(body, status = 200, headers = {}) {
 }
 
 function redirect(env, path) {
-  return response(null, 303, { Location: new URL(path, env.SITE_ORIGIN).toString() });
+  const base = `${env.SITE_ORIGIN.replace(/\/$/, "")}/`;
+  return response(null, 303, { Location: new URL(path.replace(/^\//, ""), base).toString() });
 }
 
 function splitList(value) {
@@ -31,7 +32,7 @@ function clean(value, maxLength) {
 }
 
 function validEmail(value) {
-  return value.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  return typeof value === "string" && value.length <= 254 && /^[^\s@<>,;]+@[^\s@<>,;]+\.[^\s@<>,;]+$/.test(value);
 }
 
 function escapeHtml(value) {
@@ -100,7 +101,8 @@ async function verifyTurnstile(token, request, env, fetchImpl) {
 
 export async function handleRequest(request, env, fetchImpl = fetch) {
   if (request.method !== "POST") return response("Not found", 404);
-  if (!env.TURNSTILE_SECRET || !env.CONTACT_RECIPIENT || !env.CONTACT_SENDER) {
+  if (env.CONTACT_DELIVERY_ENABLED !== "true" || !env.TURNSTILE_SECRET || !env.RESEND_API_KEY ||
+      !validEmail(env.CONTACT_RECIPIENT) || !validEmail(env.CONTACT_SENDER)) {
     return response("Service unavailable", 503);
   }
 
@@ -166,16 +168,29 @@ export async function handleRequest(request, env, fetchImpl = fetch) {
   const html = `<h1>RNA Forge website enquiry</h1><p><strong>Type:</strong> ${escapeHtml(topicLabel)}</p><p><strong>Name:</strong> ${escapeHtml(name)}<br><strong>Work email:</strong> ${escapeHtml(email)}<br><strong>Organisation:</strong> ${escapeHtml(organisation || "Not supplied")}</p><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`;
 
   try {
-    await env.EMAIL.send({
-      to: env.CONTACT_RECIPIENT,
-      from: { email: env.CONTACT_SENDER, name: "RNA Forge website" },
-      replyTo: { email, name },
-      subject: `[RNA Forge website] ${topicLabel}`,
-      text,
-      html,
+    const delivery = await fetchImpl("https://api.resend.com/emails", {
+      method: "POST",
+      redirect: "error",
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      signal: AbortSignal.timeout(8000),
+      body: JSON.stringify({
+        to: [env.CONTACT_RECIPIENT],
+        from: `RNA Forge website <${env.CONTACT_SENDER}>`,
+        reply_to: email,
+        subject: `[RNA Forge website] ${topicLabel}`,
+        text,
+        html,
+      }),
     });
-  } catch (error) {
-    console.error("Contact delivery failed", error?.code || "unknown");
+    if (!delivery.ok) throw new Error("Delivery rejected");
+    const result = await delivery.json();
+    if (typeof result.id !== "string" || !result.id.trim()) throw new Error("Missing delivery ID");
+  } catch {
+    // Provider errors can contain addresses or message content; never log them.
+    console.error("Contact delivery failed");
     return redirect(env, "/contact/error/");
   }
 
@@ -187,3 +202,4 @@ export default {
     return handleRequest(request, env);
   },
 };
+

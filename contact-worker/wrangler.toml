@@ -2,16 +2,15 @@ name = "rna-forge-contact"
 main = "src/index.js"
 compatibility_date = "2026-08-26"
 workers_dev = false
-routes = [{ pattern = "contact.rnaforge.com", custom_domain = true }]
+routes = []
+# No production route is provisioned. Resolve hosting without migrating IONOS
+# DNS, then review the route configuration before deployment (see README).
 
 [vars]
 ALLOWED_HOSTNAMES = "rnaforge.com,www.rnaforge.com"
 ALLOWED_ORIGINS = "https://rnaforge.com,https://www.rnaforge.com"
-CONTACT_SENDER = "website@rnaforge.com"
+CONTACT_DELIVERY_ENABLED = "false"
 SITE_ORIGIN = "https://rnaforge.com"
-
-[[send_email]]
-name = "EMAIL"
 
 [[ratelimits]]
 name = "CONTACT_RATE_LIMITER"
@@ -23,3 +22,4 @@ namespace_id = "26082601"
 
 [observability.logs]
 enabled = true
+
