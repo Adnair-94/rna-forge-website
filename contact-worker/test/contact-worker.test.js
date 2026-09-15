@@ -306,3 +306,21 @@ test("deployment configurations declare delivery state and retain release protec
   assert.match(workflow, /RESEND_API_KEY: \$\{\{ secrets.RESEND_API_KEY \}\}/);
 });
 
+test("initial staging deployment requires approval and cannot enable delivery", () => {
+  const workflow = readFileSync(new URL("../../.github/workflows/deploy-contact-staging.yml", import.meta.url), "utf8");
+  assert.match(workflow, /workflow_dispatch:/);
+  assert.ok(!/^  (push|pull_request|pull_request_target):/m.test(workflow));
+  assert.equal((workflow.match(/if: github.ref == 'refs\/heads\/main'/g) || []).length, 2);
+  assert.match(workflow, /needs: test/);
+  assert.match(workflow, /environment: contact-production/);
+  assert.match(workflow, /command: deploy --var CONTACT_DELIVERY_ENABLED:false/);
+  assert.ok(workflow.includes('cp contact-worker/wrangler.staging.toml "$RUNNER_TEMP/rna-forge-contact-staging/wrangler.toml"'));
+  assert.ok(workflow.includes('workingDirectory: ${{ runner.temp }}/rna-forge-contact-staging'));
+  assert.ok(!workflow.includes("CONTACT_HOSTING_APPROVED"));
+  assert.ok(!workflow.includes("cp contact-worker/wrangler.toml"));
+  assert.match(workflow, /cancel-in-progress: false/);
+  for (const name of ["TURNSTILE_SECRET", "CONTACT_RECIPIENT", "CONTACT_SENDER", "RESEND_API_KEY", "CLOUDFLARE_API_TOKEN", "CLOUDFLARE_ACCOUNT_ID"]) {
+    assert.ok(workflow.includes(`secrets.${name}`));
+  }
+});
+
